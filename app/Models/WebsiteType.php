@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \Venturecraft\Revisionable\RevisionableTrait;
 
-class Country extends Model
+class WebsiteType extends Model
 {
     use HasFactory;
     use SoftDeletes;

@@ -26,7 +26,7 @@ class Revision extends Resource
 
     /* The columns that should be searched. */
     public static $search = [
-        'key',
+        'key', 'old_value', 'new_value',
     ];
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
@@ -73,7 +73,7 @@ class Revision extends Resource
             }),
             Number::make('... de user Id', 'user_id')
                 ->onlyOnDetail(),
-            DateTime::make('Mise à jour', 'updated_at')
+            DateTime::make('Modifié le', 'updated_at')
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
 

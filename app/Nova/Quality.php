@@ -9,30 +9,24 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Country extends Resource
+class Quality extends Resource
 {
-    public static $model = \App\Models\Country::class;
+    public static $model = \App\Models\Quality::class;
 
     /* Displayed field uses as title on detail pages */
     public static $title = 'name';
 
     /* The columns that could be searched. */
     public static $search = [
-        'name', 'nationality', 'internal_order'
+        'name', 'description'
     ];
 
     /* Logical group in the sidebar menu - Optional */
     public static $group = '3. Tables internes';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Pays"; }
-    public static function singularLabel () { return "Pays"; }
-
-    /* The visual style used for the table. Available options are 'tight' and 'default' */
-    public static $tableStyle = 'tight';
-
-    /* Whether to show borders for each column on the X-axis. */
-    public static $showColumnBorders = false;
+    public static function label () { return "Qualité"; }
+    public static function singularLabel () { return "Qualité"; }
 
     /**
      * Get the fields displayed by the resource.
@@ -43,38 +37,35 @@ class Country extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make('ID Base', 'id')
+           ID::make('ID Base', 'id')
                 ->sortable(),
-            Number::make('Ordre interne', 'internal_order')
+            Number::make('Niveau', 'level')
                 ->rules('required', 'integer', 'gt:0')
+                ->creationRules('unique:qualities,level')
+                ->updateRules('unique:qualities,level,{{resourceId}}')
                 ->sortable(),
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')
-                ->creationRules('unique:countries,name')
-                ->updateRules('unique:countries,name,{{resourceId}}')
+                ->creationRules('unique:qualities,name')
+                ->updateRules('unique:qualities,name,{{resourceId}}')
                 ->sortable(),
-            Text::make('Gentilé', 'nationality')
-                ->rules('required', 'string', 'min:3')
-                ->creationRules('unique:countries,nationality')
-                ->updateRules('unique:countries,nationality,{{resourceId}}')
+            Text::make('Description', 'description')
+                ->rules('required', 'string', 'min:10')
+                ->creationRules('unique:qualities,description')
+                ->updateRules('unique:qualities,description,{{resourceId}}')
                 ->sortable(),
-            Text::make('Code', 'code')
-                ->rules('required', 'string', 'size:2')
-                ->creationRules('unique:countries,code')
-                ->updateRules('unique:countries,code,{{resourceId}}')
-                ->hideFromIndex(),
-            DateTime::make('Créé le', 'created_at')
+             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
             DateTime::make('Modifié le', 'updated_at')
                 ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
+                ->exceptOnForms(),
             DateTime::make('Détruit le', 'deleted_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
-        ];
+         ];
     }
 
     /**

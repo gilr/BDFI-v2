@@ -9,30 +9,24 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Country extends Resource
+class RelationshipType extends Resource
 {
-    public static $model = \App\Models\Country::class;
+    public static $model = \App\Models\RelationshipType::class;
 
     /* Displayed field uses as title on detail pages */
     public static $title = 'name';
 
     /* The columns that could be searched. */
     public static $search = [
-        'name', 'nationality', 'internal_order'
+        'name', 'relationship', 'reverse_relationship'
     ];
 
     /* Logical group in the sidebar menu - Optional */
     public static $group = '3. Tables internes';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Pays"; }
-    public static function singularLabel () { return "Pays"; }
-
-    /* The visual style used for the table. Available options are 'tight' and 'default' */
-    public static $tableStyle = 'tight';
-
-    /* Whether to show borders for each column on the X-axis. */
-    public static $showColumnBorders = false;
+    public static function label () { return "Types de relation"; }
+    public static function singularLabel () { return "Type de relation"; }
 
     /**
      * Get the fields displayed by the resource.
@@ -43,39 +37,32 @@ class Country extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make('ID Base', 'id')
-                ->sortable(),
-            Number::make('Ordre interne', 'internal_order')
-                ->rules('required', 'integer', 'gt:0')
+           ID::make('ID Base', 'id')
                 ->sortable(),
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')
-                ->creationRules('unique:countries,name')
-                ->updateRules('unique:countries,name,{{resourceId}}')
+                ->creationRules('unique:relationship_types,name')
+                ->updateRules('unique:relationship_types,name,{{resourceId}}')
                 ->sortable(),
-            Text::make('Gentilé', 'nationality')
+            Text::make('Relation', 'relationship')
                 ->rules('required', 'string', 'min:3')
-                ->creationRules('unique:countries,nationality')
-                ->updateRules('unique:countries,nationality,{{resourceId}}')
                 ->sortable(),
-            Text::make('Code', 'code')
-                ->rules('required', 'string', 'size:2')
-                ->creationRules('unique:countries,code')
-                ->updateRules('unique:countries,code,{{resourceId}}')
-                ->hideFromIndex(),
+            Text::make('Relation inverse', 'reverse_relationship')
+                ->rules('required', 'string', 'min:3')
+                ->sortable(),
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
             DateTime::make('Modifié le', 'updated_at')
                 ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
+                ->exceptOnForms(),
             DateTime::make('Détruit le', 'deleted_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
         ];
-    }
+     }
 
     /**
      * Get the cards available for the request.
