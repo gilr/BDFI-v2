@@ -20,6 +20,7 @@ class CreateCountriesTable extends Migration
             $table->char('code', 2)->unique();
             $table->unsignedInteger('internal_order');
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use App\Policies\RevisionPolicy;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -13,10 +14,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        \Venturecraft\Revisionable\Revision::class => \App\Policies\RevisionPolicy::class,
     ];
 
-    /**
+     /**
      * Register any authentication / authorization services.
      *
      * @return void

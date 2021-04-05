@@ -7,16 +7,14 @@
 
 Development of the new version of a website dedicated to speculative fiction. 
 The project will be developed as a multi-language project, even if its primary target is a french-speaking website.
-It is developed for a fan association. The members of this association will be the administration team of the site.
 This website will be a non-commercial and non-profit project, without any advertising.
-
 
 As it is developed for a specific scope, it should not be of great interests for people outside our small team, except maybe as an example of a laravel project.
 
 ## Help?
-Any help or advice from people familiar with Laravel ecosystem or who love the speculative fiction is welcome!
+Any help or advice from people familiar with Laravel ecosystem an/or people who love the speculative fiction is welcome!
 
-## Based sur Laravel
+## Based on Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
@@ -40,6 +38,7 @@ Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers y
 ## Used packages & repositories
 
 - **[debugbar](https://github.com/barryvdh/laravel-debugbar)**
+- **[revisionable](https://packagist.org/packages/venturecraft/revisionable)**
 - **[Nova](https://nova.laravel.com/)**
 
 ## Security Vulnerabilities

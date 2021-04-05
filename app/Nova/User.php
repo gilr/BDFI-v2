@@ -10,6 +10,13 @@ use Laravel\Nova\Fields\Text;
 
 class User extends Resource
 {
+
+    /* Logical group in the sidebar menu - Optional */
+    public static $group = '4. Administration';
+
+    public static function label () { return "Utilisateurs"; }
+    public static function singularLabel () { return "utilisateur"; }
+
     /**
      * The model the resource corresponds to.
      *

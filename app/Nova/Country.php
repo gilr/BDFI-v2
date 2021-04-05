@@ -22,11 +22,11 @@ class Country extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = 'Internal Tables';
+    public static $group = '3. Tables internes';
 
-    /* Label in the sidebar menu */
-    // Problématique : ça devient "Update pay" par exemple !
-    // public static function label () { return "Pays"; }
+    /* Model Labels (plural & singular) */
+    public static function label () { return "Pays"; }
+    public static function singularLabel () { return "Pays"; }
 
     /**
      * Get the fields displayed by the resource.
@@ -46,7 +46,6 @@ class Country extends Resource
                 ->rules('required', 'string', 'min:3')
                 ->creationRules('unique:countries,name')
                 ->updateRules('unique:countries,name,{{resourceId}}')
-                ->textAlign('center')
                 ->sortable(),
             Text::make(__('Nationality'), 'nationality')
                 ->rules('required', 'string', 'min:3')
@@ -63,6 +62,10 @@ class Country extends Resource
                 ->format('DD/MM/YYYY HH:mm')
                 ->exceptOnForms(),
             DateTime::make('Updated At')
+                ->format('DD/MM/YYYY HH:mm')
+                ->onlyOnDetail(),
+            DateTime::make('Deleted At')
+                ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
         ];
