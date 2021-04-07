@@ -44,16 +44,22 @@ class Revision extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')
+            ID::make('N°', 'id')
                 ->sortable(),
             Text::make('Table', function() {
-                if ($this->revisionable_type == "App\Models\Country")
-                {
-                    return "Pays";
-                }
-                else
-                {
-                    return $this->revisionable_type;
+                switch (substr($this->revisionable_type, 11)) {
+                    case "Country":
+                        return "Pays";
+                        break;
+                    case "RelationshipType":
+                        return "Type relation";
+                        break;
+                    case "WebsiteType":
+                        return "Type site";
+                        break;
+                    default:
+                        return substr($this->revisionable_type, 11);
+                        break;
                 }
             }),
             Number::make(__('Elément'), 'revisionable_id'),
@@ -64,6 +70,8 @@ class Revision extends Resource
             })
                 ->onlyOnDetail(),
             Text::make('Champ', 'key'),
+            //TBD pour les deux suivants
+            //    prévoir une décooupe avec un nombre max de caractères si sur index
             Text::make('Ancienne valeur', 'old_value'),
             Text::make('Nouvelle valeur', 'new_value'),
             DateTime::make('Réalisé le', 'created_at')

@@ -37,7 +37,7 @@ class WebsiteType extends Resource
     public function fields(Request $request)
     {
         return [
-           ID::make('ID Base', 'id')
+           ID::make('N°', 'id')
                 ->sortable(),
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')

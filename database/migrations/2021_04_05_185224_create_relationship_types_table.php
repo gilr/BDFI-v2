@@ -14,7 +14,7 @@ class CreateRelationshipTypesTable extends Migration
     public function up()
     {
         Schema::create('relationship_types', function (Blueprint $table) {
-            $table->increments('id');
+            $table->tinyIncrements('id');
             $table->string('name', 64)->unique();
             $table->string('relationship', 32);
             $table->string('reverse_relationship', 32);

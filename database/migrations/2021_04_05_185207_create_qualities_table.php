@@ -14,10 +14,10 @@ class CreateQualitiesTable extends Migration
     public function up()
     {
         Schema::create('qualities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('level')->unique();
+            $table->tinyIncrements('id');
             $table->string('name', 16)->unique();
             $table->string('description', 128)->unique();
+            $table->integer('level')->unique();
             $table->timestamps();
             $table->softdeletes();
         });

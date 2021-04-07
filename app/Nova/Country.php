@@ -43,7 +43,7 @@ class Country extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make('ID Base', 'id')
+            ID::make('N°', 'id')
                 ->sortable(),
             Number::make('Ordre interne', 'internal_order')
                 ->rules('required', 'integer', 'gt:0')

@@ -14,7 +14,7 @@ class CreateWebsiteTypesTable extends Migration
     public function up()
     {
         Schema::create('website_types', function (Blueprint $table) {
-            $table->increments('id');
+            $table->tinyIncrements('id');
             $table->string('name', 32)->unique();
             $table->string('description', 128)->unique();
             $table->string('displayed_text', 64)->unique();

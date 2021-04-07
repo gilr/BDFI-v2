@@ -5,28 +5,31 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class RelationshipType extends Resource
+class Announcement extends Resource
 {
-    public static $model = \App\Models\RelationshipType::class;
+    public static $model = \App\Models\Announcement::class;
 
     /* Displayed field uses as title on detail pages */
-    public static $title = 'name';
+    public static $title = 'subject';
 
     /* The columns that could be searched. */
     public static $search = [
-        'name', 'relationship', 'reverse_relationship'
+        'subject', 'description', 'date'
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '3. Tables internes';
+    public static $group = '2. Tables site';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Types de relation"; }
-    public static function singularLabel () { return "Type de relation"; }
+    public static function label () { return "Annonces"; }
+    public static function singularLabel () { return "Annonce"; }
+
+    /* The visual style used for the table. Available options are 'tight' and 'default' */
+    public static $tableStyle = 'tight';
 
     /**
      * Get the fields displayed by the resource.
@@ -37,24 +40,30 @@ class RelationshipType extends Resource
     public function fields(Request $request)
     {
         return [
-           ID::make('N°', 'id')
+            ID::make('N°', 'id')
                 ->sortable(),
-            Text::make('Nom', 'name')
-                ->rules('required', 'string', 'min:3')
-                ->creationRules('unique:relationship_types,name')
-                ->updateRules('unique:relationship_types,name,{{resourceId}}')
+            Text::make('Date', 'date')
+                ->rules('required', 'string', 'size:10')
+                ->placeholder('aaaa/mm/jj')
+                ->help('Format obligatoire année, mois puis jour, exemple "2020/05/20".')
                 ->sortable(),
-            Text::make('Relation', 'relationship')
-                ->rules('required', 'string', 'min:3')
+            Text::make('Sujet', 'name')
+                ->rules('required', 'string', 'min:3', 'max:64')
                 ->sortable(),
-            Text::make('Relation inverse', 'reverse_relationship')
-                ->rules('required', 'string', 'min:3')
+            Textarea::make('Description', 'description')
+                ->rules('required', 'string', 'min:10')
+                ->rows(3)
+                ->alwaysShow()
                 ->sortable(),
-            DateTime::make('Créé le', 'created_at')
+            Text::make('URL', 'url')
+                ->nullable()
+                ->sortable(),
+             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
             DateTime::make('Modifié le', 'updated_at')
+                ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->exceptOnForms(),
             DateTime::make('Détruit le', 'deleted_at')
@@ -62,8 +71,10 @@ class RelationshipType extends Resource
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
         ];
-     }
-
+    }
+            /*$table->increments('id');
+            $table->enum('type', ['annonce_contenu','annonce_site','point_histo','point_aides','point_stats','remerciement','consecration','autre']);
+            $table->string('url')->nullable();
     /**
      * Get the cards available for the request.
      *

@@ -37,7 +37,7 @@ class Quality extends Resource
     public function fields(Request $request)
     {
         return [
-           ID::make('ID Base', 'id')
+           ID::make('N°', 'id')
                 ->sortable(),
             Number::make('Niveau', 'level')
                 ->rules('required', 'integer', 'gt:0')
