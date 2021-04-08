@@ -22,11 +22,13 @@ class AnnouncementSeeder extends Seeder
                 'name'        => $record->sujet,
                 'description' => $record->description,
                 'url'         => $record->url,
-//                'created_by'  => $record->user_id,
-//                'updated_by'  => $record->user_id,
                 'created_at'  => $record->created_at,
                 'updated_at'  => $record->updated_at,
-                'deleted_at'  => NULL
+                'deleted_at'  => NULL,
+                // 99=>1 - 1=>2 - 2=>3 - 3=>4
+                'created_by'  => 1,
+                'updated_by'  => ($record->user_id == 99 ? 1 : ++$record->user_id),
+                'deleted_by'  => NULL
             ]);
         }
     }

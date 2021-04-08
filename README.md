@@ -39,6 +39,7 @@ Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers y
 
 - **[debugbar](https://github.com/barryvdh/laravel-debugbar)**
 - **[revisionable](https://packagist.org/packages/venturecraft/revisionable)**
+- **[Laravel-Userstamps](https://github.com/WildsideUK/Laravel-Userstamps)**
 - **[Nova](https://nova.laravel.com/)**
 
 ## Security Vulnerabilities

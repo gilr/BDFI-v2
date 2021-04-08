@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Announcement extends Resource
@@ -58,17 +59,26 @@ class Announcement extends Resource
             Text::make('URL', 'url')
                 ->nullable()
                 ->sortable(),
-             DateTime::make('Créé le', 'created_at')
+            DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
+                ->onlyOnDetail(),
+            BelongsTo::make('Par', 'creator', 'App\Nova\User')
+                ->sortable()
                 ->onlyOnDetail(),
             DateTime::make('Modifié le', 'updated_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->exceptOnForms(),
+            BelongsTo::make('Par', 'editor', 'App\Nova\User')
+                ->sortable()
+                ->exceptOnForms(),
             DateTime::make('Détruit le', 'deleted_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
+                ->onlyOnDetail(),
+            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
+                ->sortable()
                 ->onlyOnDetail(),
         ];
     }

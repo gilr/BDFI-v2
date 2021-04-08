@@ -21,6 +21,9 @@ class CreateAnnouncementsTable extends Migration
             $table->enum('type', ['annonce_contenu','annonce_site','point_histo','point_aides','point_stats','remerciement','consecration','autre']);
             $table->string('url', 256)->nullable();
             $table->timestamps();
+            $table->smallInteger('created_by')->nullable();
+            $table->smallInteger('updated_by')->nullable();            
+            $table->smallInteger('deleted_by')->nullable();            
             $table->softdeletes();
         });
     }
