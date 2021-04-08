@@ -21,6 +21,8 @@ class CountrySeeder extends Seeder
                 'nationality'      => $record->nationalite,
                 'code'             => $record->code,
                 'internal_order'   => $record->ordre_interne,
+//                'created_by'  => $record->user_id,
+//                'updated_by'  => $record->user_id,
                 'created_at'       => $record->created_at,
                 'updated_at'       => $record->updated_at,
                 'deleted_at'       => NULL
