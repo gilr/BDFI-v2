@@ -58,4 +58,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function hasSysAdminRole()
+    {
+        return $this->role === 'sysadmin';
+    }
+    public function hasAdminRole()
+    {
+        return (($this->role === 'admin') || ($this->role === 'sysadmin'));
+    }
+    public function hasEditorRole()
+    {
+        return (($this->role === 'admin') || ($this->role === 'sysadmin') || ($this->role === 'editor'));
+    }
 }

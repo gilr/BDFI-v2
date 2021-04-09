@@ -65,7 +65,7 @@ class AnnouncementPolicy
      */
     public function delete(User $user, Announcement $announcement)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -77,7 +77,7 @@ class AnnouncementPolicy
      */
     public function restore(User $user, Announcement $announcement)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -89,6 +89,6 @@ class AnnouncementPolicy
      */
     public function forceDelete(User $user, Announcement $announcement)
     {
-        return true;
+        return $user->hasSysAdminRole();
     }
 }

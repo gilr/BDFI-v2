@@ -65,7 +65,7 @@ class CountryPolicy
      */
     public function delete(User $user, Country $country)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -77,7 +77,7 @@ class CountryPolicy
      */
     public function restore(User $user, Country $country)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -89,6 +89,6 @@ class CountryPolicy
      */
     public function forceDelete(User $user, Country $country)
     {
-        return true;
+        return $user->hasSysAdminRole();
     }
 }

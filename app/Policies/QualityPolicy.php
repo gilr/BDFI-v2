@@ -65,7 +65,7 @@ class QualityPolicy
      */
     public function delete(User $user, Quality $quality)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -77,7 +77,7 @@ class QualityPolicy
      */
     public function restore(User $user, Quality $quality)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -89,6 +89,6 @@ class QualityPolicy
      */
     public function forceDelete(User $user, Quality $quality)
     {
-        return true;
+        return $user->hasSysAdminRole();
     }
 }

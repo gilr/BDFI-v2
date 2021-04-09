@@ -65,7 +65,7 @@ class RelationshipTypePolicy
      */
     public function delete(User $user, RelationshipType $relationshipType)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -77,7 +77,7 @@ class RelationshipTypePolicy
      */
     public function restore(User $user, RelationshipType $relationshipType)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -89,6 +89,6 @@ class RelationshipTypePolicy
      */
     public function forceDelete(User $user, RelationshipType $relationshipType)
     {
-        return true;
+        return $user->hasSysAdminRole();
     }
 }

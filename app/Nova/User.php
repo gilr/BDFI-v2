@@ -3,10 +3,11 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\Password;
 
 class User extends Resource
 {
@@ -68,6 +69,17 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            Text::make('Role')
+                ->exceptOnForms(),
+
+            Select::make('Role')->options([
+                'guest'    => 'guest',
+                'editor'   => 'editor',
+                'admin'    => 'admin',
+                'sysadmin' => 'sysadmin',
+            ])
+                ->onlyOnForms(),
         ];
     }
 
