@@ -72,6 +72,7 @@ class DatabaseSeeder extends Seeder
         QualitySeeder::class,
         AnnouncementSeeder::class,
         AuthorSeeder::class,
+        WebsiteSeeder::class,
     ]);
 
     }

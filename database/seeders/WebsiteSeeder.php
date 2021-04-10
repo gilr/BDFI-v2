@@ -24,8 +24,9 @@ class WebsiteSeeder extends Seeder
                 'country_id'      => $record->langue_id,
                 'created_at'      => $record->created_at,
                 'updated_at'      => $record->updated_at,
-                'created_by'      => $record->user_id,
-                'updated_by'      => $record->user_id,
+                // 99=>1 - 1=>2 - 2=>3 - 3=>4
+                'created_by'      => 1,
+                'updated_by'      => 1,
                 'deleted_at'      => NULL
             ]);
         }

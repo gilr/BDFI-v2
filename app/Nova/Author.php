@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\TextArea;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 
 class Author extends Resource
 {
@@ -20,6 +21,9 @@ class Author extends Resource
 
     /* Displayed field uses as title on detail pages */
     //public static $title = 'subject';
+    public function title () {
+        return $this->first_name . " " . $this->name;
+    }
 
     /* The columns that could be searched. */
     public static $search = [
@@ -31,7 +35,7 @@ class Author extends Resource
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Auteurs"; }
-    public static function singularLabel () { return "Auteur d'ID n°"; }
+    public static function singularLabel () { return "Auteur"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
@@ -54,6 +58,8 @@ class Author extends Resource
             new Panel('Identification', $this->identification()),
             new Panel('Dates et lieux', $this->datesAndPlaces()),
             new Panel('Bio et méta-données', $this->bioAndMetadata()),
+
+            HasMany::make('Websites'),
         ];
     }
 

@@ -25,4 +25,17 @@ class Website extends Model
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
 
+    public function author()
+    {
+        return $this->belongsTo('App\Models\Author');
+    }
+    public function website_type()
+    {
+        return $this->belongsTo('App\Models\WebsiteType');
+    }
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country');
+    }
+
 }

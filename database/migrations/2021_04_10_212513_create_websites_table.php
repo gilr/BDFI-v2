@@ -22,7 +22,7 @@ class CreateWebsitesTable extends Migration
 
             $table->string('url', 256);
 
-            $table->tinyInteger('website_types_id')
+            $table->tinyInteger('website_type_id')
                 ->constrained()
                 ->onDelete('restrict');
 

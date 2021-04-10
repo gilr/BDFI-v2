@@ -39,4 +39,9 @@ class Author extends Model
         return $this->belongsTo('App\Models\Quality');
     }
 
+    public function websites()
+    {
+        return $this->hasMany('App\Models\Website');
+    }
+
 }
