@@ -71,6 +71,7 @@ class DatabaseSeeder extends Seeder
         RelationshipTypeSeeder::class,
         QualitySeeder::class,
         AnnouncementSeeder::class,
+        AuthorSeeder::class,
     ]);
 
     }

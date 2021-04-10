@@ -17,6 +17,7 @@ class WebsiteTypeSeeder extends Seeder
         $backup = DB::connection('mysql2')->table('types_site')->get();
         foreach ($backup as $record) {
             DB::connection('mysql')->table('website_types')->insert([
+                'id'             => $record->id,
                 'name'           => $record->nom,
                 'description'    => $record->description,
                 'displayed_text' => $record->affiche,

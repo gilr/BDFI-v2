@@ -17,6 +17,7 @@ class RelationshipTypeSeeder extends Seeder
         $backup = DB::connection('mysql2')->table('types_lien')->get();
         foreach ($backup as $record) {
             DB::connection('mysql')->table('relationship_types')->insert([
+                'id'                   => $record->id,
                 'name'                 => $record->nom . "-" . $record->inverse,
                 'relationship'         => $record->nom,
                 'reverse_relationship' => $record->inverse,

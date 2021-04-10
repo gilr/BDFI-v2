@@ -37,8 +37,9 @@ class WebsiteType extends Resource
     public function fields(Request $request)
     {
         return [
-           ID::make('N°', 'id')
+            ID::make('N°', 'id')
                 ->sortable(),
+
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')
                 ->creationRules('unique:website_types,name')
@@ -54,10 +55,12 @@ class WebsiteType extends Resource
                 ->creationRules('unique:website_types,displayed_text')
                 ->updateRules('unique:website_types,displayed_text,{{resourceId}}')
                 ->sortable(),
+
             Boolean::make('Utilisable', 'obsolete')
                 ->trueValue('0')
                 ->falseValue('1')
                 ->rules('required', 'boolean'),
+
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')

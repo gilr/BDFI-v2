@@ -17,6 +17,7 @@ class QualitySeeder extends Seeder
         $backup = DB::connection('mysql2')->table('etats_avancement')->get();
         foreach ($backup as $record) {
             DB::connection('mysql')->table('qualities')->insert([
+                'id'           => $record->id,
                 'level'        => $record->valeur,
                 'name'         => $record->nom,
                 'description'  => $record->nom_long,
