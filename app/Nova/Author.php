@@ -3,11 +3,15 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\TextArea;
 use Laravel\Nova\Fields\BelongsTo;
 
 class Author extends Resource
@@ -27,7 +31,7 @@ class Author extends Resource
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Auteurs"; }
-    public static function singularLabel () { return "Auteur"; }
+    public static function singularLabel () { return "Auteur d'ID n°"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
@@ -47,35 +51,94 @@ class Author extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
-            Text::make('Page BDFI', 'nom_bdfi')
-                ->sortable(),
+            new Panel('Identification', $this->identification()),
+            new Panel('Dates et lieux', $this->datesAndPlaces()),
+            new Panel('Bio et méta-données', $this->bioAndMetadata()),
+        ];
+    }
 
-            Text::make('Né le', 'birth_date')
-                ->sortable(),
-            Text::make('Décès', 'date_death')
-                ->sortable(),
+    protected function identification()
+    {
 
+        return [
             Text::make('Nom', 'name')
                 ->hideFromIndex(),
             Text::make('Prénom', 'first_name')
                 ->hideFromIndex(),
+            Text::make('Page BDFI', 'nom_bdfi')
+                ->sortable(),
+
             Text::make('Nom légal', 'legal_name')
                 ->nullable()
                 ->hideFromIndex(),
             Text::make('Autres formes', 'forms')
                 ->hideFromIndex(),
 
-            BelongsTo::make('Pays', 'country', 'App\Nova\Country')
-                ->hideFromIndex(),
-            BelongsTo::make('Pays 2', 'country2', 'App\Nova\Country')
-                ->hideFromIndex(),
-
-
             Boolean::make('Pseu', 'pseudonym')
                 ->trueValue('0')
                 ->falseValue('1')
                 ->rules('required', 'boolean')
                 ->sortable(),
+
+            Text::make('H/F', 'gender')
+                ->exceptOnForms(),
+
+            Select::make('H/F', 'gender')->options([
+                'H' => 'Homme',
+                'F'    => 'Femme',
+                '?'    => 'Inconnu',
+                'IEL'   => 'Non-binaire',
+                ])
+                ->rules('required', 'string')
+                ->onlyOnForms(),
+        ];
+    }
+
+    protected function datesAndPlaces()
+    {
+        return [
+            BelongsTo::make('Pays', 'country', 'App\Nova\Country')
+                ->nullable()
+                ->sortable(),
+            BelongsTo::make('Pays 2', 'country2', 'App\Nova\Country')
+                ->nullable()
+                ->hideFromIndex(),
+
+            Text::make('Né le', 'birth_date')
+                ->nullable()
+                ->sortable(),
+            Text::make('Né à', 'birthplace')
+                ->nullable()
+                ->hideFromIndex(),
+            Text::make('Décèdé le', 'date_death')
+                ->nullable()
+                ->sortable(),
+            Text::make('Lieu de décès', 'place_death')
+                ->nullable()
+                ->hideFromIndex(),
+
+        ];
+    }
+
+    protected function bioAndMetadata()
+    {
+        return [
+            Number::make('Lg bio', function() {
+                return strlen($this->biography);
+            })
+                ->onlyOnIndex(),
+
+            Textarea::make('Biographie', 'biography')
+                ->rules('required', 'string', 'min:10')
+                ->rows(3)
+                ->alwaysShow()
+                ->hideFromIndex(),
+
+            Textarea::make('Infos de travail et privées', 'private')
+                ->rules('required', 'string', 'min:10')
+                ->rows(3)
+                ->alwaysShow()
+                ->hideFromIndex(),
 
             BelongsTo::make('Quality', 'quality', 'App\Nova\Quality')
                 ->hideFromIndex(),
@@ -103,6 +166,22 @@ class Author extends Resource
             BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
                 ->sortable()
                 ->onlyOnDetail(),
+
+            Trix::make('Historique', function() {
+                //return $this->revisionHistory()->getResults();
+                $history = $this->revisionHistory()->getResults()->reverse();
+                $display = "";
+                foreach ($history as $revision) {
+                    if($revision->key == 'created_at' && !$revision->old_value) {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
+                    }
+                    else {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
+                    }
+                }
+                return $display;
+
+            }) ->onlyOnDetail(),
         ];
     }
 

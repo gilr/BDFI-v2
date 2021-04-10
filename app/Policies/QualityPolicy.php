@@ -41,7 +41,7 @@ class QualityPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -53,7 +53,7 @@ class QualityPolicy
      */
     public function update(User $user, Quality $quality)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**

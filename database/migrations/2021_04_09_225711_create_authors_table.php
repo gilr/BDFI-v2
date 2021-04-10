@@ -18,9 +18,9 @@ class CreateAuthorsTable extends Migration
 
             $table->string('name', 32);
             $table->string('nom_bdfi', 32);
-            $table->string('first_name', 32);
-            $table->string('legal_name', 128);
-            $table->string('forms', 512);
+            $table->string('first_name', 32)->nullable();
+            $table->string('legal_name', 128)->nullable();
+            $table->string('forms', 512)->nullable();
             $table->boolean('pseudonym');
             $table->enum('gender', ['F', 'H', 'IEL', '?'])->default('?');
 
@@ -34,13 +34,13 @@ class CreateAuthorsTable extends Migration
                 ->onDelete('restrict')
                 ->nullable();
 
-            $table->string('birth_date', 10);
-            $table->string('birthplace', 64);
-            $table->string('date_death', 10);
-            $table->string('place_death', 64);
+            $table->string('birth_date', 10)->nullable();
+            $table->string('birthplace', 64)->nullable();
+            $table->string('date_death', 10)->nullable();
+            $table->string('place_death', 64)->nullable();
 
-            $table->text('biography');
-            $table->text('private');
+            $table->text('biography')->nullable();
+            $table->text('private')->nullable();
 
             $table->tinyInteger('quality_id')
                 ->constrained()

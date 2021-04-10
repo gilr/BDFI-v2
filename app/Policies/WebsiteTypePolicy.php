@@ -41,7 +41,7 @@ class WebsiteTypePolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -53,7 +53,7 @@ class WebsiteTypePolicy
      */
     public function update(User $user, WebsiteType $websiteType)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**

@@ -39,6 +39,7 @@ class Quality extends Resource
         return [
            ID::make('N°', 'id')
                 ->sortable(),
+
             Number::make('Niveau', 'level')
                 ->rules('required', 'integer', 'gt:0')
                 ->creationRules('unique:qualities,level')
@@ -54,6 +55,7 @@ class Quality extends Resource
                 ->creationRules('unique:qualities,description')
                 ->updateRules('unique:qualities,description,{{resourceId}}')
                 ->sortable(),
+
              DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')

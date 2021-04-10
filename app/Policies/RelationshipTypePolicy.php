@@ -41,7 +41,7 @@ class RelationshipTypePolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**
@@ -53,7 +53,7 @@ class RelationshipTypePolicy
      */
     public function update(User $user, RelationshipType $relationshipType)
     {
-        return true;
+        return $user->hasAdminRole();
     }
 
     /**

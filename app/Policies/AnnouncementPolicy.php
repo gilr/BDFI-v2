@@ -41,7 +41,7 @@ class AnnouncementPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasEditorRole();
     }
 
     /**
@@ -53,7 +53,7 @@ class AnnouncementPolicy
      */
     public function update(User $user, Announcement $announcement)
     {
-        return true;
+        return $user->hasEditorRole();
     }
 
     /**
@@ -65,7 +65,7 @@ class AnnouncementPolicy
      */
     public function delete(User $user, Announcement $announcement)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**

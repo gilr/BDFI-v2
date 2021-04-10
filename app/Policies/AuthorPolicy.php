@@ -41,7 +41,7 @@ class AuthorPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->hasEditorRole();
     }
 
     /**
@@ -53,7 +53,7 @@ class AuthorPolicy
      */
     public function update(User $user, Author $author)
     {
-        return true;
+        return $user->hasEditorRole();
     }
 
     /**
@@ -65,7 +65,7 @@ class AuthorPolicy
      */
     public function delete(User $user, Author $author)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**

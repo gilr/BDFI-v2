@@ -37,8 +37,9 @@ class RelationshipType extends Resource
     public function fields(Request $request)
     {
         return [
-           ID::make('N°', 'id')
+            ID::make('N°', 'id')
                 ->sortable(),
+
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')
                 ->creationRules('unique:relationship_types,name')
@@ -50,6 +51,7 @@ class RelationshipType extends Resource
             Text::make('Relation inverse', 'reverse_relationship')
                 ->rules('required', 'string', 'min:3')
                 ->sortable(),
+
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')

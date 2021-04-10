@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Country;
 use App\Models\User;
+use App\Models\WebSite;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CountryPolicy
+class WebSitePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class CountryPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\WebSite  $webSite
      * @return mixed
      */
-    public function view(User $user, Country $country)
+    public function view(User $user, WebSite $webSite)
     {
         return true;
     }
@@ -41,41 +41,41 @@ class CountryPolicy
      */
     public function create(User $user)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\WebSite  $webSite
      * @return mixed
      */
-    public function update(User $user, Country $country)
+    public function update(User $user, WebSite $webSite)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\WebSite  $webSite
      * @return mixed
      */
-    public function delete(User $user, Country $country)
+    public function delete(User $user, WebSite $webSite)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\WebSite  $webSite
      * @return mixed
      */
-    public function restore(User $user, Country $country)
+    public function restore(User $user, WebSite $webSite)
     {
         return $user->hasAdminRole();
     }
@@ -84,10 +84,10 @@ class CountryPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Country  $country
+     * @param  \App\Models\WebSite  $webSite
      * @return mixed
      */
-    public function forceDelete(User $user, Country $country)
+    public function forceDelete(User $user, WebSite $webSite)
     {
         return $user->hasSysAdminRole();
     }

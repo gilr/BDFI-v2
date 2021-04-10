@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Textarea;
@@ -92,7 +93,6 @@ class Announcement extends Resource
                 ->onlyOnDetail(),
 
             BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->sortable()
                 ->onlyOnDetail(),
 
             DateTime::make('Modifié le', 'updated_at')
@@ -105,18 +105,32 @@ class Announcement extends Resource
                 ->exceptOnForms(),
 
             DateTime::make('Détruit le', 'deleted_at')
-                ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
 
             BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->sortable()
                 ->onlyOnDetail(),
+
+            Trix::make('Historique', function() {
+                //return $this->revisionHistory()->getResults();
+                $history = $this->revisionHistory()->getResults()->reverse();
+                $display = "";
+                foreach ($history as $revision) {
+                    if($revision->key == 'created_at' && !$revision->old_value) {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
+                    }
+                    else {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
+                    }
+                }
+                return $display;
+
+            })
+                ->onlyOnDetail(),
+
         ];
     }
-            /*$table->increments('id');
-            $table->enum('type', ['annonce_contenu','annonce_site','point_histo','point_aides','point_stats','remerciement','consecration','autre']);
-            $table->string('url')->nullable();
+
     /**
      * Get the cards available for the request.
      *

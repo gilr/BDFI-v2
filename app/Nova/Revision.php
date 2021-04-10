@@ -52,33 +52,49 @@ class Revision extends Resource
                         return "Pays";
                         break;
                     case "RelationshipType":
-                        return "Type relation";
+                        return "Types relation";
                         break;
                     case "WebsiteType":
-                        return "Type site";
+                        return "Types site";
+                        break;
+                    case "Announcement":
+                        return "Annonces";
+                        break;
+                    case "Author":
+                        return "Auteurs";
                         break;
                     default:
                         return substr($this->revisionable_type, 11);
                         break;
                 }
             }),
-            Number::make(__('Elément'), 'revisionable_id'),
-            Text::make(__('Nom de l\'élément'), function() {
+            Number::make('Elément', 'revisionable_id'),
+            Text::make('Elem', function() {
+                return '<a href="" class="no-underline dim text-primary font-bold">' . $this->revisionable_id . '</a>';
+            })->asHtml(),
+
+            Text::make('Nom de l\'élément', function() {
                 if (class_exists($class = $this->revisionable_type)) {
-                    return $class::find($this->revisionable_id)->name;
+                        return $class::find($this->revisionable_id)->name;
                 }
             })
                 ->onlyOnDetail(),
-            Text::make('Champ', 'key'),
+            // Text::make('Champ', 'key'),
+            Text::make('Champ', function() {
+                return $this->fieldName();
+            }),
+
             //TBD pour les deux suivants
             //    prévoir une décooupe avec un nombre max de caractères si sur index
             Text::make('Ancienne valeur', 'old_value'),
             Text::make('Nouvelle valeur', 'new_value'),
             DateTime::make('Réalisé le', 'created_at')
                 ->format('DD/MM/YYYY HH:mm'),
+
             Text::make('Par', function() {
-                return $this->userResponsible()->name;
-            }),
+                return '<a href="/nova/resources/users/'. $this->user_id .'" class="no-underline dim text-primary font-bold">' . $this->userResponsible()->name . '</a>';
+            })->asHtml(),
+
             Number::make('... de user Id', 'user_id')
                 ->onlyOnDetail(),
             DateTime::make('Modifié le', 'updated_at')
