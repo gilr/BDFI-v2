@@ -77,7 +77,7 @@ class WebSitePolicy
      */
     public function restore(User $user, WebSite $webSite)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $webSite->destructor;
     }
 
     /**

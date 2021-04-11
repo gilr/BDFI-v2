@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Quality;
+use App\Models\Signature;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class QualityPolicy
+class SignaturePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class QualityPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Quality  $quality
+     * @param  \App\Models\Signature  $signature
      * @return mixed
      */
-    public function view(User $user, Quality $quality)
+    public function view(User $user, Signature $signature)
     {
         return true;
     }
@@ -41,53 +41,53 @@ class QualityPolicy
      */
     public function create(User $user)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Quality  $quality
+     * @param  \App\Models\Signature  $signature
      * @return mixed
      */
-    public function update(User $user, Quality $quality)
+    public function update(User $user, Signature $signature)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Quality  $quality
+     * @param  \App\Models\Signature  $signature
      * @return mixed
      */
-    public function delete(User $user, Quality $quality)
+    public function delete(User $user, Signature $signature)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Quality  $quality
+     * @param  \App\Models\Signature  $signature
      * @return mixed
      */
-    public function restore(User $user, Quality $quality)
+    public function restore(User $user, Signature $signature)
     {
-        return $user->hasAdminRole() || $user->id === $quality->destructor;
+        return $user->hasAdminRole() || $user->id === $signature->destructor;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Quality  $quality
+     * @param  \App\Models\Signature  $signature
      * @return mixed
      */
-    public function forceDelete(User $user, Quality $quality)
+    public function forceDelete(User $user, Signature $signature)
     {
         return $user->hasSysAdminRole();
     }

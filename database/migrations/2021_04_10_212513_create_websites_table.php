@@ -16,7 +16,7 @@ class CreateWebsitesTable extends Migration
         Schema::create('websites', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->bigInteger('author_id')
+            $table->integer('author_id')
                 ->constrained()
                 ->onDelete('restrict');
 

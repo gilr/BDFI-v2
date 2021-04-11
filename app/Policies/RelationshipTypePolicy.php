@@ -77,7 +77,7 @@ class RelationshipTypePolicy
      */
     public function restore(User $user, RelationshipType $relationshipType)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $relationshipType->destructor;
     }
 
     /**

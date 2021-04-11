@@ -4,8 +4,8 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -22,7 +22,7 @@ class WebSite extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '1. Tables biblio';
+    public static $group = 'Autres';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Sites web"; }

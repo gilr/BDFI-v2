@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RelationshipTypeSeeder extends Seeder
+class RelationshipSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,13 @@ class RelationshipTypeSeeder extends Seeder
      */
     public function run()
     {
-        $backup = DB::connection('mysql2')->table('types_lien')->get();
+        $backup = DB::connection('mysql2')->table('liens_auteur')->get();
         foreach ($backup as $record) {
-            DB::connection('mysql')->table('relationship_types')->insert([
+            DB::connection('mysql')->table('relationships')->insert([
                 'id'                   => $record->id,
-
-                'name'                 => $record->nom . "-" . $record->inverse,
-                'relationship'         => $record->nom,
-                'reverse_relationship' => $record->inverse,
+                'author1_id'           => $record->auteur_id,
+                'author2_id'           => $record->lien_a_id,
+                'relationship_type_id' => $record->type_lien_id,
 
                 'created_at'           => $record->created_at,
                 'updated_at'           => $record->updated_at,

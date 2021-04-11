@@ -77,7 +77,7 @@ class AuthorPolicy
      */
     public function restore(User $user, Author $author)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $author->destructor;
     }
 
     /**

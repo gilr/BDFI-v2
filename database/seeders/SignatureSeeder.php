@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class QualitySeeder extends Seeder
+class SignatureSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,16 +14,15 @@ class QualitySeeder extends Seeder
      */
     public function run()
     {
-        $backup = DB::connection('mysql2')->table('etats_avancement')->get();
+        $backup = DB::connection('mysql2')->table('pseudonymes')->get();
         foreach ($backup as $record) {
-            DB::connection('mysql')->table('qualities')->insert([
+            DB::connection('mysql')->table('signatures')->insert([
                 'id'           => $record->id,
 
-                'level'        => $record->valeur,
-                'name'         => $record->nom,
-                'description'  => $record->nom_long,
+                'author_id'    => $record->auteur_id,
+                'signature_id' => $record->pseudo_id,
 
-                'created_at'   => $record->created_at,
+                'created_at'   => ($record->created_at !== "0000-00-00 00:00:00") ? $record->created_at : "2014-10-01 00:00:00",
                 'updated_at'   => $record->updated_at,
                 'deleted_at'   => NULL,
 

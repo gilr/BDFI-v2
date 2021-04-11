@@ -15,13 +15,17 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->smallIncrements('id');
+
             $table->string('name', 32)->unique();
             $table->string('nationality', 32)->unique();
             $table->char('code', 2)->unique();
             $table->unsignedInteger('internal_order');
+
             $table->timestamps();
-            $table->softdeletes();
-        });
+            $table->smallInteger('created_by')->nullable();
+            $table->smallInteger('updated_by')->nullable();            
+            $table->smallInteger('deleted_by')->nullable();            
+            $table->softdeletes();        });
     }
 
     /**

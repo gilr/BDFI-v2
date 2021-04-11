@@ -77,7 +77,7 @@ class CountryPolicy
      */
     public function restore(User $user, Country $country)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $country->destructor;
     }
 
     /**

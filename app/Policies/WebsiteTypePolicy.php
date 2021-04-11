@@ -77,7 +77,7 @@ class WebsiteTypePolicy
      */
     public function restore(User $user, WebsiteType $websiteType)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $websiteType->destructor;
     }
 
     /**

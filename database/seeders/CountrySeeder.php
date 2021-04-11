@@ -18,15 +18,20 @@ class CountrySeeder extends Seeder
         foreach ($backup as $record) {
             DB::connection('mysql')->table('countries')->insert([
                 'id'             => $record->id,
+
                 'name'           => $record->nom,
                 'nationality'    => $record->nationalite,
                 'code'           => $record->code,
                 'internal_order' => $record->ordre_interne,
-//                'created_by'  => $record->user_id,
-//                'updated_by'  => $record->user_id,
+
                 'created_at'     => $record->created_at,
                 'updated_at'     => $record->updated_at,
-                'deleted_at'     => NULL
+                'deleted_at'     => NULL,
+
+                // 99=>1 - 1=>2 - 2=>3 - 3=>4
+                'created_by'     => 1,
+                'updated_by'     => 1,
+                'deleted_by'     => NULL
             ]);
         }        
     }

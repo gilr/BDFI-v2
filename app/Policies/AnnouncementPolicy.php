@@ -77,7 +77,7 @@ class AnnouncementPolicy
      */
     public function restore(User $user, Announcement $announcement)
     {
-        return $user->hasAdminRole();
+        return $user->hasAdminRole() || $user->id === $announcement->destructor;
     }
 
     /**

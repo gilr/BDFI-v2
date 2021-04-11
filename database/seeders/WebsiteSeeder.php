@@ -18,16 +18,20 @@ class WebsiteSeeder extends Seeder
         foreach ($backup as $record) {
             DB::connection('mysql')->table('websites')->insert([
                 'id'              => $record->id,
+
                 'url'             => $record->url,
                 'author_id'       => $record->auteur_id,
                 'website_type_id' => $record->type_site_id,
                 'country_id'      => $record->langue_id,
+
                 'created_at'      => $record->created_at,
                 'updated_at'      => $record->updated_at,
+                'deleted_at'      => NULL,
+
                 // 99=>1 - 1=>2 - 2=>3 - 3=>4
                 'created_by'      => 1,
                 'updated_by'      => 1,
-                'deleted_at'      => NULL
+                'deleted_by'      => NULL
             ]);
         }
     }

@@ -18,6 +18,7 @@ class AuthorSeeder extends Seeder
         foreach ($backup as $record) {
             DB::connection('mysql')->table('authors')->insert([
                 'id'          => $record->id,
+
                 'name'        => $record->nom,
                 'nom_bdfi'    => $record->nom_bdfi,
                 'first_name'  => $record->prenom,
@@ -32,9 +33,9 @@ class AuthorSeeder extends Seeder
                 'biography'   => $record->bio,
                 'private'     => $record->work_priv,
 
-                'country_id'   => $record->pays_id,
-                'country2_id'  => $record->pays2_id,
-                'quality_id'   => $record->avancement_id,
+                'country_id'  => $record->pays_id,
+                'country2_id' => $record->pays2_id,
+                'quality_id'  => $record->avancement_id,
 
                 'created_at'  => $record->created_at,
                 'updated_at'  => $record->updated_at,

@@ -25,14 +25,14 @@ class CreateAuthorsTable extends Migration
             $table->enum('gender', ['F', 'H', 'IEL', '?'])->default('?');
 
             $table->smallInteger('country_id')
+                ->nullable()
                 ->constrained()
-                ->onDelete('restrict')
-                ->nullable();
+                ->onDelete('restrict');
 
             $table->smallInteger('country2_id')
+                ->nullable()
                 ->constrained('country')
-                ->onDelete('restrict')
-                ->nullable();
+                ->onDelete('restrict');
 
             $table->string('birth_date', 10)->nullable();
             $table->string('birthplace', 64)->nullable();

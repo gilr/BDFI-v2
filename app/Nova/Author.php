@@ -13,6 +13,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\TextArea;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 
 class Author extends Resource
@@ -31,7 +32,7 @@ class Author extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '1. Tables biblio';
+    public static $group = '1. Biblio';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Auteurs"; }
@@ -60,6 +61,8 @@ class Author extends Resource
             new Panel('Bio et méta-données', $this->bioAndMetadata()),
 
             HasMany::make('Websites'),
+            BelongsToMany::make('Signatures', 'signatures', '\App\Nova\Author'),
+            BelongsToMany::make('References', 'references', '\App\Nova\Author'),
         ];
     }
 

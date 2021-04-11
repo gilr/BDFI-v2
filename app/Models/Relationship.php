@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Venturecraft\Revisionable\RevisionableTrait;
 use Wildside\Userstamps\Userstamps;
 
-class Announcement extends Model
+class Relationship extends Model
 {
     use HasFactory;
     use Userstamps;
     use SoftDeletes;
     use RevisionableTrait;
-    
+
     protected $revisionEnabled = true;
      
     //Remove old revisions (works only when used with $historyLimit)
@@ -24,4 +24,18 @@ class Announcement extends Model
 
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
+
+    public function author1()
+    {
+        return $this->belongsTo('App\Models\Author');
+    }
+    public function author2()
+    {
+        return $this->belongsTo('App\Models\Author');
+    }
+    public function relationship_type()
+    {
+        return $this->belongsTo('App\Models\RelationshipType');
+    }
+
 }

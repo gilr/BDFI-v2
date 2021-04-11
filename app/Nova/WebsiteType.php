@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -22,7 +23,7 @@ class WebsiteType extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '3. Tables internes';
+    public static $group = '3. Internes';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Types de site"; }

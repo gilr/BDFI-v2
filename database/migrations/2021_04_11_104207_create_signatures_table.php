@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQualitiesTable extends Migration
+class CreateSignaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,22 @@ class CreateQualitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('qualities', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+        Schema::create('signatures', function (Blueprint $table) {
+            $table->increments('id');
 
-            $table->string('name', 16)->unique();
-            $table->string('description', 128)->unique();
-            $table->integer('level')->unique();
+            $table->integer('author_id')
+                ->constrained('authors')
+                ->onDelete('restrict');
+            $table->integer('signature_id')
+                ->constrained('authors')
+                ->onDelete('restrict');
 
             $table->timestamps();
             $table->smallInteger('created_by')->nullable();
             $table->smallInteger('updated_by')->nullable();            
             $table->smallInteger('deleted_by')->nullable();            
-            $table->softdeletes();        });
+            $table->softdeletes(); 
+        });
     }
 
     /**
@@ -34,6 +38,6 @@ class CreateQualitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qualities');
+        Schema::dropIfExists('signatures');
     }
 }

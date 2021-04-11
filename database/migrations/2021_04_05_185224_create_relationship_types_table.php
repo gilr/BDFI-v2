@@ -15,12 +15,16 @@ class CreateRelationshipTypesTable extends Migration
     {
         Schema::create('relationship_types', function (Blueprint $table) {
             $table->tinyIncrements('id');
+
             $table->string('name', 64)->unique();
             $table->string('relationship', 32);
             $table->string('reverse_relationship', 32);
+
             $table->timestamps();
-            $table->softdeletes();
-        });
+            $table->smallInteger('created_by')->nullable();
+            $table->smallInteger('updated_by')->nullable();            
+            $table->smallInteger('deleted_by')->nullable();            
+            $table->softdeletes();        });
     }
 
     /**

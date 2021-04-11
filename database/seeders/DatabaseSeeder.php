@@ -67,12 +67,14 @@ class DatabaseSeeder extends Seeder
 
     $this->call([
         CountrySeeder::class,
+        QualitySeeder::class,
         WebsiteTypeSeeder::class,
         RelationshipTypeSeeder::class,
-        QualitySeeder::class,
         AnnouncementSeeder::class,
         AuthorSeeder::class,
         WebsiteSeeder::class,
+        SignatureSeeder::class,
+        RelationshipSeeder::class,
     ]);
 
     }

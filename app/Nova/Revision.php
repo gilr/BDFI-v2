@@ -15,7 +15,7 @@ class Revision extends Resource
     public static $model = \Venturecraft\Revisionable\Revision::class;
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '4. Administration';
+    public static $group = '4. Gestion';
 
     /**
      * The single value that should be used to represent the resource when being displayed.

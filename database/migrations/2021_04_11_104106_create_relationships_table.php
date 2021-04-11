@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnnouncementsTable extends Migration
+class CreateRelationshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,18 @@ class CreateAnnouncementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('relationships', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name', 64);
-            $table->text('description')->nullable();
-            $table->string('date', 10);
-            $table->enum('type', ['annonce_contenu','annonce_site','point_histo','point_aides','point_stats','remerciement','consecration','autre']);
-            $table->string('url', 256)->nullable();
+            $table->integer('author1_id')
+                ->constrained('authors')
+                ->onDelete('restrict');
+            $table->integer('author2_id')
+                ->constrained('authors')
+                ->onDelete('restrict');
+            $table->tinyInteger('relationship_type_id')
+                ->constrained()
+                ->onDelete('restrict');
 
             $table->timestamps();
             $table->smallInteger('created_by')->nullable();
@@ -37,6 +41,6 @@ class CreateAnnouncementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('relationships');
     }
 }

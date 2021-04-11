@@ -15,13 +15,17 @@ class CreateWebsiteTypesTable extends Migration
     {
         Schema::create('website_types', function (Blueprint $table) {
             $table->tinyIncrements('id');
+
             $table->string('name', 32)->unique();
             $table->string('description', 128)->unique();
             $table->string('displayed_text', 64)->unique();
             $table->boolean('obsolete');
+
             $table->timestamps();
-            $table->softdeletes();
-        });
+            $table->smallInteger('created_by')->nullable();
+            $table->smallInteger('updated_by')->nullable();            
+            $table->smallInteger('deleted_by')->nullable();            
+            $table->softdeletes();        });
     }
 
     /**
