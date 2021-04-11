@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Announcement;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AnnouncementPolicy
+class EventPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class AnnouncementPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Event  $event
      * @return mixed
      */
-    public function view(User $user, Announcement $announcement)
+    public function view(User $user, Event $event)
     {
         return true;
     }
@@ -41,29 +41,29 @@ class AnnouncementPolicy
      */
     public function create(User $user)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Event  $event
      * @return mixed
      */
-    public function update(User $user, Announcement $announcement)
+    public function update(User $user, Event $event)
     {
-        return $user->hasAdminRole();
+        return $user->hasEditorRole();
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Event  $event
      * @return mixed
      */
-    public function delete(User $user, Announcement $announcement)
+    public function delete(User $user, Event $event)
     {
         return $user->hasAdminRole();
     }
@@ -72,22 +72,22 @@ class AnnouncementPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Event  $event
      * @return mixed
      */
-    public function restore(User $user, Announcement $announcement)
+    public function restore(User $user, Event $event)
     {
-        return $user->hasAdminRole() || $user->id === $announcement->destructor;
+        return $user->hasAdminRole();
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcement
+     * @param  \App\Models\Event  $event
      * @return mixed
      */
-    public function forceDelete(User $user, Announcement $announcement)
+    public function forceDelete(User $user, Event $event)
     {
         return $user->hasSysAdminRole();
     }
