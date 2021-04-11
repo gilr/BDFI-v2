@@ -3,18 +3,18 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class WebSite extends Resource
 {
     public static $model = \App\Models\WebSite::class;
     /* Displayed field uses as title on detail pages */
-    public static $title = 'url';
+    public static $title = 'id';
 
     /* The columns that could be searched. */
     public static $search = [
@@ -59,6 +59,15 @@ class WebSite extends Resource
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
                 ->sortable()
                 ->searchable(),
+
+            new Panel('Historique fiche', $this->Metadata()),
+        ];
+
+    }
+
+    protected function Metadata()
+    {
+        return [
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
@@ -83,7 +92,7 @@ class WebSite extends Resource
                 ->sortable()
                 ->onlyOnDetail(),
 
-            Trix::make('Historique', function() {
+            Trix::make('Modifications', function() {
                 //return $this->revisionHistory()->getResults();
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";

@@ -21,10 +21,7 @@ class Author extends Resource
     public static $model = \App\Models\Author::class;
 
     /* Displayed field uses as title on detail pages */
-    //public static $title = 'subject';
-    public function title () {
-        return $this->first_name . " " . $this->name;
-    }
+    public static $title = 'full_name';
 
     /* The columns that could be searched. */
     public static $search = [
@@ -57,8 +54,8 @@ class Author extends Resource
                 ->sortable(),
 
             new Panel('Identification', $this->identification()),
-            new Panel('Dates et lieux', $this->datesAndPlaces()),
-            new Panel('Bio et méta-données', $this->bioAndMetadata()),
+            new Panel('Dates et biographie', $this->datesAndBio()),
+            new Panel('Historique fiche', $this->Metadata()),
 
             HasMany::make('Websites'),
             BelongsToMany::make('Signatures', 'signatures', '\App\Nova\Author'),
@@ -74,6 +71,9 @@ class Author extends Resource
                 ->hideFromIndex(),
             Text::make('Prénom', 'first_name')
                 ->hideFromIndex(),
+            Text::make('Nom complet', 'full_name')
+                ->onlyOnIndex()
+                ->sortable(),
             Text::make('Page BDFI', 'nom_bdfi')
                 ->sortable(),
 
@@ -84,13 +84,12 @@ class Author extends Resource
                 ->hideFromIndex(),
 
             Boolean::make('Pseu', 'pseudonym')
-                ->trueValue('0')
-                ->falseValue('1')
                 ->rules('required', 'boolean')
                 ->sortable(),
 
             Text::make('H/F', 'gender')
-                ->exceptOnForms(),
+                ->exceptOnForms()
+                ->sortable(),
 
             Select::make('H/F', 'gender')->options([
                 'H' => 'Homme',
@@ -103,7 +102,7 @@ class Author extends Resource
         ];
     }
 
-    protected function datesAndPlaces()
+    protected function datesAndBio()
     {
         return [
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
@@ -126,12 +125,6 @@ class Author extends Resource
                 ->nullable()
                 ->hideFromIndex(),
 
-        ];
-    }
-
-    protected function bioAndMetadata()
-    {
-        return [
             Number::make('Lg bio', function() {
                 return strlen($this->biography);
             })
@@ -152,6 +145,12 @@ class Author extends Resource
             BelongsTo::make('Quality', 'quality', 'App\Nova\Quality')
                 ->hideFromIndex(),
 
+        ];
+    }
+
+    protected function Metadata()
+    {
+        return [
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
@@ -176,7 +175,7 @@ class Author extends Resource
                 ->sortable()
                 ->onlyOnDetail(),
 
-            Trix::make('Historique', function() {
+            Trix::make('Modifications', function() {
                 //return $this->revisionHistory()->getResults();
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";

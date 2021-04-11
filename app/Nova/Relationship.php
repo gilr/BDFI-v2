@@ -57,7 +57,7 @@ class Relationship extends Resource
             BelongsTo::make('Relation entre 1 et 2', 'relationship_type', 'App\Nova\RelationshipType')
                 ->sortable(),
 
-            new Panel('Méta-données', $this->Metadata()),
+            new Panel('Historique fiche', $this->Metadata()),
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Text;
@@ -10,7 +11,7 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Http\Requests\NovaRequest;
+//use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Announcement extends Resource
 {
@@ -87,6 +88,15 @@ class Announcement extends Resource
                 ->help('Laisser vide, ou URL forum si l\'annonce détaillée existe, ou si auteur, URL de sa page biblio bdfi.')
                 ->sortable(),
 
+            new Panel('Historique fiche', $this->Metadata()),
+
+        ];
+
+    }
+
+    protected function Metadata()
+    {
+        return [
             DateTime::make('Créé le', 'created_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
@@ -111,7 +121,7 @@ class Announcement extends Resource
             BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
                 ->onlyOnDetail(),
 
-            Trix::make('Historique', function() {
+            Trix::make('Modifications', function() {
                 //return $this->revisionHistory()->getResults();
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";
@@ -127,7 +137,6 @@ class Announcement extends Resource
 
             })
                 ->onlyOnDetail(),
-
         ];
     }
 

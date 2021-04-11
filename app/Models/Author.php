@@ -54,4 +54,9 @@ class Author extends Model
         return $this->belongsToMany('App\Models\Author', 'signatures', 'signature_id', 'author_id');
     }
 
+    public function getFullNameAttribute()
+    {
+        return ($this->first_name == "" ? $this->name : $this->first_name . " " . $this->name);
+    }
+
 }

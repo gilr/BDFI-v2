@@ -52,7 +52,7 @@ class Signature extends Resource
                 ->sortable()
                 ->searchable(),
 
-            new Panel('Méta-données', $this->Metadata()),
+            new Panel('Historique fiche', $this->Metadata()),
 
         ];
     }
@@ -84,7 +84,7 @@ class Signature extends Resource
                 ->sortable()
                 ->onlyOnDetail(),
 
-            Trix::make('Historique', function() {
+            Trix::make('Modifications', function() {
                 //return $this->revisionHistory()->getResults();
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";

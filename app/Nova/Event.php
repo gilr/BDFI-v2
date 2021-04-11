@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Trix;
@@ -12,7 +13,6 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Event extends Resource
 {
@@ -99,6 +99,15 @@ class Event extends Resource
                 ->format('DD/MM/YYYY HH:mm')
                 ->hideFromIndex(),
 
+            new Panel('Historique fiche', $this->Metadata()),
+
+        ];
+
+    }
+
+    protected function Metadata()
+    {
+        return [
             DateTime::make('Créé le', 'created_at')
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
@@ -122,7 +131,7 @@ class Event extends Resource
             BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
                 ->onlyOnDetail(),
 
-            Trix::make('Historique', function() {
+            Trix::make('Modifications', function() {
                 //return $this->revisionHistory()->getResults();
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";
