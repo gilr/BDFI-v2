@@ -76,6 +76,7 @@ class DatabaseSeeder extends Seeder
         SignatureSeeder::class,
         RelationshipSeeder::class,
         EventSeeder::class,
+        StatSeeder::class,
     ]);
 
     }

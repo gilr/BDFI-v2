@@ -5,38 +5,31 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
 
-class Event extends Resource
+class Stat extends Resource
 {
-    public static $model = \App\Models\Event::class;
+    public static $model = \App\Models\Stat::class;
+
     /* Displayed field uses as title on detail pages */
-    public static $title = 'name';
+    public static $title = 'date';
 
     /* The columns that could be searched. */
     public static $search = [
-        'id', 'name', 'description', 'start_date', 'end_date', 'type', 'place'
+        'authors', 'series', 'references', 'novels', 'short_stories', 'collections', 'magazines', 'essays'
     ];
 
     /* Logical group in the sidebar menu - Optional */
     public static $group = '2. Site';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Evènements"; }
-    public static function singularLabel () { return "Evènement"; }
+    public static function label () { return "Statistiques"; }
+    public static function singularLabel () { return "Statistique"; }
 
-    /* The visual style used for the table. Available options are 'tight' and 'default' */
-    public static $tableStyle = 'tight';
-
-    /*  * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data. */
-    public static $preventFormAbandonment = true;
 
     /**
      * Get the fields displayed by the resource.
@@ -50,57 +43,29 @@ class Event extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
-            Text::make('Type')
-                ->exceptOnForms(),
-
-            Text::make('Sujet', 'name')
-                ->rules('required', 'string', 'min:3', 'max:64')
-                ->sortable(),
-
-            Date::make('Date de début', 'start_date')
+            Date::make('Date du décompte', 'date')
                 ->pickerDisplayFormat('Y-m-d')
                 ->rules('required')
                 ->sortable(),
-            Date::make('Date de fin', 'end_date')
-                ->pickerDisplayFormat('Y-m-d')
-                ->rules('required', 'gte:start_date')
-                ->hideFromIndex()
+
+            Number::make('Nombre d\'auteurs', 'authors')
                 ->sortable(),
-
-            Boolean::make('Confirmé', 'is_confirmed')
-                ->rules('required', 'boolean'),
-            Boolean::make('Littérature ET Imaginaire', 'is_full_scope')
-                ->rules('required', 'boolean'),
-
-            Select::make('Type')->options([
-                'convention' => 'Convention',
-                'festival' => 'Festival',
-                'exposition' => 'Exposition',
-                'salon' => 'Salon',
-                'film-festival' => 'Festival cinéma',
-                'autre' => 'Autre',
-                ])
-                ->rules('required', 'string')
-                ->onlyOnForms(),
-
-            Textarea::make('Description', 'description')
-                ->rules('required', 'string', 'min:10')
-                ->rows(3)
-                ->alwaysShow()
+            Number::make('Nombre de cycles et séries', 'series')
                 ->sortable(),
-
-            Text::make('URL', 'url')
-                ->nullable()
-                ->help('Laisser vide, ou URL forum si l\'annonce détaillée existe, ou si auteur, URL de sa page biblio bdfi.')
-                ->hideFromIndex()
+            Number::make('Nombre de références', 'references')
                 ->sortable(),
-
-            DateTime::make('Publié à partir de', 'publication_date')
-                ->format('DD/MM/YYYY HH:mm')
-                ->hideFromIndex(),
+            Number::make('Nombre de romans', 'novels')
+                ->sortable(),
+            Number::make('Nombre de nouvelles', 'short_stories')
+                ->sortable(),
+            Number::make('Nombre de recuils', 'collections')
+                ->sortable(),
+            Number::make('Nombre de revues', 'magazines')
+                ->sortable(),
+            Number::make('Nombre d\'essais', 'essays')
+                ->sortable(),
 
             new Panel('Historique fiche', $this->Metadata()),
-
         ];
 
     }
@@ -109,26 +74,27 @@ class Event extends Resource
     {
         return [
             DateTime::make('Créé le', 'created_at')
+                ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
-
             BelongsTo::make('Par', 'creator', 'App\Nova\User')
+                ->sortable()
                 ->onlyOnDetail(),
 
             DateTime::make('Modifié le', 'updated_at')
                 ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->exceptOnForms(),
-
             BelongsTo::make('Par', 'editor', 'App\Nova\User')
                 ->sortable()
                 ->exceptOnForms(),
 
             DateTime::make('Détruit le', 'deleted_at')
+                ->sortable()
                 ->format('DD/MM/YYYY HH:mm')
                 ->onlyOnDetail(),
-
             BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
+                ->sortable()
                 ->onlyOnDetail(),
 
             Trix::make('Modifications', function() {
@@ -145,8 +111,7 @@ class Event extends Resource
                 }
                 return $display;
 
-            })
-                ->onlyOnDetail(),
+            }) ->onlyOnDetail(),
         ];
     }
 
