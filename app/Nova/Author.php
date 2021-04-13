@@ -131,13 +131,12 @@ class Author extends Resource
                 ->onlyOnIndex(),
 
             Textarea::make('Biographie', 'biography')
-                ->rules('required', 'string', 'min:10')
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
 
             Textarea::make('Infos de travail et privées', 'private')
-                ->rules('required', 'string', 'min:10')
+                ->nullable()
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
