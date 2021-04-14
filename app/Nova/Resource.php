@@ -4,6 +4,9 @@ namespace App\Nova;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\BelongsTo;
 
 abstract class Resource extends NovaResource
 {
@@ -56,4 +59,52 @@ abstract class Resource extends NovaResource
     {
         return parent::relatableQuery($request, $query);
     }
+
+    /**
+     * Common procedure to display the history of a record
+     */
+    protected function commonMetadata()
+    {
+        return [
+            DateTime::make('Créé le', 'created_at')
+                ->format('DD/MM/YYYY HH:mm')
+                ->onlyOnDetail(),
+
+            BelongsTo::make('Par', 'creator', 'App\Nova\User')
+                ->onlyOnDetail(),
+
+            DateTime::make('Modifié le', 'updated_at')
+                ->sortable()
+                ->format('DD/MM/YYYY HH:mm')
+                ->exceptOnForms(),
+
+            BelongsTo::make('Par', 'editor', 'App\Nova\User')
+                ->sortable()
+                ->exceptOnForms(),
+
+            DateTime::make('Détruit le', 'deleted_at')
+                ->format('DD/MM/YYYY HH:mm')
+                ->onlyOnDetail(),
+
+            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
+                ->onlyOnDetail(),
+
+            Trix::make('Modifications', function() {
+                //return $this->revisionHistory()->getResults();
+                $history = $this->revisionHistory()->getResults()->reverse();
+                $display = "";
+                foreach ($history as $revision) {
+                    if($revision->key == 'created_at' && !$revision->old_value) {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
+                    }
+                    else {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
+                    }
+                }
+                return $display;
+
+            }) ->onlyOnDetail(),
+        ];
+    }
+
 }

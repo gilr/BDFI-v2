@@ -53,25 +53,6 @@ class Event extends Resource
             Text::make('Type')
                 ->exceptOnForms(),
 
-            Text::make('Sujet', 'name')
-                ->rules('required', 'string', 'min:3', 'max:64')
-                ->sortable(),
-
-            Date::make('Date de début', 'start_date')
-                ->pickerDisplayFormat('Y-m-d')
-                ->rules('required')
-                ->sortable(),
-            Date::make('Date de fin', 'end_date')
-                ->pickerDisplayFormat('Y-m-d')
-                ->rules('required', 'gte:start_date')
-                ->hideFromIndex()
-                ->sortable(),
-
-            Boolean::make('Confirmé', 'is_confirmed')
-                ->rules('required', 'boolean'),
-            Boolean::make('Littérature ET Imaginaire', 'is_full_scope')
-                ->rules('required', 'boolean'),
-
             Select::make('Type')->options([
                 'convention' => 'Convention',
                 'festival' => 'Festival',
@@ -83,71 +64,50 @@ class Event extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Textarea::make('Description', 'description')
-                ->rules('required', 'string', 'min:10')
-                ->rows(3)
-                ->alwaysShow()
+            Text::make('Sujet', 'name')
+                ->rules('required', 'string', 'min:3', 'max:128')
                 ->sortable(),
 
-            Text::make('URL', 'url')
-                ->nullable()
-                ->help('Laisser vide, ou URL forum si l\'annonce détaillée existe, ou si auteur, URL de sa page biblio bdfi.')
+            Date::make('Date de début', 'start_date')
+                ->pickerDisplayFormat('Y-m-d')
+                ->rules('required')
+                ->sortable(),
+            Date::make('Date de fin', 'end_date')
+                ->pickerDisplayFormat('Y-m-d')
+                ->rules('required', 'after_or_equal:start_date')
                 ->hideFromIndex()
                 ->sortable(),
 
-            DateTime::make('Publié à partir de', 'publication_date')
+            Boolean::make('Confirmé', 'is_confirmed')
+                ->rules('boolean')
+                ->default(0),
+            Boolean::make('Littérature ET Imaginaire', 'is_full_scope')
+                ->rules('boolean')
+                ->default(0),
+
+            Text::make('Lieu', 'place')
+                ->rules('required', 'string', 'min:3', 'max:64')
+                ->hideFromIndex(),
+
+            Textarea::make('Description', 'description')
+                ->rules('required', 'string', 'min:10')
+                ->rows(3)
+                ->alwaysShow(),
+
+            Text::make('URL', 'url')
+                ->nullable()
+                ->rules('nullable', 'url', 'max:256')
+                ->help('Laisser vide, ou URL forum si une discussion existe, ou URL de l\'évènement lui-même.')
+                ->hideFromIndex(),
+
+            DateTime::make('Publié sur BDFI à partir de', 'publication_date')
                 ->format('DD/MM/YYYY HH:mm')
                 ->hideFromIndex(),
 
-            new Panel('Historique fiche', $this->Metadata()),
+            new Panel('Historique fiche', $this->commonMetadata()),
 
         ];
 
-    }
-
-    protected function Metadata()
-    {
-        return [
-            DateTime::make('Créé le', 'created_at')
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-
-            BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->onlyOnDetail(),
-
-            DateTime::make('Modifié le', 'updated_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
-
-            BelongsTo::make('Par', 'editor', 'App\Nova\User')
-                ->sortable()
-                ->exceptOnForms(),
-
-            DateTime::make('Détruit le', 'deleted_at')
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-
-            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->onlyOnDetail(),
-
-            Trix::make('Modifications', function() {
-                //return $this->revisionHistory()->getResults();
-                $history = $this->revisionHistory()->getResults()->reverse();
-                $display = "";
-                foreach ($history as $revision) {
-                    if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
-                    }
-                    else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
-                    }
-                }
-                return $display;
-
-            })
-                ->onlyOnDetail(),
-        ];
     }
 
     /**

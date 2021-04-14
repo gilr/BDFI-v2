@@ -13,8 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/legacy', function () {
+    return view('legacy');
+});
+
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/auteurs', function () {
+    return view('auteurs');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
