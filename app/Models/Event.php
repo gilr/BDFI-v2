@@ -25,9 +25,19 @@ class Event extends Model
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
 
+    protected $dontKeepRevisionOf = ['deleted_by'];
+
     protected $casts = [
         'start_date' => 'date',
         'end_date' => 'date',
         'publication_date' => 'datetime',
     ];
+
+    public function getTruncatedNameAttribute()
+    {
+        $name=$this->name;
+        $len=mb_strlen($name);
+        return $len <= 45 ? $name : mb_substr($name,0,45) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
+    }
+
 }

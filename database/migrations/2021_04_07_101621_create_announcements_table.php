@@ -17,8 +17,8 @@ class CreateAnnouncementsTable extends Migration
             $table->increments('id');
 
             $table->string('name', 64);
-            $table->text('description')->nullable();
-            $table->string('date', 10);
+            $table->text('description');
+            $table->date('date');
             $table->enum('type', ['annonce_contenu','annonce_site','point_histo','point_aides','point_stats','remerciement','consecration','autre']);
             $table->string('url', 256)->nullable();
 

@@ -25,6 +25,8 @@ class Relationship extends Model
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
 
+    protected $dontKeepRevisionOf = ['deleted_by'];
+
     public function author1()
     {
         return $this->belongsTo('App\Models\Author');

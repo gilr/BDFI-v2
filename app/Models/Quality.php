@@ -24,4 +24,7 @@ class Quality extends Model
 
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
+
+    protected $dontKeepRevisionOf = ['deleted_by'];
+
 }

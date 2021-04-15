@@ -95,7 +95,13 @@ abstract class Resource extends NovaResource
                 $display = "";
                 foreach ($history as $revision) {
                     if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:blue'>Création</span></br>";
+                    }
+                    else if($revision->key == 'deleted_at' && !$revision->old_value) {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:red'>Suppression</span></br>";
+                    }
+                    else if($revision->key == 'deleted_at' && $revision->old_value) {
+                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:blue'>Restauration</span></br>";
                     }
                     else {
                         $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";

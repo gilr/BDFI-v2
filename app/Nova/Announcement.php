@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
@@ -50,10 +51,11 @@ class Announcement extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
-            Text::make('Date', 'date')
-                ->rules('required', 'string', 'size:10')
-                ->placeholder('aaaa/mm/jj')
-                ->help('Format obligatoire année, mois puis jour, exemple "2020/05/20". Si Type=[Remerciement] => date de réception de l\'aide - Sinon, saisir la date de l\'annonce ou de l\'info.')
+            Date::make('Date', 'date')
+                ->pickerDisplayFormat('Y-m-d')
+                ->rules('required')
+                ->placeholder('AAAA-MM-JJ')
+                ->help('Format obligatoire Année-Mois-Jour. Si le Type est [Remerciement], entrez la date de réception de l\'aide - Sinon, saisir la date de l\'annonce ou de l\'information.')
                 ->sortable(),
 
             Text::make('Type')
@@ -72,72 +74,34 @@ class Announcement extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Text::make('Sujet', 'name')
+            Text::make('Titre / Sujet', 'Truncatedname')
+                ->asHtml()
+                ->onlyOnIndex(),
+
+            Text::make('Titre / Sujet', 'name')
                 ->rules('required', 'string', 'min:3', 'max:64')
-                ->help('Le "titre/sujet" dépend du type d\'info. Si Type=[Remerciement] ou [Consécration] => prénom + nom ou pseudo - Si Type=[Point historique] ou [Autre] => Période (mois, trimestre, ex "Avril 2014") - Si Type=[Changement site] => Sujet')         
-                ->sortable(),
+                ->help('Le "titre/sujet" dépend du type d\'info. Si Type=[Remerciement] ou [Consécration] => prénom + nom ou pseudo - Si Type=[Point historique] ou [Autre] => Période (mois, trimestre, ex "Avril 2014") - Si Type=[Changement site] => Sujet')
+                ->hideFromIndex(),
+
+            Text::make('Description', 'TruncatedDescription')
+                ->asHtml()
+                ->onlyOnIndex(),
 
             Textarea::make('Description', 'description')
                 ->rules('required', 'string', 'min:10')
                 ->rows(3)
                 ->alwaysShow()
-                ->sortable(),
+                ->hideFromIndex(),
 
             Text::make('URL', 'url')
                 ->nullable()
+                ->rules('nullable', 'url', 'max:256')
                 ->help('Laisser vide, ou URL forum si l\'annonce détaillée existe, ou si auteur, URL de sa page biblio bdfi.')
-                ->sortable(),
+                ->hideFromIndex(),
 
-            new Panel('Historique fiche', $this->Metadata()),
-
+            new Panel('Historique fiche', $this->commonMetadata()),
         ];
 
-    }
-
-    protected function Metadata()
-    {
-        return [
-            DateTime::make('Créé le', 'created_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-
-            BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->onlyOnDetail(),
-
-            DateTime::make('Modifié le', 'updated_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
-
-            BelongsTo::make('Par', 'editor', 'App\Nova\User')
-                ->sortable()
-                ->exceptOnForms(),
-
-            DateTime::make('Détruit le', 'deleted_at')
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-
-            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->onlyOnDetail(),
-
-            Trix::make('Modifications', function() {
-                //return $this->revisionHistory()->getResults();
-                $history = $this->revisionHistory()->getResults()->reverse();
-                $display = "";
-                foreach ($history as $revision) {
-                    if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
-                    }
-                    else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
-                    }
-                }
-                return $display;
-
-            })
-                ->onlyOnDetail(),
-        ];
     }
 
     /**

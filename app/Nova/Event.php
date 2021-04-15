@@ -51,22 +51,27 @@ class Event extends Resource
                 ->sortable(),
 
             Text::make('Type')
-                ->exceptOnForms(),
+                ->exceptOnForms()
+                ->sortable(),
 
             Select::make('Type')->options([
-                'convention' => 'Convention',
-                'festival' => 'Festival',
-                'exposition' => 'Exposition',
-                'salon' => 'Salon',
-                'film-festival' => 'Festival cinéma',
-                'autre' => 'Autre',
-                ])
+                    'convention' => 'Convention',
+                    'festival' => 'Festival',
+                    'exposition' => 'Exposition',
+                    'salon' => 'Salon',
+                    'film-festival' => 'Festival cinéma',
+                    'autre' => 'Autre',
+                    ])
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
             Text::make('Sujet', 'name')
                 ->rules('required', 'string', 'min:3', 'max:128')
-                ->sortable(),
+                ->hideFromIndex(),
+
+            Text::make('Sujet', 'Truncatedname')
+                ->asHtml()
+                ->onlyOnIndex(),
 
             Date::make('Date de début', 'start_date')
                 ->pickerDisplayFormat('Y-m-d')
@@ -79,9 +84,11 @@ class Event extends Resource
                 ->sortable(),
 
             Boolean::make('Confirmé', 'is_confirmed')
+                ->help('A cocher si la programmation a été annoncée et confirmée.')
                 ->rules('boolean')
                 ->default(0),
             Boolean::make('Littérature ET Imaginaire', 'is_full_scope')
+                ->help('A laisser décoché s\'il s\'agit d\'un évènement hors littérature, ou hors imaginaire.')
                 ->rules('boolean')
                 ->default(0),
 
@@ -101,11 +108,11 @@ class Event extends Resource
                 ->hideFromIndex(),
 
             DateTime::make('Publié sur BDFI à partir de', 'publication_date')
+                ->help('A n\'utiliser que si vous souhaiter que l\'annonce ne soit publiée - automatiquement - que plus tard.')
                 ->format('DD/MM/YYYY HH:mm')
                 ->hideFromIndex(),
 
             new Panel('Historique fiche', $this->commonMetadata()),
-
         ];
 
     }

@@ -30,6 +30,8 @@ class Stat extends Resource
     public static function label () { return "Statistiques"; }
     public static function singularLabel () { return "Statistique"; }
 
+    /* The visual style used for the table. Available options are 'tight' and 'default' */
+    public static $tableStyle = 'tight';
 
     /**
      * Get the fields displayed by the resource.

@@ -68,8 +68,8 @@ class Revision extends Resource
                         break;
                 }
             }),
-            Number::make('Elément', 'revisionable_id'),
-            Text::make('Elem', function() {
+            //Number::make('Elément', 'revisionable_id'),
+            Text::make('Element', function() {
                 return '<a href="" class="no-underline dim text-primary font-bold">' . $this->revisionable_id . '</a>';
             })->asHtml(),
 

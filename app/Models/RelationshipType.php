@@ -24,4 +24,7 @@ class RelationshipType extends Model
 
 	protected $revisionForceDeleteEnabled = true;
 	protected $revisionCreationsEnabled = true;
+
+    protected $dontKeepRevisionOf = ['deleted_by'];
+
 }
