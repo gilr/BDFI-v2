@@ -65,16 +65,17 @@ class Event extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
+            Text::make('Sujet', 'truncated_name')
+                ->asHtml()
+                ->onlyOnIndex(),
             Text::make('Sujet', 'name')
                 ->rules('required', 'string', 'min:3', 'max:128')
                 ->hideFromIndex(),
 
-            Text::make('Sujet', 'Truncatedname')
-                ->asHtml()
-                ->onlyOnIndex(),
-
             Date::make('Date de début', 'start_date')
                 ->pickerDisplayFormat('Y-m-d')
+                ->default(today())
+                ->help('Date du début de l\évènement. Par défaut, la date de ce jour est pré-remplie.')
                 ->rules('required')
                 ->sortable(),
             Date::make('Date de fin', 'end_date')
@@ -84,9 +85,9 @@ class Event extends Resource
                 ->sortable(),
 
             Boolean::make('Confirmé', 'is_confirmed')
-                ->help('A cocher si la programmation a été annoncée et confirmée.')
+                ->help('A laisser coché si la programmation a été annoncée et confirmée. A décocher sinon.')
                 ->rules('boolean')
-                ->default(0),
+                ->default(1),
             Boolean::make('Littérature ET Imaginaire', 'is_full_scope')
                 ->help('A laisser décoché s\'il s\'agit d\'un évènement hors littérature, ou hors imaginaire.')
                 ->rules('boolean')

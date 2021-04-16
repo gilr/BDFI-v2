@@ -43,75 +43,37 @@ class WebsiteType extends Resource
                 ->sortable(),
 
             Text::make('Nom', 'name')
-                ->rules('required', 'string', 'min:3')
+                ->rules('required', 'string', 'min:3', 'max:32')
                 ->creationRules('unique:website_types,name')
                 ->updateRules('unique:website_types,name,{{resourceId}}')
                 ->sortable(),
+
             Text::make('Description', 'description')
-                ->rules('required', 'string', 'min:3')
+                ->help('Ce champ description est optionnel.')
+                ->rules('nullable', 'string', 'min:3', 'max:128')
                 ->creationRules('unique:website_types,description')
                 ->updateRules('unique:website_types,description,{{resourceId}}')
-                ->sortable(),
-            Text::make('texte affiché', 'displayed_text')
-                ->rules('required', 'string', 'min:3')
+                ->hideFromIndex(),
+
+            Text::make('Texte a afficher', 'truncated_displayed_text')
+                ->asHtml()
+                ->onlyOnIndex(),
+
+            Text::make('Texte a afficher', 'displayed_text')
+                ->rules('required', 'string', 'min:3', 'max:64')
                 ->creationRules('unique:website_types,displayed_text')
                 ->updateRules('unique:website_types,displayed_text,{{resourceId}}')
-                ->sortable(),
+                ->hideFromIndex(),
 
             Boolean::make('Utilisable', 'obsolete')
                 ->trueValue('0')
                 ->falseValue('1')
+                ->default('1')
                 ->rules('required', 'boolean'),
 
-            new Panel('Historique fiche', $this->Metadata()),
-
+            new Panel('Historique fiche', $this->commonMetadata()),
         ];
 
-    }
-
-    protected function Metadata()
-    {
-        return [
-            DateTime::make('Créé le', 'created_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            DateTime::make('Modifié le', 'updated_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
-            BelongsTo::make('Par', 'editor', 'App\Nova\User')
-                ->sortable()
-                ->exceptOnForms(),
-
-            DateTime::make('Détruit le', 'deleted_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            Trix::make('Modifications', function() {
-                //return $this->revisionHistory()->getResults();
-                $history = $this->revisionHistory()->getResults()->reverse();
-                $display = "";
-                foreach ($history as $revision) {
-                    if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
-                    }
-                    else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
-                    }
-                }
-                return $display;
-
-            }) ->onlyOnDetail(),
-        ];
     }
 
     /**

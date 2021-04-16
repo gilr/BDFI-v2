@@ -53,9 +53,9 @@ class Announcement extends Resource
 
             Date::make('Date', 'date')
                 ->pickerDisplayFormat('Y-m-d')
+                ->default(today())
                 ->rules('required')
-                ->placeholder('AAAA-MM-JJ')
-                ->help('Format obligatoire Année-Mois-Jour. Si le Type est [Remerciement], entrez la date de réception de l\'aide - Sinon, saisir la date de l\'annonce ou de l\'information.')
+                ->help('Format obligatoire AAAA-MM-JJ. Si le Type est [Remerciement], entrez la date de réception de l\'aide - Sinon, saisir la date de l\'annonce ou de l\'information. Par défaut, la date de ce jour est pré-remplie.')
                 ->sortable(),
 
             Text::make('Type')
@@ -74,7 +74,7 @@ class Announcement extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Text::make('Titre / Sujet', 'Truncatedname')
+            Text::make('Titre / Sujet', 'truncated_name')
                 ->asHtml()
                 ->onlyOnIndex(),
 
@@ -83,7 +83,7 @@ class Announcement extends Resource
                 ->help('Le "titre/sujet" dépend du type d\'info. Si Type=[Remerciement] ou [Consécration] => prénom + nom ou pseudo - Si Type=[Point historique] ou [Autre] => Période (mois, trimestre, ex "Avril 2014") - Si Type=[Changement site] => Sujet')
                 ->hideFromIndex(),
 
-            Text::make('Description', 'TruncatedDescription')
+            Text::make('Description', 'truncated_description')
                 ->asHtml()
                 ->onlyOnIndex(),
 

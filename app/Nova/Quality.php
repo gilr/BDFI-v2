@@ -47,66 +47,22 @@ class Quality extends Resource
                 ->creationRules('unique:qualities,level')
                 ->updateRules('unique:qualities,level,{{resourceId}}')
                 ->sortable(),
+
             Text::make('Nom', 'name')
                 ->rules('required', 'string', 'min:3')
                 ->creationRules('unique:qualities,name')
                 ->updateRules('unique:qualities,name,{{resourceId}}')
                 ->sortable(),
+
             Text::make('Description', 'description')
                 ->rules('required', 'string', 'min:10')
                 ->creationRules('unique:qualities,description')
                 ->updateRules('unique:qualities,description,{{resourceId}}')
                 ->sortable(),
 
-            new Panel('Historique fiche', $this->Metadata()),
-
+            new Panel('Historique fiche', $this->commonMetadata()),
         ];
 
-    }
-
-    protected function Metadata()
-    {
-        return [
-            DateTime::make('Créé le', 'created_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            DateTime::make('Modifié le', 'updated_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
-            BelongsTo::make('Par', 'editor', 'App\Nova\User')
-                ->sortable()
-                ->exceptOnForms(),
-
-            DateTime::make('Détruit le', 'deleted_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            Trix::make('Modifications', function() {
-                //return $this->revisionHistory()->getResults();
-                $history = $this->revisionHistory()->getResults()->reverse();
-                $display = "";
-                foreach ($history as $revision) {
-                    if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
-                    }
-                    else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
-                    }
-                }
-                return $display;
-
-            }) ->onlyOnDetail(),
-        ];
     }
 
     /**

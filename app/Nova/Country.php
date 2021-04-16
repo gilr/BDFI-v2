@@ -47,74 +47,31 @@ class Country extends Resource
         return [
             ID::make('N°', 'id')
                 ->sortable(),
-            Number::make('Ordre interne', 'internal_order')
-                ->rules('required', 'integer', 'gt:0')
-                ->sortable(),
+
             Text::make('Nom', 'name')
-                ->rules('required', 'string', 'min:3')
+                ->rules('required', 'string', 'min:3', 'max:32')
                 ->creationRules('unique:countries,name')
                 ->updateRules('unique:countries,name,{{resourceId}}')
                 ->sortable(),
+
+            Number::make('Ordre interne', 'internal_order')
+                ->rules('required', 'integer', 'gt:0', 'lt:1000')
+                ->sortable(),
+
             Text::make('Gentilé', 'nationality')
-                ->rules('required', 'string', 'min:3')
+                ->rules('required', 'string', 'min:3', 'max:32')
                 ->creationRules('unique:countries,nationality')
                 ->updateRules('unique:countries,nationality,{{resourceId}}')
                 ->sortable(),
-            Text::make('Code', 'code')
-                ->rules('required', 'string', 'size:2')
+
+            Text::make('Code ISO 3166-1 alpha-2', 'code')
+                ->rules('required', 'alpha', 'size:2')
                 ->creationRules('unique:countries,code')
-                ->updateRules('unique:countries,code,{{resourceId}}')
-                ->hideFromIndex(),
+                ->updateRules('unique:countries,code,{{resourceId}}'),
 
-            new Panel('Historique fiche', $this->Metadata()),
-
+            new Panel('Historique fiche', $this->commonMetadata()),
         ];
 
-    }
-
-    protected function Metadata()
-    {
-        return [
-            DateTime::make('Créé le', 'created_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'creator', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            DateTime::make('Modifié le', 'updated_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->exceptOnForms(),
-            BelongsTo::make('Par', 'editor', 'App\Nova\User')
-                ->sortable()
-                ->exceptOnForms(),
-
-            DateTime::make('Détruit le', 'deleted_at')
-                ->sortable()
-                ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
-            BelongsTo::make('Par', 'destroyer', 'App\Nova\User')
-                ->sortable()
-                ->onlyOnDetail(),
-
-            Trix::make('Modifications', function() {
-                //return $this->revisionHistory()->getResults();
-                $history = $this->revisionHistory()->getResults()->reverse();
-                $display = "";
-                foreach ($history as $revision) {
-                    if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Création </br>";
-                    }
-                    else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
-                    }
-                }
-                return $display;
-
-            }) ->onlyOnDetail(),
-        ];
     }
 
     /**

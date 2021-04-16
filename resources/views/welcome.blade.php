@@ -38,37 +38,65 @@
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="auteurs" class="h-16 px-4 flex flex justify-center items-center w-full
+				<a href="textes" class="h-16 px-4 flex flex justify-center items-center w-full
 					focus:text-orange-500">
 					<img src="img/texte.png" style="width: 40px" />
 				</a>
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="auteurs" class="h-16 px-4 flex flex justify-center items-center w-full
+				<a href="ouvrages" class="h-16 px-4 flex flex justify-center items-center w-full
 					focus:text-orange-500">
 					<img src="img/livre.png" style="width: 40px" />
 				</a>
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="auteurs" class="h-16 px-4 flex flex justify-center items-center w-full
+				<a href="series" class="h-16 px-4 flex flex justify-center items-center w-full
+					focus:text-orange-500">
+					<img src="img/series.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
+				<a href="editeurs" class="h-16 px-4 flex flex justify-center items-center w-full
+					focus:text-orange-500">
+					<img src="img/editeurs.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
+				<a href="collections" class="h-16 px-4 flex flex justify-center items-center w-full
 					focus:text-orange-500">
 					<img src="img/collection.png" style="width: 40px" />
 				</a>
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="auteurs" class="h-16 px-4 flex flex justify-center items-center w-full
+				<a href="prix" class="h-16 px-4 flex flex justify-center items-center w-full
 					focus:text-orange-500">
 					<img src="img/prix.png" style="width: 40px" />
 				</a>
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="auteurs" class="h-16 px-4 flex flex justify-center items-center w-full
+				<a href="festivals" class="h-16 px-4 flex flex justify-center items-center w-full
+					focus:text-orange-500">
+					<img src="img/festival.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
+				<a href="forums" class="h-16 px-4 flex flex justify-center items-center w-full
 					focus:text-orange-500">
 					<img src="img/forum.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
+				<a href="site" class="h-16 px-4 flex flex justify-center items-center w-full
+					focus:text-orange-500">
+					<img src="img/annonces.png" style="width: 40px" />
 				</a>
 			</li>
 

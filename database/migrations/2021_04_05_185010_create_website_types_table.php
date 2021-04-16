@@ -17,7 +17,7 @@ class CreateWebsiteTypesTable extends Migration
             $table->tinyIncrements('id');
 
             $table->string('name', 32)->unique();
-            $table->string('description', 128)->unique();
+            $table->string('description', 128)->nullable();
             $table->string('displayed_text', 64)->unique();
             $table->boolean('obsolete');
 

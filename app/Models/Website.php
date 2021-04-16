@@ -40,4 +40,11 @@ class Website extends Model
         return $this->belongsTo('App\Models\Country');
     }
 
+    public function getTruncatedUrlAttribute()
+    {
+        $url = $this->url;
+        $len = mb_strlen($url);
+        return $len <= 50 ? $url : mb_substr($url,0,50) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
+    }
+
 }

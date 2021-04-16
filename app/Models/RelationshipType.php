@@ -27,4 +27,11 @@ class RelationshipType extends Model
 
     protected $dontKeepRevisionOf = ['deleted_by'];
 
+    public function getTruncatedNameAttribute()
+    {
+        $name=$this->name;
+        $len=mb_strlen($name);
+        return $len <= 25 ? $name : mb_substr($name,0,25) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
+    }
+
 }
