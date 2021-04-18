@@ -39,20 +39,13 @@
 
     <div class='flex flex-col flex-grow'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+        <div class="flex text-4xl p-2 my-7 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
 
-        <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
-<pre class='m-4'>Ci dessus les noms pour accéder à l'admin de test :
-L'accès se trouve en haut à droite... ;-)
-
-    "guest" : pour se promener, pas de modifications possibles
-    "editor" : pour gérer presque toutes les tables bibliographiques
-    "admin" : permet la gestion de quelques tables supplémentaires
-    "sysadmin" : tous les droits
-
-Même mots de passe pour tous : "testpassword"
-</pre>
+        <div class='flex text-9xl px-5 py-5 my-16 border border-purple-800 bg-purple-300 self-center rounded-lg'>
+B O U H !!
         </div>
+
+ . . .        Ahah, on ne s'y attendait pas, hein.
     </div>
 
 </body>

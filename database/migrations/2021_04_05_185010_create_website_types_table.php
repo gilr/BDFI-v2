@@ -22,9 +22,9 @@ class CreateWebsiteTypesTable extends Migration
             $table->boolean('obsolete');
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();        });
     }
 

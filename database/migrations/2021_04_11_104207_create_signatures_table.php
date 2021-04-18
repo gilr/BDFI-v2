@@ -16,17 +16,22 @@ class CreateSignaturesTable extends Migration
         Schema::create('signatures', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('author_id')
-                ->constrained('authors')
+            $table->unsignedInteger('author_id');
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('authors')
                 ->onDelete('restrict');
-            $table->integer('signature_id')
-                ->constrained('authors')
+
+            $table->unsignedInteger('pseudonym_id');
+            $table->foreign('pseudonym_id')
+                ->references('id')
+                ->on('authors')
                 ->onDelete('restrict');
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes(); 
         });
     }

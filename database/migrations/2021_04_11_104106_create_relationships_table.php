@@ -16,20 +16,28 @@ class CreateRelationshipsTable extends Migration
         Schema::create('relationships', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('author1_id')
-                ->constrained('authors')
+            $table->unsignedInteger('author1_id');
+            $table->foreign('author1_id')
+                ->references('id')
+                ->on('authors')
                 ->onDelete('restrict');
-            $table->integer('author2_id')
-                ->constrained('authors')
+
+            $table->unsignedInteger('author2_id');
+            $table->foreign('author2_id')
+                ->references('id')
+                ->on('authors')
                 ->onDelete('restrict');
-            $table->tinyInteger('relationship_type_id')
-                ->constrained()
+
+            $table->unsignedTinyInteger('relationship_type_id');
+            $table->foreign('relationship_type_id')
+                ->references('id')
+                ->on('website_types')
                 ->onDelete('restrict');
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();
         });
     }

@@ -31,7 +31,7 @@ class Signature extends Model
     {
         return $this->belongsTo('App\Models\Author');
     }
-    public function signature()
+    public function pseudonym()
     {
         return $this->belongsTo('App\Models\Author');
     }

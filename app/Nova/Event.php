@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
@@ -65,7 +66,9 @@ class Event extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Text::make('Sujet', 'truncated_name')
+            Text::make('Sujet', function() {
+                return Str::limit($this->name, 30, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
             Text::make('Sujet', 'name')
@@ -74,13 +77,13 @@ class Event extends Resource
 
             Date::make('Date de début', 'start_date')
                 ->pickerDisplayFormat('Y-m-d')
+                ->rules('required', 'date_format:Y-m-d')
                 ->default(today())
                 ->help('Date du début de l\évènement. Par défaut, la date de ce jour est pré-remplie.')
-                ->rules('required')
                 ->sortable(),
             Date::make('Date de fin', 'end_date')
                 ->pickerDisplayFormat('Y-m-d')
-                ->rules('required', 'after_or_equal:start_date')
+                ->rules('required', 'date_format:Y-m-d', 'after_or_equal:start_date')
                 ->hideFromIndex()
                 ->sortable(),
 
@@ -103,10 +106,15 @@ class Event extends Resource
                 ->alwaysShow(),
 
             Text::make('URL', 'url')
-                ->nullable()
                 ->rules('nullable', 'url', 'max:256')
                 ->help('Laisser vide, ou URL forum si une discussion existe, ou URL de l\'évènement lui-même.')
-                ->hideFromIndex(),
+                ->onlyOnForms(),
+
+            Text::make('URL site', function() {
+                return !isSet($this->url) ? $this->url : "<a href='$this->url'>$this->url</a>";
+            })
+                ->asHtml()
+                ->onlyOnDetail(),
 
             DateTime::make('Publié sur BDFI à partir de', 'publication_date')
                 ->help('A n\'utiliser que si vous souhaiter que l\'annonce ne soit publiée - automatiquement - que plus tard.')

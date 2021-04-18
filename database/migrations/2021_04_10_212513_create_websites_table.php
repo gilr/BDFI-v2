@@ -16,24 +16,30 @@ class CreateWebsitesTable extends Migration
         Schema::create('websites', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('author_id')
-                ->constrained()
+            $table->unsignedInteger('author_id');
+            $table->foreign('author_id')
+                ->references('id')
+                ->on('authors')
                 ->onDelete('restrict');
 
             $table->string('url', 256);
 
-            $table->tinyInteger('website_type_id')
-                ->constrained()
+            $table->unsignedTinyInteger('website_type_id');
+            $table->foreign('website_type_id')
+                ->references('id')
+                ->on('website_types')
                 ->onDelete('restrict');
 
-            $table->smallInteger('country_id')
-                ->constrained()
+            $table->unsignedSmallInteger('country_id');
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
                 ->onDelete('restrict');
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();            
         });
     }

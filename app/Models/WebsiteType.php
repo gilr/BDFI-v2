@@ -27,11 +27,4 @@ class WebsiteType extends Model
 
     protected $dontKeepRevisionOf = ['deleted_by'];
 
-    public function getTruncatedDisplayedTextAttribute()
-    {
-        $displayed_text = $this->displayed_text;
-        $len = mb_strlen($displayed_text);
-        return $len <= 50 ? $displayed_text : mb_substr($displayed_text,0,50) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
-    }
-
 }

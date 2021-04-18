@@ -41,6 +41,11 @@ class Author extends Resource
     /*  * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data. */
     public static $preventFormAbandonment = true;
 
+    /* The number of results to display when searching for relatable resources without Scout. */
+    public static $relatableSearchResults = 50;
+
+    public static $with = ['editor', 'references', 'pseudonyms', 'websites', 'country'];
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -53,13 +58,15 @@ class Author extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
+            //new Heading('Avertissement avant une forme'),
+
             new Panel('Identification', $this->identification()),
             new Panel('Dates et biographie', $this->datesAndBio()),
             new Panel('Historique fiche', $this->commonMetadata()),
 
             HasMany::make('Websites'),
-            BelongsToMany::make('Signatures', 'signatures', '\App\Nova\Author'),
-            BelongsToMany::make('References', 'references', '\App\Nova\Author'),
+            BelongsToMany::make('Pseudonymes', 'pseudonyms', '\App\Nova\Author')->searchable(),
+            BelongsToMany::make('Références', 'references', '\App\Nova\Author')->searchable(),
         ];
     }
 
@@ -68,19 +75,27 @@ class Author extends Resource
 
         return [
             Text::make('Nom', 'name')
-                ->hideFromIndex(),
+                ->rules('required', 'string', 'max:32')
+                ->help('Forme classique "Nom", exemple "Poe", "Levilain-Clément", "La Motte-Fouqué", "Balzac" (sans le "de")...')
+                ->sortable(),
             Text::make('Prénom', 'first_name')
+                ->rules('nullable', 'string', 'max:32')
+                ->sortable(),
+            Text::make('Nom BDFI', 'nom_bdfi')
+                ->help('Temporaire - Pour lien avec la page BDFI, si elle existe. Forme "NOM Prénom", exemple "POE Edgar Allan".')
+                ->rules('nullable', 'string', 'max:64')
                 ->hideFromIndex(),
-            Text::make('Nom complet', 'full_name')
-                ->onlyOnIndex()
-                ->sortable(),
-            Text::make('Page BDFI', 'nom_bdfi')
-                ->sortable(),
 
+            Text::make('Nom complet', 'full_name')
+                ->onlyOnDetail(),
             Text::make('Nom légal', 'legal_name')
+                ->rules('nullable', 'string', 'max:128')
+                ->help('ATTENTION ! Inutile si constitué des seuls prénom et nom renseignés plus haut. Forme "Prénom(s) Nom" clasique. Sert à indiquer un nom légal plus complet, avec plus de prénoms par exemple.')
                 ->nullable()
                 ->hideFromIndex(),
             Text::make('Autres formes', 'forms')
+                ->rules('nullable', 'string', 'max:512')
+                ->help("Variantes d'écriture, écriture dans la langue d'origine, slave par exemple. Les formes multiples sont séparées par des virgules ', '.")
                 ->hideFromIndex(),
 
             Boolean::make('Pseu', 'pseudonym')
@@ -97,6 +112,7 @@ class Author extends Resource
                 '?'    => 'Inconnu',
                 'IEL'   => 'Non-binaire',
                 ])
+                ->default('?')
                 ->rules('required', 'string')
                 ->onlyOnForms(),
         ];
@@ -106,23 +122,29 @@ class Author extends Resource
     {
         return [
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
-                ->nullable()
+                ->withoutTrashed()
+                ->default(1)
+                ->rules('required')
                 ->sortable(),
             BelongsTo::make('Pays 2', 'country2', 'App\Nova\Country')
+                ->withoutTrashed()
                 ->nullable()
                 ->hideFromIndex(),
 
             Text::make('Né le', 'birth_date')
-                ->nullable()
+                ->rules('nullable', 'string', 'size:10', 'regex:/[\-012][\-0-9]{3}-(circa|[0-9]{2}-[0-9]{2})/')
+                ->help("Format 'AAAA-MM-JJ' (exemple : 1983-05-19). 'AAAA-00-00' si l'année seule est connue, et vide ou '0000-00-00' si la date est inconnue. Les formats '1410-circa' ou '-500-circa' sont également acceptés.")
                 ->sortable(),
             Text::make('Né à', 'birthplace')
-                ->nullable()
+                ->rules('nullable', 'string', 'max:64')
+                ->help('Laisser vide si lieu inconnu. Format général "Ville, Département", ou "Ville, Pays" si hors France.')
                 ->hideFromIndex(),
             Text::make('Décèdé le', 'date_death')
-                ->nullable()
-                ->sortable(),
+                ->rules('nullable', 'string', 'size:10', 'regex:/[\-012][\-0-9]{3}-(circa|[0-9]{2}-[0-9]{2})/')
+                ->help("Format 'AAAA-MM-JJ' (exemple : 1983-05-19). 'AAAA-00-00' si l'année seule est connue, et vide ou '0000-00-00' si la date est inconnue. Les formats '1410-circa' ou '-500-circa' sont également acceptés.")
+                ->hideFromIndex(),
             Text::make('Lieu de décès', 'place_death')
-                ->nullable()
+                ->rules('nullable', 'string', 'max:64')
                 ->hideFromIndex(),
 
             Number::make('Lg bio', function() {
@@ -130,18 +152,46 @@ class Author extends Resource
             })
                 ->onlyOnIndex(),
 
+            Number::make('Sites', 'websites_count')
+                ->onlyOnIndex(),
+
+            Text::make('Refs & Sign', function() {
+                $nbrefs = $this->references_count;
+                $nbsigs = $this->pseudonyms_count;
+                if ($nbrefs != 0) {
+                    if ($nbsigs != 0) {
+                        return $nbrefs . " ref. & " . $nbsigs . " signat.";
+                    }
+                    else {
+                        return $nbrefs . " ref.";
+                    }
+                }
+                else {
+                    if ($nbsigs != 0) {
+                        return $nbsigs . " signat.";
+                    }
+                    else {
+                        return "--";
+                    }
+                }
+            })
+                ->onlyOnIndex(),
+
             Textarea::make('Biographie', 'biography')
+                ->help("Biographie succincte. Pas de copier-coller de textes trouvés sur Internet (mais on peut s'inspirer pour résumer bien sur !).")
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
 
             Textarea::make('Infos de travail et privées', 'private')
+                ->help("Informations privées (que l'auteur ne souhaite pas voir diffusées) ou de travail : doutes, choses à vérifier, ce qu'il faudrait revoir...")
                 ->nullable()
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
 
-            BelongsTo::make('Quality', 'quality', 'App\Nova\Quality')
+            BelongsTo::make('Etat d\'avancement fiche', 'quality', 'App\Nova\Quality')
+                ->withoutTrashed()
                 ->hideFromIndex(),
 
         ];

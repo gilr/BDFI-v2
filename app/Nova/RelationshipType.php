@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
@@ -42,7 +43,9 @@ class RelationshipType extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
-            Text::make('Sujet', 'truncated_name')
+            Text::make('Sujet', function() {
+                return Str::limit($this->name, 25, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
             Text::make('Nom', 'name')

@@ -65,19 +65,19 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('testpassword'),
         ]);
 
-    $this->call([
-        CountrySeeder::class,
-        QualitySeeder::class,
-        WebsiteTypeSeeder::class,
-        RelationshipTypeSeeder::class,
-        AnnouncementSeeder::class,
-        AuthorSeeder::class,
-        WebsiteSeeder::class,
-        SignatureSeeder::class,
-        RelationshipSeeder::class,
-        EventSeeder::class,
-        StatSeeder::class,
-    ]);
+        $this->call([
+            CountrySeeder::class,
+            QualitySeeder::class,
+            WebsiteTypeSeeder::class,
+            RelationshipTypeSeeder::class,
+            AnnouncementSeeder::class,
+            EventSeeder::class,
+            StatSeeder::class,
 
+            AuthorSeeder::class,
+            WebsiteSeeder::class,
+            SignatureSeeder::class,
+            RelationshipSeeder::class,
+        ]);
     }
 }

@@ -29,9 +29,9 @@ class CreateEventsTable extends Migration
             $table->datetime('publication_date')->nullable();
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();
         });
     }

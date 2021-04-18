@@ -17,19 +17,19 @@ class CreateStatsTable extends Migration
             $table->increments('id');
 
             $table->date('date');
-            $table->integer('authors');
-            $table->integer('series')->nullable();
-            $table->integer('references');
-            $table->integer('novels');
-            $table->integer('short_stories');
-            $table->integer('collections')->nullable();
-            $table->integer('magazines')->nullable();
-            $table->integer('essays')->nullable();
+            $table->unsignedInteger('authors');
+            $table->unsignedInteger('series')->nullable();
+            $table->unsignedInteger('references');
+            $table->unsignedInteger('novels');
+            $table->unsignedInteger('short_stories');
+            $table->unsignedInteger('collections')->nullable();
+            $table->unsignedInteger('magazines')->nullable();
+            $table->unsignedInteger('essays')->nullable();
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();
         });
     }

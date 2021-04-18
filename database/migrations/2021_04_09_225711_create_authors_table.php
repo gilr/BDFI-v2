@@ -17,21 +17,23 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
 
             $table->string('name', 32);
-            $table->string('nom_bdfi', 32);
             $table->string('first_name', 32)->nullable();
+            $table->string('nom_bdfi', 64)->nullable();
             $table->string('legal_name', 128)->nullable();
             $table->string('forms', 512)->nullable();
             $table->boolean('pseudonym');
             $table->enum('gender', ['F', 'H', 'IEL', '?'])->default('?');
 
-            $table->smallInteger('country_id')
-                ->nullable()
-                ->constrained()
+            $table->unsignedSmallInteger('country_id');
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries')
                 ->onDelete('restrict');
 
-            $table->smallInteger('country2_id')
-                ->nullable()
-                ->constrained('country')
+            $table->unsignedSmallInteger('country2_id')->nullable();
+            $table->foreign('country2_id')
+                ->references('id')
+                ->on('countries')
                 ->onDelete('restrict');
 
             $table->string('birth_date', 10)->nullable();
@@ -42,14 +44,16 @@ class CreateAuthorsTable extends Migration
             $table->text('biography')->nullable();
             $table->text('private')->nullable();
 
-            $table->tinyInteger('quality_id')
-                ->constrained()
+            $table->unsignedTinyInteger('quality_id');
+            $table->foreign('quality_id')
+                ->references('id')
+                ->on('qualities')
                 ->onDelete('restrict');
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();
         });
     }

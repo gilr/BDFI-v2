@@ -20,7 +20,7 @@ class SignatureSeeder extends Seeder
                 'id'           => $record->id,
 
                 'author_id'    => $record->auteur_id,
-                'signature_id' => $record->pseudo_id,
+                'pseudonym_id' => $record->pseudo_id,
 
                 'created_at'   => ($record->created_at !== "0000-00-00 00:00:00") ? $record->created_at : "2014-10-01 00:00:00",
                 'updated_at'   => $record->updated_at,

@@ -17,13 +17,13 @@ class CreateQualitiesTable extends Migration
             $table->tinyIncrements('id');
 
             $table->string('name', 16)->unique();
-            $table->string('description', 128)->unique();
+            $table->string('description', 64)->unique();
             $table->integer('level')->unique();
 
             $table->timestamps();
-            $table->smallInteger('created_by')->nullable();
-            $table->smallInteger('updated_by')->nullable();            
-            $table->smallInteger('deleted_by')->nullable();            
+            $table->unsignedSmallInteger('created_by')->nullable();
+            $table->unsignedSmallInteger('updated_by')->nullable();            
+            $table->unsignedSmallInteger('deleted_by')->nullable();            
             $table->softdeletes();        });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
@@ -55,10 +56,11 @@ class WebsiteType extends Resource
                 ->updateRules('unique:website_types,description,{{resourceId}}')
                 ->hideFromIndex(),
 
-            Text::make('Texte a afficher', 'truncated_displayed_text')
+            Text::make('Sujet', function() {
+                return Str::limit($this->displayed_text, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
-
             Text::make('Texte a afficher', 'displayed_text')
                 ->rules('required', 'string', 'min:3', 'max:64')
                 ->creationRules('unique:website_types,displayed_text')

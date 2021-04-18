@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
@@ -74,7 +75,9 @@ class Announcement extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Text::make('Titre / Sujet', 'truncated_name')
+            Text::make('Titre / Sujet', function() {
+                return Str::limit($this->name, 30, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
 
@@ -83,10 +86,11 @@ class Announcement extends Resource
                 ->help('Le "titre/sujet" dépend du type d\'info. Si Type=[Remerciement] ou [Consécration] => prénom + nom ou pseudo - Si Type=[Point historique] ou [Autre] => Période (mois, trimestre, ex "Avril 2014") - Si Type=[Changement site] => Sujet')
                 ->hideFromIndex(),
 
-            Text::make('Description', 'truncated_description')
+            Text::make('Description', function() {
+                return Str::limit($this->truncated_description, 45, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
-
             Textarea::make('Description', 'description')
                 ->rules('required', 'string', 'min:10')
                 ->rows(3)
@@ -94,10 +98,16 @@ class Announcement extends Resource
                 ->hideFromIndex(),
 
             Text::make('URL', 'url')
-                ->nullable()
                 ->rules('nullable', 'url', 'max:256')
                 ->help('Laisser vide, ou URL forum si l\'annonce détaillée existe, ou si auteur, URL de sa page biblio bdfi.')
-                ->hideFromIndex(),
+                ->onlyOnForms(),
+
+            Text::make('URL site', function() {
+                return !isSet($this->url) ? $this->url : "<a href='$this->url'>$this->url</a>";
+            })
+                ->asHtml()
+                ->onlyOnDetail(),
+
 
             new Panel('Historique fiche', $this->commonMetadata()),
         ];

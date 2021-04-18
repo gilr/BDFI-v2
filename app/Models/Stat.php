@@ -28,6 +28,6 @@ class Stat extends Model
     protected $dontKeepRevisionOf = ['deleted_by'];
 
     protected $casts = [
-        'date' => 'date',
+        'date' => 'datetime:Y-m-d',
     ];
 }

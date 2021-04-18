@@ -43,19 +43,19 @@ class Quality extends Resource
                 ->sortable(),
 
             Number::make('Niveau', 'level')
-                ->rules('required', 'integer', 'gt:0')
+                ->rules('required', 'integer', 'gt:0', 'lt:1000')
                 ->creationRules('unique:qualities,level')
                 ->updateRules('unique:qualities,level,{{resourceId}}')
                 ->sortable(),
 
             Text::make('Nom', 'name')
-                ->rules('required', 'string', 'min:3')
+                ->rules('required', 'string', 'min:3', 'max:16')
                 ->creationRules('unique:qualities,name')
                 ->updateRules('unique:qualities,name,{{resourceId}}')
                 ->sortable(),
 
             Text::make('Description', 'description')
-                ->rules('required', 'string', 'min:10')
+                ->rules('required', 'string', 'min:10', 'max:64')
                 ->creationRules('unique:qualities,description')
                 ->updateRules('unique:qualities,description,{{resourceId}}')
                 ->sortable(),

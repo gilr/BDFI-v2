@@ -20,7 +20,7 @@ class Signature extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = 'Autres';
+    public static $group = '1. Biblio';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Signatures"; }
@@ -31,6 +31,9 @@ class Signature extends Resource
 
     /*  * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data. */
     public static $preventFormAbandonment = true;
+
+    /* The number of results to display when searching for relatable resources without Scout. */
+    public static $relatableSearchResults = 50;
 
     /**
      * Get the fields displayed by the resource.
@@ -49,7 +52,7 @@ class Signature extends Resource
                 ->sortable()
                 ->searchable(),
 
-            BelongsTo::make('Signature liée', 'signature', 'App\Nova\Author')
+            BelongsTo::make('Signature liée', 'pseudonym', 'App\Nova\Author')
                 ->rules('different:author')
                 ->withoutTrashed()
                 ->sortable()

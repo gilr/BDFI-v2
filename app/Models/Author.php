@@ -46,19 +46,34 @@ class Author extends Model
         return $this->hasMany('App\Models\Website');
     }
 
-    public function signatures()
+    public function pseudonyms()
     {
-        return $this->belongsToMany('App\Models\Author', 'signatures', 'author_id', 'signature_id');
+        return $this->belongsToMany('App\Models\Author', 'signatures', 'author_id', 'pseudonym_id');
     }
 
     public function references()
     {
-        return $this->belongsToMany('App\Models\Author', 'signatures', 'signature_id', 'author_id');
+        return $this->belongsToMany('App\Models\Author', 'signatures', 'pseudonym_id', 'author_id');
     }
 
     public function getFullNameAttribute()
     {
         return ($this->first_name == "" ? $this->name : $this->first_name . " " . $this->name);
+    }
+
+    public function getWebsitesCountAttribute()
+    {
+        return $this->websites()->count();
+    }
+
+    public function getReferencesCountAttribute()
+    {
+        return $this->references()->count();
+    }
+
+    public function getPseudonymsCountAttribute()
+    {
+        return $this->pseudonyms()->count();
     }
 
 }

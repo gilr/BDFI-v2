@@ -27,20 +27,6 @@ class Announcement extends Model
 
     protected $dontKeepRevisionOf = ['deleted_by'];
 
-    protected $casts = [ 'date' => 'date' ];
-
-    public function getTruncatedNameAttribute()
-    {
-        $name = $this->name;
-        $len = mb_strlen($name);
-        return $len <= 30 ? $name : mb_substr($name,0,30) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
-    }
-
-    public function getTruncatedDescriptionAttribute()
-    {
-        $description = $this->description;
-        $len = mb_strlen($description);
-        return $len <= 45 ? $description : mb_substr($description,0,45) . "<span style='bold;background-color:lightgreen;'>&mldr;</span>";
-    }
+    protected $casts = [ 'date' => 'datetime:Y-m-d' ];
 
 }

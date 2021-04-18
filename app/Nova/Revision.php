@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -54,11 +55,20 @@ class Revision extends Resource
                     case "RelationshipType":
                         return "Types relation";
                         break;
+                    case "Relationship":
+                        return "Relations";
+                        break;
                     case "WebsiteType":
                         return "Types site";
                         break;
+                    case "Website":
+                        return "Sites web";
+                        break;
                     case "Announcement":
                         return "Annonces";
+                        break;
+                    case "Event":
+                        return "Evènements";
                         break;
                     case "Author":
                         return "Auteurs";
@@ -84,10 +94,22 @@ class Revision extends Resource
                 return $this->fieldName();
             }),
 
-            //TBD pour les deux suivants
-            //    prévoir une décooupe avec un nombre max de caractères si sur index
-            Text::make('Ancienne valeur', 'old_value'),
-            Text::make('Nouvelle valeur', 'new_value'),
+            Text::make('Ancienne valeur', 'old_value')
+            ->hideFromIndex(),
+            Text::make('Ancienne valeur', function(){
+                return Str::limit($this->old_value, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
+            ->onlyOnIndex()
+            ->asHtml(),
+
+            Text::make('Nouvelle valeur', 'new_value')
+            ->hideFromIndex(),
+            Text::make('Nouvelle valeur', function(){
+                return Str::limit($this->new_value, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
+            ->onlyOnIndex()
+            ->asHtml(),
+
             DateTime::make('Réalisé le', 'created_at')
                 ->format('DD/MM/YYYY HH:mm'),
 

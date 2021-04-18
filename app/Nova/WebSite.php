@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
@@ -22,7 +23,7 @@ class WebSite extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = 'Autres';
+    public static $group = '1. Biblio';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Sites web"; }
@@ -51,13 +52,21 @@ class WebSite extends Resource
                 ->sortable()
                 ->searchable(),
 
-            Text::make('URL site', 'truncated_url')
+            Text::make('URL Site', function() {
+                return Str::limit($this->url, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
                 ->asHtml()
                 ->onlyOnIndex(),
-
-            Text::make('URL site', 'url')
+            Text::make('URL site', function() {
+                return "<a href='$this->url'>$this->url</a>";
+            })
+                ->asHtml()
+                ->onlyOnDetail(),
+            Text::make('URL', 'url')
                 ->rules('required', 'url', 'min:10', 'max:256')
-                ->hideFromIndex(),
+                ->help('Format complet, commençant par "http://" ou "https://"')
+                ->onlyOnForms(),
+
 
             BelongsTo::make('Type de site web', 'website_type', 'App\Nova\WebsiteType')
                 ->withoutTrashed()

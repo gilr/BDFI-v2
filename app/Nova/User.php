@@ -57,16 +57,16 @@ class User extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'string', 'min:3', 'max:12'),
             Text::make('Email')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
+                ->rules('required', 'email', 'max:64')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
             Password::make('Password')
                 ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
+                ->creationRules('required', 'string', 'min:8', 'max:64')
+                ->updateRules('nullable', 'string', 'min:8', 'max:64'),
 
             Text::make('Role')
                 ->exceptOnForms(),
@@ -77,6 +77,7 @@ class User extends Resource
                 'admin'    => 'admin',
                 'sysadmin' => 'sysadmin',
             ])
+                ->rules('required')
                 ->onlyOnForms(),
         ];
     }
