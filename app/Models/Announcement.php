@@ -29,4 +29,8 @@ class Announcement extends Model
 
     protected $casts = [ 'date' => 'datetime:Y-m-d' ];
 
+    public function identifiableName()
+    {
+        return $this->name;
+    }
 }

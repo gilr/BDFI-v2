@@ -11,9 +11,9 @@ use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
 
-class WebSite extends Resource
+class Website extends Resource
 {
-    public static $model = \App\Models\WebSite::class;
+    public static $model = \App\Models\Website::class;
     /* Displayed field uses as title on detail pages */
     public static $title = 'id';
 
@@ -34,6 +34,8 @@ class WebSite extends Resource
 
     /*  * Indicates whether Nova should prevent the user from leaving an unsaved form, losing their data. */
     public static $preventFormAbandonment = true;
+
+    public static $relatableSearchResults = 20;
 
     /**
      * Get the fields displayed by the resource.

@@ -44,7 +44,7 @@ class Author extends Resource
     /* The number of results to display when searching for relatable resources without Scout. */
     public static $relatableSearchResults = 50;
 
-    public static $with = ['editor', 'references', 'pseudonyms', 'websites', 'country'];
+    public static $with = ['editor', 'references', 'signatures', 'websites', 'country'];
 
     /**
      * Get the fields displayed by the resource.
@@ -65,8 +65,10 @@ class Author extends Resource
             new Panel('Historique fiche', $this->commonMetadata()),
 
             HasMany::make('Websites'),
-            BelongsToMany::make('Pseudonymes', 'pseudonyms', '\App\Nova\Author')->searchable(),
-            BelongsToMany::make('Références', 'references', '\App\Nova\Author')->searchable(),
+            BelongsToMany::make('Signatures', 'signatures', '\App\Nova\Author')
+                ->searchable(),
+            BelongsToMany::make('Références', 'references', '\App\Nova\Author')
+                ->searchable(),
         ];
     }
 
@@ -124,7 +126,6 @@ class Author extends Resource
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
                 ->withoutTrashed()
                 ->default(1)
-                ->rules('required')
                 ->sortable(),
             BelongsTo::make('Pays 2', 'country2', 'App\Nova\Country')
                 ->withoutTrashed()
@@ -157,7 +158,7 @@ class Author extends Resource
 
             Text::make('Refs & Sign', function() {
                 $nbrefs = $this->references_count;
-                $nbsigs = $this->pseudonyms_count;
+                $nbsigs = $this->signatures_count;
                 if ($nbrefs != 0) {
                     if ($nbsigs != 0) {
                         return $nbrefs . " ref. & " . $nbsigs . " signat.";

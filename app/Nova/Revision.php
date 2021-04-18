@@ -48,67 +48,47 @@ class Revision extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
             Text::make('Table', function() {
-                switch (substr($this->revisionable_type, 11)) {
-                    case "Country":
-                        return "Pays";
-                        break;
-                    case "RelationshipType":
-                        return "Types relation";
-                        break;
-                    case "Relationship":
-                        return "Relations";
-                        break;
-                    case "WebsiteType":
-                        return "Types site";
-                        break;
-                    case "Website":
-                        return "Sites web";
-                        break;
-                    case "Announcement":
-                        return "Annonces";
-                        break;
-                    case "Event":
-                        return "Evènements";
-                        break;
-                    case "Author":
-                        return "Auteurs";
-                        break;
-                    default:
-                        return substr($this->revisionable_type, 11);
-                        break;
-                }
+                return class_basename($this->revisionable_type);
             }),
-            //Number::make('Elément', 'revisionable_id'),
-            Text::make('Element', function() {
-                return '<a href="" class="no-underline dim text-primary font-bold">' . $this->revisionable_id . '</a>';
+
+            Text::make('ID élém', function() {
+                $href = "/nova/resources/". Str::plural(Str::snake(class_basename($this->revisionable_type))) . "/" . $this->revisionable_id;
+                $title = class_exists($class = $this->revisionable_type) ? $class::find($this->revisionable_id)->name : "...";
+                return '<a href="'. $href . '" class="no-underline dim text-primary font-bold" title="' . $title . '">' . $this->revisionable_id . '</a>';
             })->asHtml(),
 
-            Text::make('Nom de l\'élément', function() {
+            Text::make('Elément', function() {
                 if (class_exists($class = $this->revisionable_type)) {
                         return $class::find($this->revisionable_id)->name;
                 }
             })
                 ->onlyOnDetail(),
-            // Text::make('Champ', 'key'),
+
             Text::make('Champ', function() {
                 return $this->fieldName();
             }),
 
-            Text::make('Ancienne valeur', 'old_value')
-            ->hideFromIndex(),
-            Text::make('Ancienne valeur', function(){
-                return Str::limit($this->old_value, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            Text::make('Ancienne valeur', function() {
+                return "<span style='color:red'>" . $this->old_value . "</span>";
             })
-            ->onlyOnIndex()
-            ->asHtml(),
+                ->hideFromIndex()
+                ->asHtml(),
+            Text::make('Ancienne valeur', function() {
+                return Str::limit($this->old_value, 40, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
+                ->onlyOnIndex()
+                ->asHtml(),
 
-            Text::make('Nouvelle valeur', 'new_value')
-            ->hideFromIndex(),
-            Text::make('Nouvelle valeur', function(){
-                return Str::limit($this->new_value, 50, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            Text::make('Nouvelle valeur', function() {
+                return "<span style='color:blue'>" . $this->new_value . "</span>";
             })
-            ->onlyOnIndex()
-            ->asHtml(),
+                ->hideFromIndex()
+                ->asHtml(),
+            Text::make('Nouvelle valeur', function(){
+                return Str::limit($this->new_value, 40, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
+            })
+                ->onlyOnIndex()
+                ->asHtml(),
 
             DateTime::make('Réalisé le', 'created_at')
                 ->format('DD/MM/YYYY HH:mm'),

@@ -24,7 +24,7 @@ class CreateAuthorsTable extends Migration
             $table->boolean('pseudonym');
             $table->enum('gender', ['F', 'H', 'IEL', '?'])->default('?');
 
-            $table->unsignedSmallInteger('country_id');
+            $table->unsignedSmallInteger('country_id')->nullable();
             $table->foreign('country_id')
                 ->references('id')
                 ->on('countries')

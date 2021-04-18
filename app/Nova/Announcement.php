@@ -55,7 +55,7 @@ class Announcement extends Resource
             Date::make('Date', 'date')
                 ->pickerDisplayFormat('Y-m-d')
                 ->default(today())
-                ->rules('required')
+                ->rules('required', 'date_format:Y-m-d')
                 ->help('Format obligatoire AAAA-MM-JJ. Si le Type est [Remerciement], entrez la date de réception de l\'aide - Sinon, saisir la date de l\'annonce ou de l\'information. Par défaut, la date de ce jour est pré-remplie.')
                 ->sortable(),
 

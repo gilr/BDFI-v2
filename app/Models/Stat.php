@@ -30,4 +30,9 @@ class Stat extends Model
     protected $casts = [
         'date' => 'datetime:Y-m-d',
     ];
+
+    protected function getNameAttribute()
+    {
+        return $this->date->format('Y-m-d');
+    }    
 }

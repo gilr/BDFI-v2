@@ -91,4 +91,23 @@ class AuthorPolicy
     {
         return $user->hasSysAdminRole();
     }
+
+
+    public function addWebsite(User $user, Author $author)
+    {
+        return $user->hasEditorRole();
+    }
+    public function attachAnyAuthor(User $user, Author $author)
+    {
+        return $user->hasEditorRole();
+    }
+    public function attachAuthor(User $user, Author $author, Author $author2)
+    {
+        return $user->hasEditorRole() && ! $author->signatures->contains($author2) && ! $author->references->contains($author2);
+        //return false;
+    }
+    public function detachAuthor(User $user, Author $author, Author $author2)
+    {
+        return $user->hasEditorRole();
+    }
 }

@@ -27,6 +27,10 @@ class Website extends Model
 
     protected $dontKeepRevisionOf = ['deleted_by'];
 
+    public function revisionable_type() {
+        return "Site web";
+    }
+
     public function author()
     {
         return $this->belongsTo('App\Models\Author');
@@ -39,5 +43,10 @@ class Website extends Model
     {
         return $this->belongsTo('App\Models\Country');
     }
+
+    protected function getNameAttribute()
+    {
+        return $this->url;
+    }    
 
 }

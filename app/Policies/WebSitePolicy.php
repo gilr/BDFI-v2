@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\WebSite;
+use App\Models\Website;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class WebSitePolicy
+class WebsitePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class WebSitePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WebSite  $webSite
+     * @param  \App\Models\Website  $website
      * @return mixed
      */
-    public function view(User $user, WebSite $webSite)
+    public function view(User $user, Website $website)
     {
         return true;
     }
@@ -48,10 +48,10 @@ class WebSitePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WebSite  $webSite
+     * @param  \App\Models\Website  $website
      * @return mixed
      */
-    public function update(User $user, WebSite $webSite)
+    public function update(User $user, Website $website)
     {
         return $user->hasEditorRole();
     }
@@ -60,10 +60,10 @@ class WebSitePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WebSite  $webSite
+     * @param  \App\Models\Website  $website
      * @return mixed
      */
-    public function delete(User $user, WebSite $webSite)
+    public function delete(User $user, Website $website)
     {
         return $user->hasEditorRole();
     }
@@ -72,22 +72,22 @@ class WebSitePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WebSite  $webSite
+     * @param  \App\Models\Website  $website
      * @return mixed
      */
-    public function restore(User $user, WebSite $webSite)
+    public function restore(User $user, Website $website)
     {
-        return $user->hasAdminRole() || $user->id === $webSite->destructor;
+        return $user->hasAdminRole() || $user->id === $website->destructor;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\WebSite  $webSite
+     * @param  \App\Models\Website  $website
      * @return mixed
      */
-    public function forceDelete(User $user, WebSite $webSite)
+    public function forceDelete(User $user, Website $website)
     {
         return $user->hasSysAdminRole();
     }

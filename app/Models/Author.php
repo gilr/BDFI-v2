@@ -46,14 +46,18 @@ class Author extends Model
         return $this->hasMany('App\Models\Website');
     }
 
-    public function pseudonyms()
+    public function signatures()
     {
-        return $this->belongsToMany('App\Models\Author', 'signatures', 'author_id', 'pseudonym_id');
+        return $this->belongsToMany('App\Models\Author', 'signatures', 'author_id', 'signature_id')
+            ->withPivot(['created_by', 'updated_by', 'deleted_by']) // Add extra fields to the 'pivot' object
+            ->withTimestamps();
     }
 
     public function references()
     {
-        return $this->belongsToMany('App\Models\Author', 'signatures', 'pseudonym_id', 'author_id');
+        return $this->belongsToMany('App\Models\Author', 'signatures', 'signature_id', 'author_id')
+            ->withPivot(['created_by', 'updated_by', 'deleted_by']) // Add extra fields to the 'pivot' object
+            ->withTimestamps();
     }
 
     public function getFullNameAttribute()
@@ -71,9 +75,9 @@ class Author extends Model
         return $this->references()->count();
     }
 
-    public function getPseudonymsCountAttribute()
+    public function getSignaturesCountAttribute()
     {
-        return $this->pseudonyms()->count();
+        return $this->signatures()->count();
     }
 
 }

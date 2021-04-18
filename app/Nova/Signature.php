@@ -35,6 +35,8 @@ class Signature extends Resource
     /* The number of results to display when searching for relatable resources without Scout. */
     public static $relatableSearchResults = 50;
 
+    public static $with = ['author', 'signature'];
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -52,7 +54,7 @@ class Signature extends Resource
                 ->sortable()
                 ->searchable(),
 
-            BelongsTo::make('Signature liée', 'pseudonym', 'App\Nova\Author')
+            BelongsTo::make('Signature liée', 'signature', 'App\Nova\Author')
                 ->rules('different:author')
                 ->withoutTrashed()
                 ->sortable()

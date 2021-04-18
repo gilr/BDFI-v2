@@ -22,8 +22,8 @@ class CreateSignaturesTable extends Migration
                 ->on('authors')
                 ->onDelete('restrict');
 
-            $table->unsignedInteger('pseudonym_id');
-            $table->foreign('pseudonym_id')
+            $table->unsignedInteger('signature_id');
+            $table->foreign('signature_id')
                 ->references('id')
                 ->on('authors')
                 ->onDelete('restrict');

@@ -36,6 +36,8 @@ class Country extends Resource
     /* Whether to show borders for each column on the X-axis. */
     public static $showColumnBorders = false;
 
+    public static $relatableSearchResults = 20;
+
     /**
      * Get the fields displayed by the resource.
      *
