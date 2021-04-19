@@ -36,14 +36,16 @@
             @endif
         </div>
 
-        <div class='flex flex-col p-2 m-2 flex-grow border border-gray-400 rounded-lg'>
+        <div class='flex flex-col w-11/12'>
 
-            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Bibliographies des auteurs</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
             <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
             <?php
                 for ($i = 'A'; $i != 'AA'; $i++) {
-                    echo "<a href='index.php?i=" . strtolower($i) . "'>$i</a> &nbsp; ";
+                    echo "<a href='/auteur/_" . strtolower($i) . "'>$i</a> &nbsp; ";
                 }
             ?>
             </div>

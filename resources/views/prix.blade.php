@@ -37,17 +37,16 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-20xl m-4 p-4 self-end'>
-               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /\<br/>
-               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /\<br/>
-               &nbsp; &nbsp; &nbsp; &nbsp; /\<br/>
-               &nbsp;<br/>
-            Mais que faites-vous encore ici ?<br/>
-            C'est là, par ici, qu'il faut aller !
+            <div class='flex text-1xl p-4 m-36 border border-gray-400 self-center rounded-lg shadow'>
+                <span>Attention, après vous ne viendrez pas dire que vous n'aviez pas été prévenus, hein...</span>
+                <span class="animate-ping inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            </div>
         </div>
     </div>
 

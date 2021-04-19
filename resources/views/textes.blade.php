@@ -37,19 +37,20 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-2xl p-20 m-20 italic border border-yellow-400 self-center rounded-lg'>
-<div class="flex p-20 mx-20">
-            Vous êtes là pour tester, pas vous promener.
-    
-</div>
-<div class="flex p-20 m-20">
-            Qu'on ne vous y reprenne plus.
-    
-</div>
+            <div class='flex text-2xl p-20 m-20 italic border border-yellow-400 self-center rounded-lg'>
+                <div class="flex p-20 mx-20">
+                    Vous êtes là pour tester, pas vous promener.
+                </div>
+                <div class="flex p-20 m-20">
+                    Qu'on ne vous y reprenne plus.
+                </div>
+            </div>
         </div>
     </div>
 

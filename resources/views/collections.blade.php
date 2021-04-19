@@ -37,14 +37,17 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-1xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
-            Vu !!
+            <div class='flex text-1xl text-yellow-300 p-2 mx-64 my-32 self-center'>
+                Il va falloir commencer à faire attention, car ça pourrait devenir dangereux de fouiller partout !
+            </div>
+
         </div>
-
     </div>
 
 </body>

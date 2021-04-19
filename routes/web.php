@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/legacy', function () {
-    return view('legacy');
-});
+Route::redirect('/', 'http://richardot.fr');
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
+
 Route::get('/auteurs', function () {
+    return view('auteurs');
+});
+Route::get('/auteur/_{id}', function () {
     return view('auteurs');
 });
 Route::get('/textes', function () {
@@ -46,6 +48,9 @@ Route::get('/festivals', function () {
 });
 Route::get('/forums', function () {
     return view('forums');
+});
+Route::get('/annonces', function () {
+    return view('annonces');
 });
 Route::get('/annonces', function () {
     return view('annonces');

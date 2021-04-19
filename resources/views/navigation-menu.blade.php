@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('nova.index') }}" :active="request()->routeIs('nova.index')">
                         {{ __('Administration') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
+                        {{ __('Site BDFI (de test)') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

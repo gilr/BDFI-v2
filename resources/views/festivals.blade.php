@@ -37,12 +37,18 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-2xl p-16 m-16 self-center'>
-            non plus !
+            <div class='flex text-2xl p-4 m-4 self-center'>
+                Et voilà, reperé...
+            </div>
+            <div class='flex text-2xl p-2 m-2 self-center'>
+                <img src="https://i.gifer.com/E4GA.gif" width="800px"/>
+            </div>
         </div>
     </div>
 

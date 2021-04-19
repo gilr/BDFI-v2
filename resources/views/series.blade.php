@@ -37,15 +37,18 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 my-7 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-9xl px-5 py-5 my-16 border border-purple-800 bg-purple-300 self-center rounded-lg'>
-B O U H !!
+            <div class='flex text-9xl p-5 my-16 border border-purple-800 bg-purple-200 self-center rounded-lg shadow-inner transform hover:border-red-800 hover:bg-red-200 hover:-rotate-6 hover:scale-150 hover:skew-y-12 transition duration-500 ease-in-out'>
+B O U H !
+            </div>
+
+    &nbsp; &nbsp; . . .        Ahah, on ne s'y attendait pas, hein.
         </div>
-
- . . .        Ahah, on ne s'y attendait pas, hein.
     </div>
 
 </body>

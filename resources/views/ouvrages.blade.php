@@ -37,12 +37,16 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-2xl p-2 mt-20 border border-gray-400 self-center rounded-lg'>
-            Ohoh, un rebelle, on n'écoute pas les mises en garde je vois...
+            <div class='flex text-2xl p-2 mt-20 border border-gray-400 self-center rounded-lg shadow'>
+                Oh oh, un rebelle, un qui n'écoute pas les avertissements...<br />
+                ... un qui veut franchir les limites...
+            </div>
         </div>
     </div>
 

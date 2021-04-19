@@ -37,21 +37,26 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
-<pre class='m-4'>Ci dessus les noms pour accéder à l'admin de test :
-L'accès se trouve en haut à droite... ;-)
+            <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
+<pre class='m-4'>L'accès se trouve en haut à droite : "Log-in" si vous n'êtes pas connecté,
+   "dashboard" ou "Administration" si vous l'êtes.
+   "Register" disparaîtra (il n'est pas prévu d'inscription libre)
 
-    "guest" : pour se promener, pas de modifications possibles
-    "editor" : pour gérer presque toutes les tables bibliographiques
-    "admin" : permet la gestion de quelques tables supplémentaires
-    "sysadmin" : tous les droits
+Les utilisateurs possibles pour accéder à l'admin de test :
+    "guest@bdfi.net" : pour se promener, pas de modifications possibles
+    "editor@bdfi.net" : gestion des tables biblios
+    "admin@bdfi.net" : gestion de quelques tables supplémentaires
+    "sysadmin@bdfi.net" : tous les droits
 
-Même mots de passe pour tous : "testpassword"
+Le mot de passe est identique pour tous les login : "testpassword"
 </pre>
+            </div>
         </div>
     </div>
 

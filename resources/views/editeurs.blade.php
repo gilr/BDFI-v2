@@ -37,12 +37,19 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12 items-end'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-1xl text-yellow-300 p-2 mx-64 my-32 self-center'>
-Puisque certains m'ont l'air têtu, on va leur donner un peu de lecture. M'enfin, seulement ceux qui voient encore un peu clair. Pas facile à lire, hein ?
+            <div class='flex text-xl my-4 self-end flex-row-reverse'>
+               <div class="flex flex-grow animate-bounce content-end justify-end text-4xl text-red-800 bold">/\</div><br/>
+               &nbsp; <br/>
+               &nbsp;<br/>
+            C'est là-haut qu'il faut aller...<br/>
+            Pas ailleurs !
+            </div>
         </div>
     </div>
 

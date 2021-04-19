@@ -37,15 +37,21 @@
             @endif
         </div>
 
-    <div class='flex flex-col flex-grow'>
+        <div class='flex flex-col w-11/12'>
 
-        <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg">Ceci n'est qu'un site de test...</div>
+            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+                Ceci n'est qu'un site de test...
+            </div>
 
-        <div class='flex text-1xl p-2 my-64 self-center'>
-            Mais arrêtez de fouiner partout, c'est plus possible ça !
+            <div class='flex text-2xl p-2 m-2 self-center'>
+                <img src="https://pa1.narvii.com/6826/a1d92945d854de5e2e30c37fc3b301e2d1deae5c_hq.gif" width="800px"/>
+            </div>
+            <div class='flex text-2xl text-purple-700 p-2 m-4 self-center'>
+                Nooooooooon, partez pas !
+            </div>
+
         </div>
 
     </div>
-
 </body>
 </html>
