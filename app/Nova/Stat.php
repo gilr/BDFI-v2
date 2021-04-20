@@ -47,9 +47,9 @@ class Stat extends Resource
 
             Date::make('Date décompte', 'date')
                 ->pickerDisplayFormat('Y-m-d')
-                ->default(today())
+                ->default(today()->format('Y-m-d'))
                 ->help('Date du décompte en base. Par défaut, la date de ce jour est pré-remplie.')
-                ->rules('required')
+                ->rules('required', 'date_format:Y-m-d')
                 ->sortable(),
 
             Number::make('Nb auteurs', 'authors')

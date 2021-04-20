@@ -77,7 +77,7 @@ class StatPolicy
      */
     public function restore(User $user, Stat $stat)
     {
-        return $user->hasAdminRole() || $user->id === $websiteType->destructor;
+        return $user->hasAdminRole() || $user->id === $stat->destructor;
     }
 
     /**

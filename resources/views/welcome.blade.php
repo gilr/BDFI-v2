@@ -44,9 +44,10 @@
             </div>
 
             <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
-<pre class='m-4'>L'accès se trouve en haut à droite : "Log-in" si vous n'êtes pas connecté,
-   "dashboard" ou "Administration" si vous l'êtes.
-   "Register" disparaîtra (il n'est pas prévu d'inscription libre)
+<pre class='m-4'>L'accès se trouve en haut à droite : 
+    -> "Log-in" si vous n'êtes pas encore connecté,
+    -> "Dashboard" ou "Administration" si vous l'êtes.
+   Le "Register" disparaîtra (il n'est pas prévu d'inscription libre)
 
 Les utilisateurs possibles pour accéder à l'admin de test :
     "guest@bdfi.net" : pour se promener, pas de modifications possibles

@@ -78,7 +78,7 @@ class Event extends Resource
             Date::make('Date de début', 'start_date')
                 ->pickerDisplayFormat('Y-m-d')
                 ->rules('required', 'date_format:Y-m-d')
-                ->default(today())
+                ->default(today()->format('Y-m-d'))
                 ->help('Date du début de l\évènement. Par défaut, la date de ce jour est pré-remplie.')
                 ->sortable(),
             Date::make('Date de fin', 'end_date')

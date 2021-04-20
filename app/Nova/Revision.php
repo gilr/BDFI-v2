@@ -53,13 +53,13 @@ class Revision extends Resource
 
             Text::make('ID élém', function() {
                 $href = "/nova/resources/". Str::plural(Str::snake(class_basename($this->revisionable_type))) . "/" . $this->revisionable_id;
-                $title = class_exists($class = $this->revisionable_type) ? $class::find($this->revisionable_id)->name : "...";
+                $title = class_exists($class = $this->revisionable_type) ? $class::withTrashed()->find($this->revisionable_id)->name : "...";
                 return '<a href="'. $href . '" class="no-underline dim text-primary font-bold" title="' . $title . '">' . $this->revisionable_id . '</a>';
             })->asHtml(),
 
             Text::make('Elément', function() {
                 if (class_exists($class = $this->revisionable_type)) {
-                        return $class::find($this->revisionable_id)->name;
+                        return $class::withTrashed()->find($this->revisionable_id)->name;
                 }
             })
                 ->onlyOnDetail(),
@@ -69,7 +69,7 @@ class Revision extends Resource
             }),
 
             Text::make('Ancienne valeur', function() {
-                return "<span style='color:red'>" . $this->old_value . "</span>";
+                return "<span style='color:red'>" . $this->oldValue() . "</span>";
             })
                 ->hideFromIndex()
                 ->asHtml(),

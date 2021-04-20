@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'http://richardot.fr');
+// Route::redirect('/', 'http://richardot.fr');
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 

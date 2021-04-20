@@ -11,7 +11,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\TextArea;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
@@ -44,7 +44,7 @@ class Author extends Resource
     /* The number of results to display when searching for relatable resources without Scout. */
     public static $relatableSearchResults = 50;
 
-    public static $with = ['editor', 'references', 'signatures', 'websites', 'country'];
+    public static $with = ['editor', 'websites', 'country'];
 
     /**
      * Get the fields displayed by the resource.
@@ -126,10 +126,13 @@ class Author extends Resource
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
                 ->withoutTrashed()
                 ->default(1)
-                ->sortable(),
+                ->nullable()
+                ->sortable()
+                ->searchable(),
             BelongsTo::make('Pays 2', 'country2', 'App\Nova\Country')
                 ->withoutTrashed()
                 ->nullable()
+                ->searchable()
                 ->hideFromIndex(),
 
             Text::make('Né le', 'birth_date')
@@ -152,7 +155,7 @@ class Author extends Resource
                 return strlen($this->biography);
             })
                 ->onlyOnIndex(),
-
+/*
             Number::make('Sites', 'websites_count')
                 ->onlyOnIndex(),
 
@@ -177,7 +180,7 @@ class Author extends Resource
                 }
             })
                 ->onlyOnIndex(),
-
+*/
             Textarea::make('Biographie', 'biography')
                 ->help("Biographie succincte. Pas de copier-coller de textes trouvés sur Internet (mais on peut s'inspirer pour résumer bien sur !).")
                 ->rows(3)
