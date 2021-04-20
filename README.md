@@ -9,13 +9,13 @@
 ## A propos
 
 Dévelopemment d'une nouvelle version d'un site web dédié à l'imaginaire (science-fiction, fantastique, fantasy...) 
-Le projet est développé en supportant partiellement le multi-langue, même son but premier est un site web francophone.
-Le site web est un site non commercial sans aucune publicité.
+Le projet est développé en supportant partiellement le multi-langue, même si son but premier est d'être un site web francophone.
+Le site web est un site associatif, non commercial, sans aucune publicité.
 
-Vu qu'il est développé avec un ciblage très spécifique, il n'est pas d'un granr intérêt pour des personnes hors de notre équipe, sauf éventuellement comme exemple d'un projet Laravel.
+Etant donné que sa cible est très spécifique, il n'est pas d'un grand intérêt pour des personnes hors de notre équipe, sauf éventuellement comme exemple d'un projet Laravel.
 
 ## Aide ?
-Toute aide de personnes familières de l'éco-système Laravel et/ou passionné par les littératures de l'imaginaires est la bienvenu !
+Toute aide de personnes familières de l'éco-système Laravel et/ou passionné par les littératures de l'imaginaire est la bienvenue !
 
 ## Basé sur Laravel
 
@@ -38,22 +38,22 @@ Laravel Jetstream is a beautifully designed application scaffolding for Laravel.
 Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers your choice of [Livewire](https://jetstream.laravel.com/1.x/stacks/livewire.html) or [Inertia](https://jetstream.laravel.com/1.x/stacks/inertia.html) scaffolding.
 
 ## ... Et Tailwind
+(bientôt)
 
-
-## Packages & repositories utilisées
+## Packages et repositories utilisées
 
 - **[debugbar](https://github.com/barryvdh/laravel-debugbar)**
 - **[revisionable](https://packagist.org/packages/venturecraft/revisionable)**
 - **[Laravel-Userstamps](https://github.com/WildsideUK/Laravel-Userstamps)**
 - **[Nova](https://nova.laravel.com/)**
 
-## Security Vulnerabilities
+## Failles de sécurité
 
 If you discover a security vulnerability within our project, please send an e-mail to the owner of the repository.
 
 ## License
 
-This project is an open-sourced software.
+Le projet est complètement open-source.
 
 <a name="english"></a>
 ## About
@@ -88,7 +88,7 @@ Laravel Jetstream is a beautifully designed application scaffolding for Laravel.
 Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers your choice of [Livewire](https://jetstream.laravel.com/1.x/stacks/livewire.html) or [Inertia](https://jetstream.laravel.com/1.x/stacks/inertia.html) scaffolding.
 
 ## ... And Tailwind
-
+(soon)
 
 ## Used packages & repositories
 
