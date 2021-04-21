@@ -47,7 +47,6 @@
 <pre class='m-4'>L'accès se trouve en haut à droite : 
     -> "Log-in" si vous n'êtes pas encore connecté,
     -> "Dashboard" ou "Administration" si vous l'êtes.
-   Le "Register" disparaîtra (il n'est pas prévu d'inscription libre)
 
 Les utilisateurs possibles pour accéder à l'admin de test :
     "guest@bdfi.net" : pour se promener, pas de modifications possibles
@@ -56,6 +55,8 @@ Les utilisateurs possibles pour accéder à l'admin de test :
     "sysadmin@bdfi.net" : tous les droits
 
 Le mot de passe est identique pour tous les login : "testpassword"
+
+Vous pouvez aussi utiliser "Register" (qui disparaîtra - pas d'inscription libre prévue)
 </pre>
             </div>
         </div>

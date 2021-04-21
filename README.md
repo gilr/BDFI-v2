@@ -15,7 +15,7 @@ Le site web est un site associatif, non commercial, sans aucune publicité.
 Etant donné que sa cible est très spécifique, il n'est pas d'un grand intérêt pour des personnes hors de notre équipe, sauf éventuellement comme exemple d'un projet Laravel.
 
 ## Aide ?
-Toute aide de personnes familières de l'éco-système Laravel et/ou passionné par les littératures de l'imaginaire est la bienvenue !
+Toute aide de personnes familières de l'éco-système Laravel et/ou passionnées par les littératures de l'imaginaire est la bienvenue !
 
 ## Basé sur Laravel
 
@@ -42,10 +42,10 @@ Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers y
 
 ## Packages et repositories utilisées
 
-- **[debugbar](https://github.com/barryvdh/laravel-debugbar)**
-- **[revisionable](https://packagist.org/packages/venturecraft/revisionable)**
-- **[Laravel-Userstamps](https://github.com/WildsideUK/Laravel-Userstamps)**
-- **[Nova](https://nova.laravel.com/)**
+- **[debugbar](https://github.com/barryvdh/laravel-debugbar)** (outils de débug orienté PHP + Laravel)
+- **[revisionable](https://packagist.org/packages/venturecraft/revisionable)** (extension permettant de stocker les modifications des tables)
+- **[Laravel-Userstamps](https://github.com/WildsideUK/Laravel-Userstamps)** (extension qui ajoute les informations "créé par" et "mis à jour par", en plus des informations de base "créé le" et "mis à jour le")
+- **[Nova](https://nova.laravel.com/)** (administration - Payant mais évite une énorme part de travail une fois pris en main)
 
 ## Failles de sécurité
 
@@ -53,7 +53,7 @@ If you discover a security vulnerability within our project, please send an e-ma
 
 ## License
 
-Le projet est complètement open-source.
+Le projet est totalement open-source.
 
 <a name="english"></a>
 ## About
