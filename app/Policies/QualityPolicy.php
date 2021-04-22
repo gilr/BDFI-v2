@@ -18,7 +18,7 @@ class QualityPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class QualityPolicy
      */
     public function view(User $user, Quality $quality)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

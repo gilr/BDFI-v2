@@ -19,23 +19,7 @@
 	<!-- container -->
 
 	    <x-menu/>
-
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-0 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a> - 
-                        <a href="{{ url('/nova') }}" class="text-sm text-gray-700 underline">Administration</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-        </div>
+        <x-authent/>
 
         <div class='flex flex-col w-11/12'>
 
@@ -43,20 +27,26 @@
                 Ceci n'est qu'un site de test...
             </div>
 
+            <div class='flex text-2xl p-2 m-2 self-center'>
+                Mais surtout pas une ébauche d'un look futur !
+            </div>
+
             <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
-<pre class='m-4'>L'accès se trouve en haut à droite : 
-    -> "Log-in" si vous n'êtes pas encore connecté,
+<pre class='m-4'>L'accès aux tables se trouve en haut à droite : 
+    -> "Connexion" ou "Inscription" si vous n'êtes pas encore connecté,
     -> "Dashboard" ou "Administration" si vous l'êtes.
 
 Les utilisateurs possibles pour accéder à l'admin de test :
-    "guest@bdfi.net" : pour se promener, pas de modifications possibles
-    "editor@bdfi.net" : gestion des tables biblios
-    "admin@bdfi.net" : gestion de quelques tables supplémentaires
-    "sysadmin@bdfi.net" : tous les droits
+  - "visitor@bdfi.net" : pour se promener, pas de modifications possibles
+  - "editor@bdfi.net" : gestion des tables biblios
+  - "admin@bdfi.net" : gestion de quelques tables supplémentaires
+  - "sysadmin@bdfi.net" : tous les droits
+Le login suivant n'a pas d'accès à la zone admin :
+  - "user@bdfi.net"
 
-Le mot de passe est identique pour tous les login : "testpassword"
+Le mot de passe est identique pour tous les login : "password"
 
-Vous pouvez aussi utiliser "Register" (qui disparaîtra - pas d'inscription libre prévue)
+On peut utiliser "Inscription", on se retrouve (normalement !) simple "user".
 </pre>
             </div>
         </div>

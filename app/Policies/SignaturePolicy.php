@@ -18,7 +18,7 @@ class SignaturePolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class SignaturePolicy
      */
     public function view(User $user, Signature $signature)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

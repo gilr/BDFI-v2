@@ -18,7 +18,7 @@ class WebsitePolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class WebsitePolicy
      */
     public function view(User $user, Website $website)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

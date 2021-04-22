@@ -18,7 +18,7 @@ class StatPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class StatPolicy
      */
     public function view(User $user, Stat $stat)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

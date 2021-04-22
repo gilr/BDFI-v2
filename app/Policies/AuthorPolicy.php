@@ -18,7 +18,7 @@ class AuthorPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class AuthorPolicy
      */
     public function view(User $user, Author $author)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

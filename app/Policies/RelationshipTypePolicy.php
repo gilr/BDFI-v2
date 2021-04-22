@@ -18,7 +18,7 @@ class RelationshipTypePolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class RelationshipTypePolicy
      */
     public function view(User $user, RelationshipType $relationshipType)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

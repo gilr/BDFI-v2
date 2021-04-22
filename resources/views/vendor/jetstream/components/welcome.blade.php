@@ -4,7 +4,7 @@
     </div>
 
     <div class="mt-8 text-2xl">
-        Sur cette page se trouveront des élements divers : 
+        Sur cette page se trouveront des éléments divers : 
         <ul class="list-inside list-disc text-xl">
             <li> Raccourcis vers les saisies principales (certaines pages d'administration de tables)</li>
             <li> Outils divers, récupération des sauvegardes de la base...</li>

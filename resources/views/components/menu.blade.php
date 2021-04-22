@@ -4,7 +4,7 @@
 
 		<div class="h-16 flex items-center w-full">
 			<!-- Logo Section -->
-			<a class="h-8 w-8 mx-auto text-orange-500" href="/welcome">
+			<a class="h-8 w-8 mx-auto text-orange-500" href="/">
 				BDFI
 			</a>
 		</div>

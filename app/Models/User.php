@@ -71,4 +71,8 @@ class User extends Authenticatable
     {
         return (($this->role === 'admin') || ($this->role === 'sysadmin') || ($this->role === 'editor'));
     }
+    public function hasVisitorRole()
+    {
+        return (($this->role === 'admin') || ($this->role === 'sysadmin') || ($this->role === 'editor') || ($this->role === 'visitor'));
+    }
 }

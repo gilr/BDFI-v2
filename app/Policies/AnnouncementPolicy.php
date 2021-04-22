@@ -18,7 +18,7 @@ class AnnouncementPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class AnnouncementPolicy
      */
     public function view(User $user, Announcement $announcement)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

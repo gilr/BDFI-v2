@@ -18,7 +18,7 @@ class EventPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class EventPolicy
      */
     public function view(User $user, Event $event)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

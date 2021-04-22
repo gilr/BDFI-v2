@@ -72,11 +72,13 @@ class User extends Resource
                 ->exceptOnForms(),
 
             Select::make('Role')->options([
-                'guest'    => 'guest',
-                'editor'   => 'editor',
-                'admin'    => 'admin',
-                'sysadmin' => 'sysadmin',
+                'user'     => 'Simple utilisateur BDFI',
+                'visitor'  => 'Visiteur Admin',
+                'editor'   => 'editeur Admin',
+                'admin'    => 'Admin',
+                'sysadmin' => 'Admin Système',
             ])
+                ->default('user')
                 ->rules('required')
                 ->onlyOnForms(),
         ];

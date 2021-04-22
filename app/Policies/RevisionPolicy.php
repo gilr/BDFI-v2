@@ -18,7 +18,7 @@ class RevisionPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**
@@ -30,7 +30,7 @@ class RevisionPolicy
      */
     public function view(User $user, Revision $revision)
     {
-        return true;
+        return $user->hasVisitorRole();
     }
 
     /**

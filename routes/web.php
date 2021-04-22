@@ -56,6 +56,14 @@ Route::get('/annonces', function () {
     return view('annonces');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        if (Auth::user()->role == 'user') {
+            return Redirect::route('welcome');
+        }
+        else {
+            return view('dashboard');
+        }
+    })->name('dashboard');;
+});
