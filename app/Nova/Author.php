@@ -25,7 +25,7 @@ class Author extends Resource
 
     /* The columns that could be searched. */
     public static $search = [
-      'id', 'name', 'first_name', 'birth_date', 'date_death'
+      'id', 'name', 'first_name', 'birth_date', 'date_death', 'biography'
     ];
 
     /* Logical group in the sidebar menu - Optional */
