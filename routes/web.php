@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/auteurs', function () {
-    return view('auteurs');
-});
-Route::get('/auteur/_{id}', function () {
-    return view('auteurs');
-});
+Route::get('/auteurs', [AuthorController::class, 'welcome']);
+Route::get('/auteurs/{a}', [AuthorController::class, 'page']);
+
 Route::get('/textes', function () {
     return view('textes');
 });

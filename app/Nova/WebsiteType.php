@@ -67,7 +67,7 @@ class WebsiteType extends Resource
                 ->updateRules('unique:website_types,displayed_text,{{resourceId}}')
                 ->hideFromIndex(),
 
-            Boolean::make('Utilisable', 'obsolete')
+            Boolean::make('Utilisable', 'is_obsolete')
                 ->trueValue('0')
                 ->falseValue('1')
                 ->default('1')

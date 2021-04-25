@@ -17,34 +17,35 @@ class AuthorSeeder extends Seeder
         $backup = DB::connection('mysql2')->table('auteurs')->get();
         foreach ($backup as $record) {
             DB::connection('mysql')->table('authors')->insert([
-                'id'          => $record->id,
+                'id'           => $record->id,
 
-                'name'        => $record->nom,
-                'nom_bdfi'    => $record->nom_bdfi,
-                'first_name'  => $record->prenom,
-                'pseudonym'   => $record->pseudo,
-                'legal_name'  => $record->nom_legal,
-                'forms'       => $record->formes_nom,
-                'gender'      => $record->sexe,
-                'birth_date'  => $record->date_naiss,
-                'birthplace'  => $record->lieu_naiss,
-                'date_death'  => $record->date_deces,
-                'place_death' => $record->lieu_deces,
-                'biography'   => $record->bio,
-                'private'     => $record->work_priv,
+                'name'         => $record->nom,
+                'nom_bdfi'     => $record->nom_bdfi,
+                'first_name'   => $record->prenom,
+                'is_pseudonym' => $record->pseudo,
+                'legal_name'   => $record->nom_legal,
+                'forms'        => $record->formes_nom,
+                'gender'       => $record->sexe,
+                'birth_date'   => $record->date_naiss,
+                'birthplace'   => $record->lieu_naiss,
+                'date_death'   => $record->date_deces,
+                'place_death'  => $record->lieu_deces,
+                'biography'    => $record->bio,
+                'private'      => $record->work_priv,
+                'is_visible'   => 1,
 
-                'country_id'  => $record->pays_id,
-                'country2_id' => $record->pays2_id,
-                'quality_id'  => $record->avancement_id,
+                'country_id'   => $record->pays_id,
+                'country2_id'  => $record->pays2_id,
+                'quality_id'   => $record->avancement_id,
 
-                'created_at'  => $record->created_at,
-                'updated_at'  => $record->updated_at,
-                'deleted_at'  => NULL,
+                'created_at'   => $record->created_at,
+                'updated_at'   => $record->updated_at,
+                'deleted_at'   => NULL,
 
                 // 99=>1 - 1=>2 - 2=>3 - 3=>4
-                'created_by'  => ($record->user_id == 99 ? 1 : $record->user_id + 1),
-                'updated_by'  => ($record->user_id == 99 ? 1 : $record->user_id + 1),
-                'deleted_by'  => NULL
+                'created_by'   => ($record->user_id == 99 ? 1 : $record->user_id + 1),
+                'updated_by'   => ($record->user_id == 99 ? 1 : $record->user_id + 1),
+                'deleted_by'   => NULL
             ]);
         }
     }

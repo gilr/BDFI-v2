@@ -13,10 +13,10 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Administration') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ config('nova.path') }}" :active="request()->routeIs('nova.index')">
-                        {{ __('Administration') }}
+                        {{ __('Gestion des tables (NOVA)') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('welcome') }}" >
                         {{ __('Site BDFI (de test)') }}
@@ -145,10 +145,15 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Administration') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ config('nova.path') }}" :active="request()->routeIs('nova.index')">
+                {{ __('les tables (NOVA)') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
+                {{ __('Site BDFI (de test)') }}
             </x-jet-responsive-nav-link>
         </div>
-
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">

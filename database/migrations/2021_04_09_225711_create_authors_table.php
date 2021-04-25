@@ -21,7 +21,7 @@ class CreateAuthorsTable extends Migration
             $table->string('nom_bdfi', 64)->nullable();
             $table->string('legal_name', 128)->nullable();
             $table->string('forms', 512)->nullable();
-            $table->boolean('pseudonym');
+            $table->boolean('is_pseudonym');
             $table->enum('gender', ['F', 'H', 'IEL', '?'])->default('?');
 
             $table->unsignedSmallInteger('country_id')->nullable();
@@ -41,6 +41,7 @@ class CreateAuthorsTable extends Migration
             $table->string('date_death', 10)->nullable();
             $table->string('place_death', 64)->nullable();
 
+            $table->boolean('is_visible');
             $table->text('biography')->nullable();
             $table->text('private')->nullable();
 

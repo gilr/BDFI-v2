@@ -27,11 +27,11 @@
                 Ceci n'est qu'un site de test...
             </div>
 
-            <div class='flex text-2xl p-20 m-20 italic border border-yellow-400 self-center rounded-lg'>
-                <div class="flex p-20 mx-20">
+            <div class='text-2xl p-10 m-10 italic border border-yellow-400 self-center rounded-lg shadow-inner'>
+                <div class="flex p-20 mx-20 border border-yellow-400 self-center rounded-lg shadow-lg">
                     Vous êtes là pour tester, pas vous promener.
                 </div>
-                <div class="flex p-20 m-20">
+                <div class="flex p-20 m-20 border border-yellow-400 self-center rounded-lg shadow-lg">
                     Qu'on ne vous y reprenne plus.
                 </div>
             </div>

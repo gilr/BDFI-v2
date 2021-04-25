@@ -31,7 +31,7 @@ class CreateRelationshipsTable extends Migration
             $table->unsignedTinyInteger('relationship_type_id');
             $table->foreign('relationship_type_id')
                 ->references('id')
-                ->on('website_types')
+                ->on('relationship_types')
                 ->onDelete('restrict');
 
             $table->timestamps();

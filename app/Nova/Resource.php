@@ -94,17 +94,18 @@ abstract class Resource extends NovaResource
                 $history = $this->revisionHistory()->getResults()->reverse();
                 $display = "";
                 foreach ($history as $revision) {
+                    $name_pattern = " - <span style='color:green; font-weight:bold'>" . $revision->userResponsible()->name . "</span> - ";
                     if($revision->key == 'created_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:blue'>Création</span></br>";
+                        $display .= $revision->created_at . $name_pattern . "<span style='color:blue'>Création</span></br>";
                     }
                     else if($revision->key == 'deleted_at' && !$revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:red'>Suppression</span></br>";
+                        $display .= $revision->created_at . $name_pattern . "<span style='color:red'>Suppression</span></br>";
                     }
                     else if($revision->key == 'deleted_at' && $revision->old_value) {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") <span style='color:blue'>Restauration</span></br>";
+                        $display .= $revision->created_at . $name_pattern . "<span style='color:blue'>Restauration</span></br>";
                     }
                     else {
-                        $display .= $revision->created_at . " (" . $revision->userResponsible()->name . ") Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
+                        $display .= $revision->created_at . $name_pattern . "Champ <b>" . $revision->fieldName() . "</b> modifié de \"<span style='color:red'>" . $revision->oldValue() . "</span>\" à \"<span style='color:blue'>" . $revision->newValue() ."</span>\"</br>";
                     }
                 }
                 return $display;

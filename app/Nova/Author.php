@@ -58,6 +58,12 @@ class Author extends Resource
             ID::make('N°', 'id')
                 ->sortable(),
 
+            Boolean::make('Auteur visible', 'is_visible')
+                ->help('Si décoché, l\'auteur n\'aura pas de page et sera absent des index. Il restera néanmoins trouvable par le moteur de recherche, et signature et textes seront également visibles dans les sommaires.')
+                ->rules('boolean')
+                ->default(1)
+                ->hideFromIndex(),
+
             //new Heading('Avertissement avant une forme'),
 
             new Panel('Identification', $this->identification()),
@@ -100,7 +106,7 @@ class Author extends Resource
                 ->help("Variantes d'écriture, écriture dans la langue d'origine, slave par exemple. Les formes multiples sont séparées par des virgules ', '.")
                 ->hideFromIndex(),
 
-            Boolean::make('Pseu', 'pseudonym')
+            Boolean::make('Pseu', 'is_pseudonym')
                 ->rules('required', 'boolean')
                 ->sortable(),
 

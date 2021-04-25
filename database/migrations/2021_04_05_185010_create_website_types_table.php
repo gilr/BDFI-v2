@@ -19,7 +19,7 @@ class CreateWebsiteTypesTable extends Migration
             $table->string('name', 32)->unique();
             $table->string('description', 128)->nullable();
             $table->string('displayed_text', 64)->unique();
-            $table->boolean('obsolete');
+            $table->boolean('is_obsolete');
 
             $table->timestamps();
             $table->unsignedSmallInteger('created_by')->nullable();

@@ -27,12 +27,28 @@
                 Ceci n'est qu'un site de test...
             </div>
 
-            <div class='flex text-2xl p-2 m-2 border border-gray-400 self-center rounded-lg'>
+            <div class='flex text-xl font-mono font-bold bg-gray-300 border border-yellow-200 pr-1 self-center'>
             <?php
                 for ($i = 'A'; $i != 'AA'; $i++) {
-                    echo "<a href='/auteur/_" . strtolower($i) . "'>$i</a> &nbsp; ";
+                    echo "<div class='pl-1 hover:bg-yellow-100'><a href='/auteurs/_" . strtolower($i) . "'>$i</a></div>";
                 }
             ?>
+            </div>
+            <div class='flex text-2xl my-16 bold self-center'>
+                Zone d'essais, avec index des auteurs et bio d'auteur - Normalement responsive (s'adapte aux différentes tailles d'écran)
+            </div>
+            <div class='flex text-xl my-2 bold self-center'>
+                La barre d'initiales ci-dessus donne accès aux index paginés des auteurs.
+            </div>
+            <div class='flex text-xl my-2 mx-20 lg:mx-60 bold self-center'>
+                En cliquant sur un auteur, on accède à ce que sera une future page auteur BDFI, en très simplifié, avec des données minimales (nom, pays, biographie).
+                Et bonus, si vous êtes identifié avec des droits suffisants (i.e. non simple "user"), un accès direct à la fiche auteur est fourni, permettant d'aller modifier très rapidement.
+            </div>
+            <div class='flex text-xl my-2 bold self-center'>
+                En modifiant un texte depuis la zone d'administration, la page auteur de cette zone sera également modifiée (il faut rafraichir la page).
+            </div>
+            <div class='flex text-xl my-2 bold self-center bg-red-200 p-2 shadow-lg'>
+                Rappel : aucune inquiétude ici, il  s'agit bien d'une copie de test de la base de donnée BDFI !
             </div>
         </div>
     </div>

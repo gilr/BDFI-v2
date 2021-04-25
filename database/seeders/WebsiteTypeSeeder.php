@@ -22,7 +22,7 @@ class WebsiteTypeSeeder extends Seeder
                 'name'           => $record->nom,
                 'description'    => $record->description,
                 'displayed_text' => $record->affiche,
-                'obsolete'       => $record->obsolete,
+                'is_obsolete'    => $record->obsolete,
 
                 'created_at'     => $record->created_at,
                 'updated_at'     => $record->updated_at,
