@@ -53,9 +53,33 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
         DB::table('users')->insert([
+            'name'     => 'admin2',
+            'role'     => 'admin',
+            'email'    => 'admin2@bdfi.net',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('users')->insert([
+            'name'     => 'admin3',
+            'role'     => 'admin',
+            'email'    => 'admin3@bdfi.net',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('users')->insert([
             'name'     => 'editor',
             'role'     => 'editor',
             'email'    => 'editor@bdfi.net',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('users')->insert([
+            'name'     => 'editor2',
+            'role'     => 'editor',
+            'email'    => 'editor2@bdfi.net',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('users')->insert([
+            'name'     => 'editor3',
+            'role'     => 'editor',
+            'email'    => 'editor3@bdfi.net',
             'password' => Hash::make('password'),
         ]);
         DB::table('users')->insert([

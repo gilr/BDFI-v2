@@ -10,26 +10,26 @@
 
 Dévelopemment d'une nouvelle version d'un site web dédié à l'imaginaire (science-fiction, fantastique, fantasy...) 
 Le projet est développé en supportant partiellement le multi-langue, même si son but premier est d'être un site web francophone.
-Le site web est un site associatif, non commercial, sans aucune publicité.
+Le site web est un site associatif, non commercial, sans publicité.
 
-Etant donné que sa cible est très spécifique, il n'est pas d'un grand intérêt pour des personnes hors de notre équipe, sauf éventuellement comme exemple d'un projet Laravel.
+Etant donné sa cible très spécifique, il n'est pas d'un grand intérêt pour des personnes hors de notre équipe, sauf éventuellement comme exemple d'un projet Laravel.
 
 ## Aide ?
 Toute aide de personnes familières de l'éco-système Laravel et/ou passionnées par les littératures de l'imaginaire est la bienvenue !
 
 ## Basé sur Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel est un framework de développement web doté d'une syntaxe explicite et élégante. Laravel aide le développement en facilitant la plupart des tâches de base des projets web, tels que :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
+- [moteur de routage simple et rapide](https://laravel.com/docs/routing).
+- [service de gestion d'injection de dépendances](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [ORM](https://laravel.com/docs/eloquent) - mapping objet-relationnel - intuitif et expressif.
+- Multi-format de base de données via les [schémas de migrations](https://laravel.com/docs/migrations).
+- Gestion robuste [des tâches de fond](https://laravel.com/docs/queues).
+- [Diffusion d'événements temps réel](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Laravel est accessible, puissant, et fournit les outils nécessaires pour des applications robustes et performantes.
 
 ## ... Et Jetstream
 
@@ -49,7 +49,7 @@ Jetstream is designed using [Tailwind CSS](https://tailwindcss.com) and offers y
 
 ## Failles de sécurité
 
-If you discover a security vulnerability within our project, please send an e-mail to the owner of the repository.
+En cas de découverte de faille de sécurité, merci d'envoyer un e-mail au propriétaire github de ce projet.
 
 ## License
 

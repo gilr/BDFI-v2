@@ -27,40 +27,42 @@
                 Cette partie "site BDFI" n'est qu'un site de test...
             </div>
 
-            <div class='flex text-base pt-1 self-center'>
+            <div class='flex text-base pt-1 mx-2 self-center'>
                 Et non pas une possible ébauche d'un look futur.
             </div>
             <div class='flex text-xl pt-1 self-center'>
                 La première icone (auteurs) du menu vertical gauche donne accès aux index et biographies.
-            </div>
-            <div class='flex text-xl pt-1 self-center'>
                 On peut évidemment s'y promener sans être connecté.
             </div>
             <div class='flex text-xs pt-1 self-center italic'>
                 Les autres icones ayant été laissées en friche, l'accès pourrait s'avérer... dangereux.
             </div>
 
-            <div class='flex text-xl p-2 m-2 bg-gray-300 border border-gray-400 self-center rounded-lg'>
-<pre class='m-4'>Pour l'accès à la zone admin :
-Le mot de passe pour tous les logins de test déjà créés est : "password"
-
-Les noms utilisables pour se connecter sont :
-  - "visitor@bdfi.net" : pour se promener, pas de modifications possibles
-  - "editor@bdfi.net" : gestion des tables biblios
-  - "admin@bdfi.net" : gestion de quelques tables supplémentaires
-  - "sysadmin@bdfi.net" : tous les droits
-
-N'ont pas accès à la zone admin :
-  - "user@bdfi.net"
-  - les inscriptions supplémentaires (via le "Inscription").
-
-L'accès aux tables se trouve en haut à droite : 
-    -> "Connexion" si vous n'êtes pas déjà authentifié,
-    -> "Dashboard" ou "Administration" si vous l'êtes.
-</pre>
+            <div class='text-lg p-4 mx-2 md:mx-20 my-2 bg-gray-300 border border-gray-400 self-center rounded-lg'>
+                Le mot de passe pour tous les comptes de test déjà créés est : <span class="font-bold text-blue-800">password</span><br />
+                Les comptes utilisables avec accès administration sont :<br />
+                <ul class="list-disc pl-12">
+                    <li><span class="font-bold text-blue-800">visitor@bdfi.net</span> : ne permet aucune modification</li>
+                    <li><span class="font-bold text-blue-800">editor@bdfi.net</span>, <span class="font-bold text-blue-800">editor2@bdfi.net</span> et <span class="font-bold text-blue-800">editor3@bdfi.net</span> : gestion des tables biblios</li>
+                    <li><span class="font-bold text-blue-800">admin@bdfi.net</span>, <span class="font-bold text-blue-800">admin2@bdfi.net</span> et <span class="font-bold text-blue-800">admin3@bdfi.net</span> : quelques droits supplémentaires</li>
+                    <li><span class="font-bold text-blue-800">sysadmin@bdfi.net</span> : pas de limitations (sauf si pas de sens)</li>
+                </ul>
+                L'accès aux tables se trouve en haut à droite :<br />
+                <span class="font-bold text-yellow-800">Connexion</span> si vous n'êtes pas déjà authentifié, ou <span class="font-bold text-yellow-800">Dashboard</span> ou <span class="font-bold text-yellow-800">Administration</span> si vous l'êtes.<br />
+                N'ont pas accès à la zone admin par défaut, les comptes :<br />
+                <ul class="list-disc pl-12">
+                    <li><span class="font-bold text-blue-800">user@bdfi.net</span></li>
+                    <li>ainsi que ceux créés via le <span class="font-bold text-yellow-800">Inscription</span>.</li>
+                </ul>
             </div>
-            <div class='flex text-lg self-end text-red-800 font-bold items-end mt-4'>
-                Vous pouvez cliquer sur la petite croix (extrémité droite) de la barre de débug en bas de page pour la réduire.
+            <div class='flex text-lg self-end bg-red-200 text-red-800 items-end mt-1'>
+                Nota : Vous pouvez cliquer sur la petite croix (extrémité droite) de la barre de débug en bas de page pour la réduire.
+            </div>
+            <div class='text-lg self-center bg-red-200 text-red-800 font-bold items-end mt-4'>
+                <img src="/img/bdfi_navigation.jpg" />
+            </div>
+            <div class='text-lg self-center bg-red-200 text-red-800 font-bold items-end my-8'>
+                ...
             </div>
         </div>
     </div>
