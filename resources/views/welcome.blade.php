@@ -47,9 +47,9 @@
                     <li><span class="font-bold text-blue-800">admin@bdfi.net</span>, <span class="font-bold text-blue-800">admin2@bdfi.net</span> et <span class="font-bold text-blue-800">admin3@bdfi.net</span> : quelques droits supplémentaires</li>
                     <li><span class="font-bold text-blue-800">sysadmin@bdfi.net</span> : pas de limitations (sauf si pas de sens)</li>
                 </ul>
-                L'accès aux tables se trouve en haut à droite :<br />
-                <span class="font-bold text-yellow-800">Connexion</span> si vous n'êtes pas déjà authentifié, ou <span class="font-bold text-yellow-800">Dashboard</span> ou <span class="font-bold text-yellow-800">Administration</span> si vous l'êtes.<br />
-                N'ont pas accès à la zone admin par défaut, les comptes :<br />
+                L'accès administration se fait avec ces comptes, par les liens en haut à droite :<br />
+                <span class="font-bold text-yellow-800">Connexion</span> si vous n'êtes pas déjà authentifié, ou <span class="font-bold text-yellow-800">Administration</span> ou <span class="font-bold text-yellow-800">Gestion des tables</span> si vous l'êtes.<br />
+                N'ont pas accès à la zone admin par défaut, les comptes suivants :<br />
                 <ul class="list-disc pl-12">
                     <li><span class="font-bold text-blue-800">user@bdfi.net</span></li>
                     <li>ainsi que ceux créés via le <span class="font-bold text-yellow-800">Inscription</span>.</li>
@@ -57,6 +57,9 @@
             </div>
             <div class='flex text-lg self-end bg-red-200 text-red-800 items-end mt-1'>
                 Nota : Vous pouvez cliquer sur la petite croix (extrémité droite) de la barre de débug en bas de page pour la réduire.
+            </div>
+            <div class='text-xl ml-1 md:ml-40'>
+                En image, visualisation des "zones" et de la navigation :
             </div>
             <div class='text-lg self-center bg-red-200 text-red-800 font-bold items-end mt-4'>
                 <img src="/img/bdfi_navigation.jpg" />
