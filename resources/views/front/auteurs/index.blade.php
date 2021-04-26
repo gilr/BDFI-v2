@@ -39,15 +39,15 @@
                 }
             ?>
             </div>
-            <div class='flex text-2xl m-2 self-center'>
+            <div class='text-2xl m-2 self-center h-12'>
                 {{ $results->links() }}
             </div>
             <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 pl-4 text-lg self-center w-full font-sans'>
                 @foreach($results as $result)
-                    <div class="my-1 sm:ml-2 text-red-800 place-self-start"><span class="font-bold text-blue-800">►</span><a href="/auteurs/{{ $result->id }}"> {{ $result->name }} {{ $result->first_name }}</a></div>
+                    <div class="my-1 sm:ml-2 text-yellow-700 place-self-start"><span class="font-bold text-red-800">►</span><a class='border-b border-dotted border-purple-700 hover:text-purple-700 focus:text-purple-900' href="/auteurs/{{ $result->id }}"> {{ $result->name }} {{ $result->first_name }}</a></div>
                 @endforeach
             </div>
-            <div class='flex text-2xl m-2 self-center'>
+            <div class='text-2xl m-2 self-center'>
                 {{ $results->links() }}
             </div>
         </div>
