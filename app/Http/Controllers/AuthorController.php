@@ -14,10 +14,10 @@ class AuthorController extends Controller
      */
     public function welcome()
     {
-        return view('auteurs');
+        return view('front.auteurs.welcome');
     }
 
-    public function page($text)
+    public function page(Request $request, $text)
     {
         if ((substr($text, 0, 1) == "_") && (strlen($text) == 2)) {
             // Trouver tous les auteurs commençant par l'initiale
@@ -26,30 +26,36 @@ class AuthorController extends Controller
             $query->where('name', 'like', $initiale.'%');
             // paginer les résultats
             $results = $query->orderBy('name', 'asc')->simplePaginate(72);
-            return view('index', compact('initiale', 'results'));
+            return view('front.auteurs.index', compact('initiale', 'results'));
         }
         else if ($results=Author::find($text))
         {
             // Un ID est passé
-            $input='id';
-            return view ('page', compact('input', 'results'));
+            $datesPattern = formatAuthorDates ($results->gender, $results->birth_date, $results->date_death, $results->birthplace);
+            return view ('front.auteurs.biblio', compact('results', 'datesPattern'));
         }
         else {
             // Trouver tous les auteurs avec le nom fourni
-            // Trouver tous les auteurs avec le nom fourni
             // Si plusieurs => index intermédiaire
-            // Si pas trouvé, page de rechercher
-            $input='name';
+            // Si pas trouvé, page de recherche (page auteurs pour l'instant)
             $query = Author::query();
-            $query->where('name', 'like', $text);
-            $results = $query->orderBy('name', 'asc')->simplePaginate(10);
-            if ($results == null) {
-                $request->session()->flash('danger', 'Consultation impossible : enregistrement demandé (id interne # ' . $id . ') non trouvé.');
+            $query->where('name', 'like', '%' . $text .'%');
+            $query->orWhere('first_name', 'like', '%' . $text .'%');
+            $results = $query->paginate(48);
+            if ($results->total() == 0) {
+                $request->session()->flash('warning', 'Le nom demandé (' . $text . ') n\'est pas trouvé.');
                 return redirect('auteurs');
+            }
+            else if($results->total() == 1)
+            {
+                $results = $results[0];
+                $datesPattern = formatAuthorDates ($results->gender, $results->birth_date, $results->date_death, $results->birthplace);
+                return view ('front.auteurs.biblio', compact('results', 'datesPattern'));
             }
             else
             {
-                return view ('page', compact('name', 'results'));
+                // Page de choix sur base du pattern fourni
+                return view ('front.auteurs.choix', compact('text', 'results'));
             }
         }
     }

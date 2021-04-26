@@ -51,13 +51,13 @@ class Revision extends Resource
                 return class_basename($this->revisionable_type);
             }),
 
-            Text::make('ID élém', function() {
+            Text::make('ID item', function() {
                 $href = "/nova/resources/". Str::plural(Str::snake(class_basename($this->revisionable_type))) . "/" . $this->revisionable_id;
                 $title = class_exists($class = $this->revisionable_type) ? $class::withTrashed()->find($this->revisionable_id)->name : "...";
                 return '<a href="'. $href . '" class="no-underline dim text-primary font-bold" title="' . $title . '">' . $this->revisionable_id . '</a>';
             })->asHtml(),
 
-            Text::make('Elément', function() {
+            Text::make('Nom item', function() {
                 if (class_exists($class = $this->revisionable_type)) {
                         return $class::withTrashed()->find($this->revisionable_id)->name;
                 }
@@ -90,7 +90,7 @@ class Revision extends Resource
                 ->onlyOnIndex()
                 ->asHtml(),
 
-            DateTime::make('Réalisé le', 'created_at')
+            DateTime::make('Réalisée le', 'created_at')
                 ->format('DD/MM/YYYY HH:mm'),
 
             Text::make('Par', function() {

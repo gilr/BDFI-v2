@@ -27,18 +27,11 @@
                 Ceci n'est qu'un site de test...  
             </div>
 
-            <div class='flex text-xl font-mono font-bold bg-gray-300 border border-yellow-200 pr-1 self-center'>
-            <?php
-                for ($i = 'A'; $i != 'AA'; $i++) {
-                    echo "<div class='pl-1 hover:bg-yellow-100'><a href='/auteurs/_" . strtolower($i) . "'>$i</a></div>";
-                }
-            ?>
+            <div class='text-2xl text-red-800 bold self-center px-4'>
+                Extrait de nom recherché : " {{ $text }} "
             </div>
-            <div class='flex text-6xl font-mono text-red-800 bold self-center px-4'>
-                {{ $initiale }}
-            </div>
-            <div class='flex text-2xl m-2 self-center'>
-                {{ $results->links() }}
+            <div class='text-xl bold self-center p-4'>
+                Plusieurs résultats trouvés peuvent correspondrent à votre recherche :
             </div>
             <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 pl-4 text-lg self-center w-full font-sans'>
                 @foreach($results as $result)
