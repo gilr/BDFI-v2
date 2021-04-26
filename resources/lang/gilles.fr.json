@@ -1,0 +1,41 @@
+{
+    "Name": "Nom utilisateur",
+    "Email": "Adresse e-mail",
+    "Password": "Mot de passe",
+    "Confirm Password": "Confirmation du mot de passe",
+
+    "Remember me": "Se souvenir de ces identifiants",
+    "Forgot your password?": "Mot de passe oublié ?",
+    "Log in": "Connexion",
+
+    "Already registered?": "Déjà inscrit ?",
+    "Register": "Inscription",
+    "I agree to the :terms_of_service and :privacy_policy" : "J'accepte les :terms_of_service et la :privacy_policy",
+    "Terms of Service" : "termes de services",
+    "Privacy Policy" : "politique de confidentialité",
+
+    "Manage Account": "Gestion de compte",
+    "Profile": "Fiche utilisateur",
+    "API Tokens": "Jetons de connexion",
+    "Log Out": "Déconnexion",
+
+    "Profile Information": "Données utilisateur",
+    "Update your account's profile information and email address.": "Mettre à jour ses avatar, nom et adresse.",
+    "Select a new photo": "Choisir une image",
+    "Update Password": "Modification du mot de passe",
+    "Ensure your account is using a long, random password to stay secure.": "Sécuriser son compte avec un mot de passe suffisemment long et imaginatif.",
+    "Current Password": "Mot de passe actuel",
+    "New Password": "Nouveau mot de passe",
+
+    "Two Factor Authentication": "Double authentification",
+    "Add additional security to your account using two factor authentication.": "Augmenter la sécurité de votre compte via une double authentification",
+    "You have not enabled two factor authentication.": "Vous n'avez pas activé la double authentification.",
+    "You have enabled two factor authentication.": "Vous avez activé la double authentification.",
+
+    "Browser session": "Activer",
+    "Manage and log out your active sessions on other browsers and devices.": "Activer",
+    "Log Out Other Browser Sessions": "Déconnectez les sessions des autres navigateurs",
+
+    "Enable": "Activer",
+    "Save": "Enregistrer"
+}
