@@ -20,8 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/auteurs', [AuthorController::class, 'welcome']);
+Route::get('/auteurs', [AuthorController::class, 'welcome'])->name('auteurs');
 Route::get('/auteurs/{a}', [AuthorController::class, 'page']);
+Route::get('/auteurs/index/{a}', [AuthorController::class, 'index']);
+Route::get('/auteurs/pays/{a}', [AuthorController::class, 'pays']);
 
 Route::get('/textes', function () {
     return view('textes');
@@ -63,5 +65,5 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         else {
             return view('dashboard');
         }
-    })->name('dashboard');;
+    })->name('dashboard');
 });

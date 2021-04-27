@@ -22,38 +22,39 @@ class AuthorController extends Controller
         if ((substr($text, 0, 1) == "_") && (strlen($text) == 2)) {
             // Trouver tous les auteurs commençant par l'initiale
             $initiale = substr($text, 1, 1);
-            $query = Author::query();
-            $query->where('name', 'like', $initiale.'%');
-            // paginer les résultats
-            $results = $query->orderBy('name', 'asc')->simplePaginate(72);
+            $results = Author::where('is_visible', 1)->where('name', 'like', $initiale.'%')->orderBy('name', 'asc')->simplePaginate(120);
             return view('front.auteurs.index', compact('initiale', 'results'));
         }
-        else if ($results=Author::find($text))
+        else if (($results=Author::find($text)) && ($results->is_visible == 1))
         {
             // Un ID est passé
+            // TBD : Il faudra supprimer l'accès par Id au profit d'un slug => unicité
             $datesPattern = formatAuthorDates ($results->gender, $results->birth_date, $results->date_death, $results->birthplace);
             return view ('front.auteurs.biblio', compact('results', 'datesPattern'));
         }
         else {
-            // Trouver tous les auteurs avec le nom fourni
-            // Si plusieurs => index intermédiaire
-            // Si pas trouvé, page de recherche (page auteurs pour l'instant)
-            $query = Author::query();
-            $query->where('name', 'like', '%' . $text .'%');
-            $query->orWhere('first_name', 'like', '%' . $text .'%');
-            $results = $query->paginate(48);
+            // Trouver tous les auteurs avec le pattern fourni
+            $results = Author::where('is_visible', 1)->where(function($query) use($text) {
+                $query->where ('name', 'like', '%' . $text .'%')
+                        ->orWhere('first_name', 'like', '%' . $text .'%');
+            })->orderBy('name', 'asc')->paginate(60);
             if ($results->total() == 0) {
-                $request->session()->flash('warning', 'Le nom demandé (' . $text . ') n\'est pas trouvé.');
+                // Rien trouvé, redirection vers l'accueil auteurs
+                $request->session()->flash('warning', 'Le nom ou l\'extrait de nom demandé ("' . $text . '") n\'est pas trouvé. Vous avez été redirigé sur l\'accueil de la zone auteurs.');
                 return redirect('auteurs');
             }
             else if($results->total() == 1)
             {
+                // Un seul trouvé, on redirige vers lui
+                $request->session()->flash('warning', 'Ce nom complet demandé ("' . $text . '") n\'existe pas. Mais comme chez BDFI on est cool, on a fouillé un peu et on vous a trouvé un résultat possible. Essayez quand même d\'indiquer un nom complet la prochaine fois, ou passez par le moteur de recherche.');
                 $results = $results[0];
                 $datesPattern = formatAuthorDates ($results->gender, $results->birth_date, $results->date_death, $results->birthplace);
                 return view ('front.auteurs.biblio', compact('results', 'datesPattern'));
             }
             else
             {
+                // 
+                $request->session()->flash('warning', 'Le nom ou l\'extrait de nom demandé ("' . $text . '") n\'existe pas de façon unique. Nous vous redirigeons vers une page de choix en espérant que vous y trouviez votre bonheur. Utilisez de préférence notre moteur de recherche.');
                 // Page de choix sur base du pattern fourni
                 return view ('front.auteurs.choix', compact('text', 'results'));
             }

@@ -99,9 +99,9 @@ class Revision extends Resource
 
             Number::make('... de user Id', 'user_id')
                 ->onlyOnDetail(),
-            DateTime::make('Modifié le', 'updated_at')
+/*            DateTime::make('Modifié le', 'updated_at')
                 ->format('DD/MM/YYYY HH:mm')
-                ->onlyOnDetail(),
+                ->onlyOnDetail(),*/
 
         ];
     }

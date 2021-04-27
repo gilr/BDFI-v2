@@ -100,6 +100,7 @@ function formatBdfiDate ($gender, $str, $mode, $place="")
 {
    $ne = ($gender == 'F' ? "née" : "né");
    $decede = ($gender == 'F' ? "décédée" : "décédé");
+   $place = ($place != '?') ? $place : '';
    
    $tabmois = array (
       '01' => 'janvier',

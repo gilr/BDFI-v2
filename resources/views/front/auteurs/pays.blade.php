@@ -3,11 +3,14 @@
 @section('content')
 
     <div class="text-sm p-1 m-1 place-self-start">
-        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Auteurs &rarr; /{{ $text }}/</span>
+        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Auteurs &rarr; Index {{ $pays }}</span>
     </div>
 
-    <div class='text-xl bold self-center p-4'>
-        Plusieurs résultats trouvés peuvent correspondrent à votre recherche :
+    <div class='flex text-lg sm:text-2xl font-mono font-bold bg-gray-300 border border-gray-400 p-0.5 self-center'>
+        @foreach($countries as $country)
+            echo "<div class='hover:ring-2 ring-yellow-100'><a class='px-0.5 sm:pl-1 md:px-1' href='/auteurs/pays/" . $country->name . "'>$pays</a></div>";
+        @endforeach
+    ?>
     </div>
     <div class='text-2xl m-2 self-center h-12'>
         {{ $results->links() }}
@@ -17,8 +20,7 @@
             <div class="font-bold my-1 sm:ml-2 text-yellow-700 place-self-start"><span class="text-red-800">►</span><a class='border-b border-dotted border-purple-700 hover:text-purple-700 focus:text-purple-900' href="/auteurs/{{ $result->id }}"> {{ $result->name }} {{ $result->first_name }}</a></div>
         @endforeach
     </div>
-    <div class='flex text-2xl m-2 self-center'>
+    <div class='text-2xl m-2 self-center'>
         {{ $results->links() }}
     </div>
-
 @endsection
