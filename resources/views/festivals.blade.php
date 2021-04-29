@@ -27,11 +27,14 @@
                 Ceci n'est qu'un site de test...
             </div>
 
-            <div class='flex text-2xl p-4 m-4 self-center'>
-                Et voilà, quand on n'écoute pas...
+            <div class='flex text-2xl text-purple-700 p-2 m-8 self-center'>
+                Ouf, fausse alerte...
             </div>
             <div class='flex text-2xl p-2 m-2 self-center'>
-                <img src="https://i.gifer.com/E4GA.gif" width="800px"/>
+                <img src="https://i.imgur.com/kMEVJjM.gif" width="800px"/>
+            </div>
+            <div class='flex text-2xl text-purple-700 p-2 m-4 self-center'>
+                Quoique...
             </div>
         </div>
     </div>

@@ -1,29 +1,32 @@
+
 @props([
-  'type' => 'info',
-  'colors' => [
-    'info' => 'blue-400',
-    'warning' => 'yellow-400',
-    'danger' => 'red-400'
-  ],
-  'titles' => [
-    'info' => 'Info !',
-    'warning' => 'Attention !',
-    'danger' => 'Oups !'
-  ]
+    'type' => 'info',
+    'colors' => [
+        'info' => 'blue-400',
+        'warning' => 'yellow-400',
+        'danger' => 'red-400'
+    ],
+    'titles' => [
+        'info' => 'Info !',
+        'warning' => 'Attention !',
+        'danger' => 'Oups !'
+    ]
 ])
+
 <style>
-  @keyframes mymove { to { height: 0px; } }
+    @keyframes mymove { to { height: 0px; } }
 </style>
-    <div class="mt-1 ml-8 w-8/12 shadow-md">
-        <div class="flex">
-          <div class="bg-{{ $colors[$type] }} w-2/12 text-center py-2">
+
+<div class="mt-1 ml-8 w-8/12 shadow-md">
+    <div class="flex">
+        <div class="bg-{{ $colors[$type] }} w-2/12 text-center py-2">
             <div class="flex h-full justify-center items-center italic font-bold text-white">{{ $titles[$type] }}</div>
-          </div>
-          <div class="bg-white w-9/12 px-4 py-2">
-              <div class="flex h-full items-center text-gray-600 text-sm">{{ $slot }}</div>
-          </div>
-          <div class="bg-white border-r-4 border-{{ $colors[$type] }} w-1/12 md:pl-4 py-2 cursor-pointer">
+        </div>
+        <div class="bg-white w-9/12 px-4 py-2">
+            <div class="flex h-full items-center text-gray-600 text-sm">{{ $slot }}</div>
+        </div>
+        <div class="bg-white border-r-4 border-{{ $colors[$type] }} w-1/12 md:pl-4 py-2 cursor-pointer">
             <div class="flex h-full justify-center items-center font-bold text-2xl lg:pl-2 text-red-800" onclick="this.parentElement.parentElement.parentElement.style='animation: mymove 250ms linear 500ms 1 forwards; opacity:0; transition:opacity 500ms linear;'" title="Fermer"> &times; </div>
-          </div>
         </div>
     </div>
+</div>

@@ -21,17 +21,17 @@
 	    <x-menu/>
         <x-authent/>
 
-        <div class='flex flex-col w-11/12'>
+        <div class='flex flex-col w-10/12'>
 
-            <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
+            <div class="text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
                 Ceci n'est qu'un site de test...
             </div>
 
             <div class='text-2xl p-10 m-10 italic border border-yellow-400 self-center rounded-lg shadow-inner'>
-                <div class="flex p-20 mx-20 border border-yellow-400 self-center rounded-lg shadow-lg">
+                <div class="flex p-2 md:p-12 m-2 md:m-20 border border-yellow-400 self-center rounded-lg shadow-lg">
                     Vous êtes là pour tester, pas vous promener.
                 </div>
-                <div class="flex p-20 m-20 border border-yellow-400 self-center rounded-lg shadow-lg">
+                <div class="flex p-2 md:p-12 m-2 md:m-20 border border-yellow-400 self-center rounded-lg shadow-lg">
                     Qu'on ne vous y reprenne plus.
                 </div>
             </div>

@@ -10,10 +10,10 @@
     <?php
         for ($i = 'A'; $i != 'AA'; $i++) {
             if (strtolower($i) != strtolower(substr($results->name, 0, 1))) {
-                echo "<div class='hover:bg-yellow-100'><a class='px-0.5 sm:pl-1 md:px-1' href='/auteurs/_" . strtolower($i) . "'>$i</a></div>";
+                echo "<div class='hover:bg-yellow-100'><a class='px-0.5 sm:pl-1 md:px-1' href='/auteurs/index/" . strtolower($i) . "'>$i</a></div>";
             }
             else {
-                echo "<div class='text-yellow-800 bg-yellow-300 hover:bg-yellow-100'><a class='px-0.5 sm:pl-1 md:px-1' href='/auteurs/_" . strtolower($i) . "'>$i</a></div>";
+                echo "<div class='text-yellow-800 bg-yellow-300 hover:bg-yellow-100'><a class='px-0.5 sm:pl-1 md:px-1' href='/auteurs/index/" . strtolower($i) . "'>$i</a></div>";
             }
         }
     ?>
@@ -22,7 +22,7 @@
         {{ $results->first_name }} {{ $results->name }}
     </div>
     <div class='text-xl self-center'>
-        {{ $results->country->name }}
+        <div class='border-b border-dotted border-red-700 hover:bg-yellow-100'><a class='sm:p-0.5 md:px-0.5' href='/auteurs/pays/{{ $results->country->name }}'>{{ $results->country->name }}</a></div>        
     </div>
     <div class='text-base self-center'>
         {{ $datesPattern }}

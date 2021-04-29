@@ -7,6 +7,42 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
+
+    public function welcome()
+    {
+        return view('front.site.welcome');
+    }
+
+    public function news()
+    {
+        setlocale( LC_TIME, "fr-FR" );
+        $results = Announcement::where([
+            ['type', '<>', 'remerciement'],
+            ['type', '<>', 'consecration']
+        ])->orderBy('date', 'desc')->simplePaginate(25);
+        return view('front.site.news', compact('results'));
+    }
+
+    public function stats()
+    {
+        return view('front.site.base');
+    }
+
+    public function thanks()
+    {
+        $results = Announcement::where('type', '=', 'remerciement')->orderBy('date', 'desc')->simplePaginate(100);
+        return view('front.site.merci', compact('results'));
+    }
+
+    public function help()
+    {
+        return view('front.site.aides');
+    }
+
+    public function about()
+    {
+        return view('front.site.about');
+    }
     /**
      * Display a listing of the resource.
      *

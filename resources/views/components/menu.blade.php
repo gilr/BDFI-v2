@@ -75,8 +75,8 @@
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="/annonces" class="h-16 px-4 flex flex justify-center items-center w-full
-					focus:text-yellow-600" title="Annonces site">
+				<a href="/site" class="h-16 px-4 flex flex justify-center items-center w-full
+					focus:text-yellow-600" title="Le site">
 					<img src="/img/annonces.png" style="width: 40px" />
 				</a>
 			</li>

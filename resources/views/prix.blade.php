@@ -27,10 +27,13 @@
                 Ceci n'est qu'un site de test...
             </div>
 
-            <div class='flex text-1xl p-4 m-36 border border-gray-400 self-center rounded-lg shadow'>
-                <span>Attention, après vous ne viendrez pas dire que vous n'aviez pas été prévenus, hein...</span>
-                <span class="animate-ping inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <div class='flex text-2xl p-4 m-4 self-center'>
+                Et voilà, quand on n'écoute pas...
             </div>
+            <div class='flex text-2xl p-2 m-2 self-center'>
+                <img src="https://i.gifer.com/E4GA.gif" width="800px"/>
+            </div>
+
         </div>
     </div>
 

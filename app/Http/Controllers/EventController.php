@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
+    public function welcome()
+    {
+        return view('front.evenements.welcome');
+    }
+
     /**
      * Display a listing of the resource.
      *

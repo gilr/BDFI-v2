@@ -12,12 +12,12 @@
     <div class='text-2xl m-2 self-center h-12'>
         {{ $results->links() }}
     </div>
-    <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pl-1 md:pl-4 text-base self-center w-full'>
+    <div class='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 pl-2 sm:pl-20 text-base self-center w-full'>
         @foreach($results as $result)
-            <div class="font-bold my-1 sm:ml-2 text-yellow-700 place-self-start"><span class="text-red-800">►</span><a class='border-b border-dotted border-purple-700 hover:text-purple-700 focus:text-purple-900' href="/auteurs/{{ $result->id }}"> {{ $result->name }} {{ $result->first_name }}</a></div>
+            <div class="font-bold my-1 sm:ml-2 text-yellow-700 place-self-start"><span class="text-red-800">►</span><a class='border-b border-dotted border-purple-700 hover:text-purple-700 focus:text-purple-900' href="/auteurs/{{ $result->id }}"> {{ mb_strtoupper($result->name) }} {{ $result->first_name }}</a></div>
         @endforeach
     </div>
-    <div class='flex text-2xl m-2 self-center'>
+    <div class='text-2xl m-2 self-center'>
         {{ $results->links() }}
     </div>
 
