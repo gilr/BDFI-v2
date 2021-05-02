@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- Layout pour une personne non connectée - En fait seul le login est possible... -->
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->

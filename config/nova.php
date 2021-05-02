@@ -20,7 +20,7 @@ return [
     */
 
     //'name' => env('NOVA_APP_NAME', env('APP_NAME')),
-    'name' => 'Retour Administration ' . env('APP_NAME'),
+    'name' => 'Retour Admin ' . env('APP_NAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ return [
     */
 
     //'url' => env('APP_URL', '/'),
-    'url' => '/dashboard',
+    'url' => '/admin',
 
     /*
     |--------------------------------------------------------------------------

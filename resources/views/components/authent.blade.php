@@ -3,7 +3,7 @@
         <div class="hidden fixed top-0 right-0 px-6 py-0 sm:block">
             @auth
                 @if (Auth::user()->role != 'user')
-                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline"> {{ __('Administration') }} </a> - 
+                    <a href="{{ url('/admin') }}" class="text-sm text-gray-700 underline"> {{ __('Administration') }} </a> - 
                     <a href="{{ url('/nova') }}" class="text-sm text-gray-700 underline"> {{ __('Gestion des tables') }} </a> -
                 @endif
                 <form method="POST" style="display:inline" action="{{ route('logout') }}">

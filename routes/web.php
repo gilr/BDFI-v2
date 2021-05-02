@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ToolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,16 +86,28 @@ Route::get('/editeurs', function () { return view('editeurs'); });
 // Temporaire
 Route::get('/forums', function () { return view('forums'); });
 
-
 // Authentification
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+/*
+    $user = Auth::user();
+    if (!isset($user) || ($user->role != 'user')) {
+        return Redirect::route('welcome');
+    }
+*/
+    Route::get('/admin', function () { return view('admin/welcome'); })->name('admin');
+    Route::get('/admin/rapports', [ReportController::class, 'index'])->name('admin/rapports');
+    Route::get('/admin/rapports/dates-bizarres', [ReportController::class, 'getStrangeDates']);
+    Route::get('/admin/rapports/manque-date-naissance', [ReportController::class, 'getMissingBirthdates']);
+    Route::get('/admin/rapports/manque-date-deces', [ReportController::class, 'getMissingDeathdates']);
+    Route::get('/admin/rapports/etat-biographies-{i}', [ReportController::class, 'getBioStatus']);
+    Route::get('/admin/rapports/manque-nationalite', [ReportController::class, 'getMissingCountries']);
+    Route::get('/admin/rapports/manque-fiche', [ReportController::class, 'getMissingRecords']);
 
-    Route::get('/dashboard', function () {
-        if (Auth::user()->role == 'user') {
-            return Redirect::route('welcome');
-        }
-        else {
-            return view('dashboard');
-        }
-    })->name('dashboard');
+    Route::get('/admin/outils', [ToolController::class, 'index'])->name('admin/outils');
+    Route::get('/admin/outils/anniversaires-fb-jour', [ToolController::class, 'getFbToday']);
+    Route::get('/admin/outils/anniversaires-fb-semaine', [ToolController::class, 'getFbWeek']);
+    Route::get('/admin/outils/anniversaires-fb-mois', [ToolController::class, 'getFbMonth']);
+    Route::get('/admin/outils/conversion-sommaire', [ToolController::class, 'getConvertContent']);
+
+    // Prévoir les téléchargements !
 });
