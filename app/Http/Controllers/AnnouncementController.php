@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Announcement;
 use Illuminate\Http\Request;
+use App\Models\Announcement;
+use App\Models\Stat;
 
 class AnnouncementController extends Controller
 {
@@ -25,7 +26,8 @@ class AnnouncementController extends Controller
 
     public function stats()
     {
-        return view('front.site.base');
+        $results = Stat::orderBy('date')->get();
+        return view('front.site.base', compact('results'));
     }
 
     public function thanks()

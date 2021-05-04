@@ -17,9 +17,9 @@
                     <div class="p-2">
                         <ul class="list-disc pl-4">
                             <li><x-adm-link lien='rapports/dates-bizarres'>Dates de naissance bizarres</x-adm-link></li>
-                            <li><x-adm-link lien='rapports/manque-date-naissance'>Dates de naissance manquantes</x-adm-link> (et décès connu)</li>
-                            <li><x-adm-link lien='rapports/manque-date-deces'>Dates de décès manquantes</x-adm-link> (et naissance connue)</li>
-                            <li><x-adm-link lien='rapports/manque-nationalite'>Nationalités manquantes</x-adm-link></li>
+                            <li><x-adm-link lien='rapports/manque-date-naissance'>Date de naissance inconnue</x-adm-link> (mais décès connu)</li>
+                            <li><x-adm-link lien='rapports/manque-date-deces'>Date de décès inconnue</x-adm-link> (et naissance connue)</li>
+                            <li><x-adm-link lien='rapports/manque-nationalite'>Nationalité manquante</x-adm-link></li>
                             <li><x-adm-link lien='rapports/etat-biographies-0'>Bios "vides"</x-adm-link></li>
                             <li><x-adm-link lien='rapports/etat-biographies-1'>Bios en "ébauche"</x-adm-link></li>
                             <li><x-adm-link lien='rapports/etat-biographies-2'>Bios en état moyen</x-adm-link></li>

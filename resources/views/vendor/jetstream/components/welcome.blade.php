@@ -6,9 +6,9 @@
     <div class="mt-8 text-xl">
         Zone générale de l'administration BDFI. Cette zone offre et offrira :
         <ul class="list-inside list-disc text-lg text-gray-700">
-            <li> Des outils de détections d'erreurs potentielles (les rapports)..</li>
-            <li> Des aides diverses, des rappels, la récupération des sauvegardes des tables...</li>
-            <li> Pour l'accès aux tables elles-mêmes, voir le menu du haut, "Gestion des tables (NOVA)"</li>
+            <li> Des outils de détections d'erreurs potentielles : les rapports</li>
+            <li> Des aides diverses, des rappels, la récupération des sauvegardes des tables</li>
+            <li> Pour l'accès aux tables elles-mêmes, via le menu du haut ou <x-adm-link lien='/nova'>Gestion des tables (NOVA)</x-adm-link></li>
         </ul>
     </div>
 </div>
@@ -35,7 +35,7 @@
             </a>
             <a href="admin/rapports/manque-date-naissance">
                 <div class="mt-2 flex items-center text-sm font-semibold text-indigo-700">
-                    Naissance absentes mais décès connus
+                    Naissances inconnues mais décès connus
                     <div class="ml-1 text-indigo-500">
                         <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </div>
@@ -55,12 +55,12 @@
     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="/outils">Backup de tables</a></div>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a href="/admin/telechargements">Backup de tables</a></div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                (A venir)
+                Cliquez sur le titre ci-dessus pour obtenir la liste des "photos" possibles de chaque table principale de la base, au format CSV.
             </div>
 
 
@@ -75,7 +75,7 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                Zones des outils. Principalement aujorud'hui la récupération des anniversaires de naissance et de décès.
+                Zones des outils. Uniquement aujourd'hui la récupération des anniversaires de naissance et de décès. Un exemple ci-dessous :
             </div>
             <a href="admin/outils/anniversaires-fb-semaine">
                 <div class="mt-2 flex items-center text-sm font-semibold text-indigo-700">
@@ -91,12 +91,12 @@
     <div class="p-6 border-t border-gray-200 md:border-l">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Y'a pas pour l'instant :-)</div>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Y'a bon le bloc 4</div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                Blabla bloc 4
+                Sauf que non, il n'y a pas de bloc 4 pour l'instant.
             </div>
         </div>
     </div>
