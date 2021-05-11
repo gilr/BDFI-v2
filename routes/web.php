@@ -6,6 +6,7 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\DownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Accès restreint aux roles "user" (si existe)
     // ...
 
-    // Accès pour la zone admin :
+    // Accès restreints de la zone admin :
     Route::middleware(['auth.bdfiadmin'])->group(function () {
 
         Route::get('/admin', function () { return view('admin/welcome'); })->name('admin');
@@ -109,52 +110,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/outils/anniversaires-fb-mois', [ToolController::class, 'getFbMonth']);
         Route::get('/admin/outils/conversion-sommaire', [ToolController::class, 'getConvertContent']);
 
-// Gestion des Téléchargement tables - générique multi-modèle
-        Route::get('admin/telechargements', ['as' => 'downloads', function() {
-            return View('admin.telechargements.index');
-        }]);
-
-        Route::get('admin/telechargements/{model}', function($model) {
-        //  TBD - tout le code à revoir (même si fonctionne aujourd'hui)
-        // ...  passer par un contrôleur au moins
-            
-        //  TBC voir si fonctionne sur site sans majuscule
-        //  $modele = ucfirst($model);
-
-        // TBD : il faudrait contrôler qu'il s'agit bien d'un modèle existant
-
-        // Nom du fichier tel qu'il sera téléchargé
-            $filename = "${model}_" . date ("Y-m-d") . '.csv';
-            $headers = [
-                'Content-type' => 'application/csv',
-                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-                'Content-type' => 'text/csv',
-                'Content-Disposition' => 'attachment; filename="' . $filename,
-                'Expires' =>'0',
-                'Pragma' =>'public'
-            ];
-
-        // Appel de "all" sur le modèle générique fourni
-            $ucmodel = ucfirst($model);
-            if ($ucmodel == "Urlauteur") { $ucmodel = "UrlAuteur"; }
-            if ($ucmodel == "Lienauteur") { $ucmodel = "LienAuteur"; }
-
-            $collection = call_user_func(array("App\\Models\\$ucmodel", 'all'));
-            $table = $collection->toArray();
-
-        # Ajout des noms de colonne en première ligne
-            array_unshift($table, array_keys($table[0]));
-
-        # Balayage de la table pour écrire dans le stream
-            $callback = function() use ($table) {
-                $handle = fopen('php://output', 'w');
-                foreach ($table as $row) {
-                    fputcsv($handle, str_replace(array("\r\n", "\n", "\r"), ' ', $row), ";", '"');
-                }
-                fclose($handle);
-            };
-            return Response::stream($callback, 200, $headers);
-        });
+        // Gestion des Téléchargement tables - générique multi-modèle
+        Route::get('/admin/telechargements', [DownloadController::class, 'index']);
+        Route::get('/admin/telechargements/{i}', [DownloadController::class, 'exportCSV']);
 
     });
 });

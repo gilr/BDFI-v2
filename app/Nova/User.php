@@ -73,14 +73,48 @@ class User extends Resource
 
             Select::make('Role')->options([
                 'user'     => 'Simple utilisateur BDFI',
-                'visitor'  => 'Visiteur Admin',
-                'editor'   => 'editeur Admin',
-                'admin'    => 'Admin',
-                'sysadmin' => 'Admin Système',
+                'visitor'  => 'Visiteur zone Admin',
+                'editor'   => 'editeur zone Admin',
+                'admin'    => 'Administrateur',
+                'sysadmin' => 'Administrateur Système',
             ])
                 ->default('user')
                 ->rules('required')
-                ->onlyOnForms(),
+                ->showOnCreating(function ($request) {
+                    return $request->user()->isSysAdmin();
+                })
+                ->showOnUpdating(function ($request) {
+                    return $request->user()->isSysAdmin();
+                }),
+
+            Select::make('Role')->options([
+                'user'     => 'Simple utilisateur BDFI',
+                'visitor'  => 'Visiteur zone Admin',
+                'editor'   => 'editeur zone Admin',
+            ])
+                ->default('user')
+                ->rules('required')
+                ->hideWhenUpdating()
+                ->showOnCreating(function ($request) {
+                    return $request->user()->isAdmin();
+                }),
+
+            Select::make('Role')->options([
+                'user'     => 'Simple utilisateur BDFI',
+                'visitor'  => 'Visiteur zone Admin',
+                'editor'   => 'editeur zone Admin',
+                'admin'    => 'Administrateur',
+                'sysadmin' => 'Administrateur Système',
+            ])
+                ->readonly()
+                ->default('user')
+                ->rules('required')
+                ->showOnCreating(function ($request) {
+                    return !$request->user()->hasAdminRole();
+                })
+                ->showOnUpdating(function ($request) {
+                    return !$request->user()->isSysAdmin();
+                }),
         ];
     }
 

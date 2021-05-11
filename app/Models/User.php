@@ -63,16 +63,41 @@ class User extends Authenticatable
     {
         return $this->role === 'sysadmin';
     }
+    public function isSysAdmin()
+    {
+        return $this->role === 'sysadmin';
+    }
+
     public function hasAdminRole()
     {
         return (($this->role === 'admin') || ($this->role === 'sysadmin'));
     }
+    public function isAdmin()
+    {
+        return ($this->role === 'admin');
+    }
+
     public function hasEditorRole()
     {
         return (($this->role === 'admin') || ($this->role === 'sysadmin') || ($this->role === 'editor'));
     }
+    public function isEditor()
+    {
+        return ($this->role === 'editor');
+    }
+
     public function hasVisitorRole()
     {
         return (($this->role === 'admin') || ($this->role === 'sysadmin') || ($this->role === 'editor') || ($this->role === 'visitor'));
     }
+    public function isVisitor()
+    {
+        return ($this->role === 'visitor');
+    }
+
+    public function isUser()
+    {
+        return ($this->role === 'user');
+    }
+
 }

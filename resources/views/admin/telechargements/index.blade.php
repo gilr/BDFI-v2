@@ -22,11 +22,11 @@
                         </div>
                         <div class="p-2">
                             <ul class="list-disc pl-4">
-                                <li><x-adm-link lien='/admin/telechargements/author'>auteurs</x-adm-link></li>
-                                <li><x-adm-link lien='/admin/telechargements/signature'>signatures</x-adm-link></li>
-                                <li><x-adm-link lien='/admin/telechargements/website'>sites web</x-adm-link></li>
-                                <li><x-adm-link lien='/admin/telechargements/relationship'>relations entre auteurs</x-adm-link></li>
-                                <li><x-adm-link lien='/admin/telechargements/country'>pays</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Author'>auteurs</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Signature'>signatures</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Website'>sites web</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Relationship'>relations entre auteurs</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Country'>pays</x-adm-link></li>
                             </ul>
                         </div>
                     </div>
@@ -36,8 +36,8 @@
                         </div>
                         <div class="p-2">
                             <ul class="list-disc pl-4">
-                                <li><x-adm-link lien='/admin/telechargements/event'>salons et évènements</x-adm-link></li>
-                                <li><x-adm-link lien='/admin/telechargements/announcement'>news et annonces sites</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Event'>salons et évènements</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/Announcement'>news et annonces sites</x-adm-link></li>
                             </ul>
                         </div>
                     </div>
