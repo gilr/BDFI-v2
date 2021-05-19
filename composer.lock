@@ -340,16 +340,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.11.0",
+            "version": "1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "a9c1b59eba5a08ca2770a76eddb88922f504e8e0"
+                "reference": "163074496dc7c3c7b8ccbf3d4376c0187424ed81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/a9c1b59eba5a08ca2770a76eddb88922f504e8e0",
-                "reference": "a9c1b59eba5a08ca2770a76eddb88922f504e8e0",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/163074496dc7c3c7b8ccbf3d4376c0187424ed81",
+                "reference": "163074496dc7c3c7b8ccbf3d4376c0187424ed81",
                 "shasum": ""
             },
             "require": {
@@ -419,7 +419,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/1.11.0"
+                "source": "https://github.com/doctrine/cache/tree/1.11.1"
             },
             "funding": [
                 {
@@ -435,7 +435,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-13T14:46:17+00:00"
+            "time": "2021-05-18T16:45:32+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -1619,16 +1619,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.41.0",
+            "version": "v8.42.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "05417155d886df8710e55c84e12622b52d83c47c"
+                "reference": "55b886683e0a019bcad0d9d70bb781a3de1a6755"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/05417155d886df8710e55c84e12622b52d83c47c",
-                "reference": "05417155d886df8710e55c84e12622b52d83c47c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/55b886683e0a019bcad0d9d70bb781a3de1a6755",
+                "reference": "55b886683e0a019bcad0d9d70bb781a3de1a6755",
                 "shasum": ""
             },
             "require": {
@@ -1783,20 +1783,20 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-05-11T14:00:02+00:00"
+            "time": "2021-05-18T15:37:44+00:00"
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.3.5",
+            "version": "v2.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "53b107cab39ec19c07b0daf53ebb57d1fb7dead5"
+                "reference": "c1f1f4e4a7a690eda215286e2e56bb8acd626160"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/53b107cab39ec19c07b0daf53ebb57d1fb7dead5",
-                "reference": "53b107cab39ec19c07b0daf53ebb57d1fb7dead5",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/c1f1f4e4a7a690eda215286e2e56bb8acd626160",
+                "reference": "c1f1f4e4a7a690eda215286e2e56bb8acd626160",
                 "shasum": ""
             },
             "require": {
@@ -1850,7 +1850,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2021-05-11T20:43:25+00:00"
+            "time": "2021-05-18T15:34:01+00:00"
         },
         {
             "name": "laravel/nova",
@@ -6696,16 +6696,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "V3.5.6",
+            "version": "v3.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "fb5383132f3775cfcf859e4c77b74427d0158d9b"
+                "reference": "88fd9cfa144b06b2549e9d487fdaec68265e791e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/fb5383132f3775cfcf859e4c77b74427d0158d9b",
-                "reference": "fb5383132f3775cfcf859e4c77b74427d0158d9b",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/88fd9cfa144b06b2549e9d487fdaec68265e791e",
+                "reference": "88fd9cfa144b06b2549e9d487fdaec68265e791e",
                 "shasum": ""
             },
             "require": {
@@ -6765,7 +6765,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/V3.5.6"
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.5.7"
             },
             "funding": [
                 {
@@ -6773,7 +6773,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-13T07:04:33+00:00"
+            "time": "2021-05-13T20:18:35+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -7228,16 +7228,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.5.1",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "695f616c228c9df923a10282e4989feeae212c52"
+                "reference": "5d23474cd411b07f46980d05f9c38e7dc0d17460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/695f616c228c9df923a10282e4989feeae212c52",
-                "reference": "695f616c228c9df923a10282e4989feeae212c52",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/5d23474cd411b07f46980d05f9c38e7dc0d17460",
+                "reference": "5d23474cd411b07f46980d05f9c38e7dc0d17460",
                 "shasum": ""
             },
             "require": {
@@ -7284,7 +7284,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-05-11T21:00:37+00:00"
+            "time": "2021-05-18T15:44:02+00:00"
         },
         {
             "name": "maximebf/debugbar",
