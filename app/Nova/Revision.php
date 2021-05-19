@@ -16,7 +16,7 @@ class Revision extends Resource
     public static $model = \Venturecraft\Revisionable\Revision::class;
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '4. Gestion';
+    public static $group = '9. Gestion';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -52,7 +52,7 @@ class Revision extends Resource
             }),
 
             Text::make('ID item', function() {
-                $href = "/nova/resources/". Str::plural(Str::snake(class_basename($this->revisionable_type))) . "/" . $this->revisionable_id;
+                $href = "/nova/resources/". Str::plural(Str::kebab(class_basename($this->revisionable_type))) . "/" . $this->revisionable_id;
                 $title = class_exists($class = $this->revisionable_type) ? $class::withTrashed()->find($this->revisionable_id)->name : "...";
                 return '<a href="'. $href . '" class="no-underline dim text-primary font-bold" title="' . $title . '">' . $this->revisionable_id . '</a>';
             })->asHtml(),

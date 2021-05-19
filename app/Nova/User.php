@@ -13,7 +13,7 @@ class User extends Resource
 {
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '4. Gestion';
+    public static $group = '9. Gestion';
 
     public static function label () { return "Utilisateurs"; }
     public static function singularLabel () { return "utilisateur"; }

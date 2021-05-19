@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Date;
@@ -27,11 +27,11 @@ class Event extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '2. Site';
+    public static $group = '5. Site';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Evènements"; }
-    public static function singularLabel () { return "Evènement"; }
+    public static function label () { return "> Évènements"; }
+    public static function singularLabel () { return "Évènement"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
@@ -66,10 +66,11 @@ class Event extends Resource
                 ->rules('required', 'string')
                 ->onlyOnForms(),
 
-            Text::make('Sujet', function() {
+            Text::make('Sujet', 'name', function() {
                 return Str::limit($this->name, 30, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
             })
                 ->asHtml()
+                ->sortable()
                 ->onlyOnIndex(),
             Text::make('Sujet', 'name')
                 ->rules('required', 'string', 'min:3', 'max:128')

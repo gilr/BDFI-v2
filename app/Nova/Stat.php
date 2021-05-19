@@ -24,7 +24,7 @@ class Stat extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '2. Site';
+    public static $group = '5. Site';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Statistiques"; }

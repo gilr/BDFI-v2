@@ -25,7 +25,7 @@ class WebsiteType extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '3. Internes';
+    public static $group = '8. Internes';
 
     /* Model Labels (plural & singular) */
     public static function label () { return "Types de site"; }

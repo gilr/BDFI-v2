@@ -108,6 +108,10 @@ class DatabaseSeeder extends Seeder
             WebsiteSeeder::class,
             SignatureSeeder::class,
             RelationshipSeeder::class,
+
+            AwardSeeder::class,
+            AwardCategorySeeder::class,
+            AwardWinnerSeeder::class,
         ]);
     }
 }

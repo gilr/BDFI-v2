@@ -32,7 +32,7 @@ class Author extends Resource
     public static $group = '1. Biblio';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Auteurs"; }
+    public static function label () { return "> Auteurs"; }
     public static function singularLabel () { return "Auteur"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
@@ -131,7 +131,9 @@ class Author extends Resource
         return [
             BelongsTo::make('Pays', 'country', 'App\Nova\Country')
                 ->withoutTrashed()
-                ->default(1)
+                ->withMeta([
+                    'belongsToId' => 1
+                ])
                 ->nullable()
                 ->sortable()
                 ->searchable(),
