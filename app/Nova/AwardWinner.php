@@ -31,11 +31,11 @@ class AwardWinner extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '2. Récompenses';
+    public static $group = '2. Prix';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "> Lauréats"; }
-    public static function singularLabel () { return "Lauréat"; }
+    public static function label () { return "Récompenses"; }
+    public static function singularLabel () { return "Récompense"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
@@ -46,7 +46,7 @@ class AwardWinner extends Resource
     /* The number of results to display when searching for relatable resources without Scout. */
     public static $relatableSearchResults = 50;
 
-    public static $with = ['award', 'award_category'];
+    public static $with = ['award_category'];
 
     /**
      * Get the fields displayed by the resource.
@@ -63,16 +63,11 @@ class AwardWinner extends Resource
                 ->rules('required', 'gt:1900')
                 ->sortable(),
 
-            BelongsTo::make('Prix', 'award', 'App\Nova\Award')
-                ->withoutTrashed()
-                ->nullable()
-                ->sortable()
-                ->searchable(),
             BelongsTo::make('Catégorie', 'award_category', 'App\Nova\AwardCategory')
                 ->withoutTrashed()
                 ->nullable()
                 ->sortable()
-                ->searchable(),
+                ->searchable()->withSubtitles(),
 
             Text::make('Attribué à', 'name', function() {
                     return Str::limit($this->name, 30, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
@@ -99,8 +94,8 @@ class AwardWinner extends Resource
             BelongsTo::make('Auteur', 'author3', 'App\Nova\Author')
                 ->withoutTrashed()
                 ->nullable()
-                ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->hideFromIndex(),
 
             Number::make('Position', 'position')
                 ->rules('required', 'gte:1', 'lt:100')

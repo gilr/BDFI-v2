@@ -16,11 +16,6 @@ class CreateAwardWinnersTable extends Migration
         Schema::create('award_winners', function (Blueprint $table) {
             $table->increments('id');
             $table->year('year');
-            $table->unsignedInteger('award_id');
-            $table->foreign('award_id')
-                ->references('id')
-                ->on('awards')
-                ->onDelete('restrict');
 
             $table->unsignedInteger('award_category_id');
             $table->foreign('award_category_id')

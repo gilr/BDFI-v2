@@ -32,7 +32,7 @@ class Author extends Resource
     public static $group = '1. Biblio';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "> Auteurs"; }
+    public static function label () { return "Auteurs"; }
     public static function singularLabel () { return "Auteur"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */

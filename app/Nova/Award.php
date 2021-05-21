@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -27,10 +28,10 @@ class Award extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '2. Récompenses';
+    public static $group = '2. Prix';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Prix"; }
+    public static function label () { return "Liste des prix"; }
     public static function singularLabel () { return "Prix"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
@@ -114,6 +115,8 @@ class Award extends Resource
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
+
+            HasMany::make('Catégories', 'awardcategories', '\App\Nova\AwardCategory'),
 
             new Panel('Historique fiche', $this->commonMetadata()),
         ];

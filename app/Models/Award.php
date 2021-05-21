@@ -32,4 +32,13 @@ class Award extends Model
         return $this->belongsTo('App\Models\Country');
     }
 
+    public function awardcategories()
+    {
+        return $this->hasMany('App\Models\AwardCategory');
+    }
+
+    public function awardwinners()
+    {
+        return $this->hasMany('App\Models\AwardWinner');
+    }
 }

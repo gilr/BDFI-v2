@@ -32,7 +32,6 @@ class AwardWinnerSeeder extends Seeder
 
             DB::table('award_winners')->insert([
                 'year'              => $obj->year,
-                'award_id'          => $obj->award_id,
                 'award_category_id' => $obj->award_category_id,
                 'position'          => $obj->position,
                 'name'              => $obj->auteurs,

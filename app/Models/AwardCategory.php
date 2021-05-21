@@ -32,4 +32,9 @@ class AwardCategory extends Model
         return $this->belongsTo('App\Models\Award');
     }
 
+    public function awardwinners()
+    {
+        return $this->hasMany('App\Models\AwardWinner');
+    }
+
 }

@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -21,9 +22,13 @@ class AwardCategory extends Resource
     /* Displayed field uses as title on detail pages */
     public static $title = 'name';
 
+    public function title()
+    {
+        return $this->name . " ({$this->award->name})";
+    }
     public function subtitle()
     {
-        return "Award: {$this->award_id}";
+        return "Award: {$this->award->name}";
     }
     /* The columns that could be searched. */
     public static $search = [
@@ -31,10 +36,10 @@ class AwardCategory extends Resource
     ];
 
     /* Logical group in the sidebar menu - Optional */
-    public static $group = '2. Récompenses';
+    public static $group = '2. Prix';
     
     /* Model Labels (plural & singular) */
-    public static function label () { return "Catégories prix"; }
+    public static function label () { return "Catégories"; }
     public static function singularLabel () { return "Catégorie de prix"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
@@ -114,6 +119,8 @@ class AwardCategory extends Resource
                 ->rows(3)
                 ->alwaysShow()
                 ->hideFromIndex(),
+
+            HasMany::make('Lauréats', 'awardwinners', '\App\Nova\AwardWinner'),
 
             new Panel('Historique fiche', $this->commonMetadata()),
         ];
