@@ -40,7 +40,7 @@ class AwardCategory extends Resource
     
     /* Model Labels (plural & singular) */
     public static function label () { return "Catégories"; }
-    public static function singularLabel () { return "Catégorie de prix"; }
+    public static function singularLabel () { return "Catégorie"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
