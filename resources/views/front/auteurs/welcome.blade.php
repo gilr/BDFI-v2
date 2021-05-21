@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="text-sm p-1 m-1 place-self-start">
-        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Auteurs</span>
+        Vous êtes ici : BDFI 
+            <span class="text-xs border-b-2 border-yellow-300">Maquette de test</span> &rarr; 
+            <span class="border-b-2 border-yellow-300">Auteurs</span>
     </div>
 
     <div class='flex text-lg sm:text-2xl font-mono font-bold bg-gray-300 border border-gray-400 p-0.5 self-center'>

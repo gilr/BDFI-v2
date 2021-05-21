@@ -31,7 +31,7 @@ class Award extends Resource
     public static $group = '2. Prix';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Liste des prix"; }
+    public static function label () { return "Prix"; }
     public static function singularLabel () { return "Prix"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */

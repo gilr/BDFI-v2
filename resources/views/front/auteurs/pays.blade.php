@@ -3,7 +3,11 @@
 @section('content')
 
     <div class="text-sm p-1 m-1 place-self-start">
-        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Auteurs &rarr; {{ $pays }}</span>
+        Vous êtes ici : BDFI 
+            <span class="text-xs border-b-2 border-yellow-300">Maquette de test</span> &rarr; 
+            <a class='border-b-2 border-yellow-300 hover:border-purple-600' href="/auteurs">Auteurs</a> &rarr; 
+            <a class='border-b-2 border-yellow-300 hover:border-purple-600' href="/auteurs/pays">Pays</a> &rarr; 
+            <span class="border-b-2 border-yellow-300">{{ $pays }}</span>
     </div>
 
     <div class='flex flex-wrap text-lg bg-gray-300 border border-gray-400 mx-2 md:mx-40 self-center'>

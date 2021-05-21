@@ -31,10 +31,6 @@ class AwardWinner extends Model
     {
         return $this->belongsTo('App\Models\AwardCategory');
     }
-    public function award()
-    {
-        return $this->belongsTo('App\Models\Award');
-    }
     public function author()
     {
         return $this->belongsTo('App\Models\Author');

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\AwardController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ReportController;
@@ -25,8 +26,17 @@ Route::get('/', function () { return view('welcome'); })->name('welcome');
 // Zone Auteurs
 Route::get('/auteurs', [AuthorController::class, 'welcome'])->name('auteurs');
 Route::get('/auteurs/index/{i}', [AuthorController::class, 'index']);
+Route::get('/auteurs/pays/', [AuthorController::class, 'index_pays']);
 Route::get('/auteurs/pays/{name}', [AuthorController::class, 'pays']);
 Route::get('/auteurs/{name}', [AuthorController::class, 'page']);
+
+// Zone des récompenses
+Route::get('/prix', [AwardController::class, 'welcome'])->name('prix');
+Route::get('/prix/{name}', [AwardController::class, 'prix']);
+Route::get('/prix/categorie/{name}', [AwardController::class, 'categorie']);
+Route::get('/prix/annee/{an}', [AwardController::class, 'annee']);
+Route::get('/prix/genre/{name}', [AwardController::class, 'genre']);
+Route::get('/prix/type/{name}', [AwardController::class, 'type']);
 
 // Zone infos du site
 Route::get('/site', [AnnouncementController::class, 'welcome'])->name('site');
@@ -43,12 +53,6 @@ Route::get('/evenements', [EventController::class, 'welcome'])->name('evenements
 // Route::get('/evenements', ...);              --> accueil + évènements à venir
 // Route::get('/evenements/{name}', ...);       --> détail d'un événement (périodique ou non)
 // Route::get('/evenements/historique', ...);   --> Liste des évènements y compris passés
-
-// Temporaire
-Route::get('/prix', function () { return view('prix'); });
-// Zone récompenses
-// Route::get('/prix', ...);              --> L'accueil, la liste des prix, par pays
-// Route::get('/prix/{name}', ...);       --> La page d'un prix
 
 // Temporaire
 Route::get('/ouvrages', function () { return view('ouvrages'); });

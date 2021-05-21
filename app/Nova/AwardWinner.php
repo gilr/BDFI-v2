@@ -34,8 +34,8 @@ class AwardWinner extends Resource
     public static $group = '2. Prix';
 
     /* Model Labels (plural & singular) */
-    public static function label () { return "Récompenses"; }
-    public static function singularLabel () { return "Récompense"; }
+    public static function label () { return "Lauréats"; }
+    public static function singularLabel () { return "Lauréat"; }
 
     /* The visual style used for the table. Available options are 'tight' and 'default' */
     public static $tableStyle = 'tight';
@@ -67,7 +67,7 @@ class AwardWinner extends Resource
                 ->withoutTrashed()
                 ->nullable()
                 ->sortable()
-                ->searchable()->withSubtitles(),
+                ->searchable(),
 
             Text::make('Attribué à', 'name', function() {
                     return Str::limit($this->name, 30, "<span style='bold;background-color:lightgreen;'>&mldr;</span>");
@@ -81,17 +81,17 @@ class AwardWinner extends Resource
                 ->alwaysShow()
                 ->hideFromIndex(),
 
-            BelongsTo::make('Auteur', 'author', 'App\Nova\Author')
+            BelongsTo::make('Auteur 1', 'author', 'App\Nova\Author')
                 ->withoutTrashed()
                 ->nullable()
                 ->sortable()
                 ->searchable(),
-            BelongsTo::make('Auteur', 'author2', 'App\Nova\Author')
+            BelongsTo::make('Auteur 2', 'author2', 'App\Nova\Author')
                 ->withoutTrashed()
                 ->nullable()
                 ->sortable()
                 ->searchable(),
-            BelongsTo::make('Auteur', 'author3', 'App\Nova\Author')
+            BelongsTo::make('Auteur 3', 'author3', 'App\Nova\Author')
                 ->withoutTrashed()
                 ->nullable()
                 ->searchable()

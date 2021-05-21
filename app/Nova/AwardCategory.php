@@ -28,7 +28,7 @@ class AwardCategory extends Resource
     }
     public function subtitle()
     {
-        return "Award: {$this->award->name}";
+        return "Prix: {$this->award->name}";
     }
     /* The columns that could be searched. */
     public static $search = [

@@ -34,6 +34,12 @@ class AuthorController extends Controller
         }
     }
 
+    public function index_pays(Request $request)
+    {
+        $countries = Country::select('name', 'code')->orderBy('name', 'asc')->get();
+        return view('front.auteurs.indexpays', compact('countries'));
+    }
+
     /**
      * Index des auteurs par pays : /auteurs/pays/{pays}
      */

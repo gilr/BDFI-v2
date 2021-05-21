@@ -3,7 +3,11 @@
 @section('content')
 
     <div class="text-sm p-1 m-1 place-self-start">
-        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Auteurs &rarr; Index {{ strtoupper(substr($results->name, 0, 1)) }} &rarr; {{ $results->first_name }} {{ $results->name }}</span>
+        Vous êtes ici : BDFI 
+            <span class="text-xs border-b-2 border-yellow-300">Maquette de test</span> &rarr; 
+            <a class='border-b-2 border-yellow-300 hover:border-purple-600' href="/auteurs">Auteurs</a> &rarr; 
+            <a class='border-b-2 border-yellow-300 hover:border-purple-600' href="/auteurs/index/{{ strtolower(substr($results->name, 0, 1)) }}">Index {{ strtoupper(substr($results->name, 0, 1)) }}</a> &rarr; 
+            <span class="border-b-2 border-yellow-300">{{ $results->first_name }} {{ $results->name }}</span>
     </div>
 
     <div class='flex text-lg sm:text-2xl font-mono font-bold bg-gray-300 border border-gray-400 p-0.5 self-center'>
