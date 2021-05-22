@@ -24,8 +24,8 @@ class CreateAwardCategoriesTable extends Migration
                 ->onDelete('restrict');
 
             $table->unsignedInteger('internal_order');
-            $table->enum('type', ['roman','novella','nouvelle','anthologie','recueil','auteur','special','autre']);
-            $table->enum('genre', ['imaginaire','sf','fantastique','fantasy','horreur','mainstream','autre']);
+            $table->enum('type', ['roman','novella','nouvelle','anthologie','recueil', 'texte', 'auteur','special']);
+            $table->enum('genre', ['sf','fantastique','fantasy','horreur','imaginaire','mainstream']);
             $table->string('subgenre', 256)->nullable();
 
             $table->text('description')->nullable();

@@ -11,11 +11,15 @@
     </div>
 
     <div class='text-xl my-2 bold self-center'>
-        Liste des lauréats de : {{ $categorie }}, {{ $prix }}
+        Liste des lauréats de la catégorie {{ $categorie }}, {{ $prix }}
     </div>
     <div class='text-lg px-2 mx-2 md:mx-40 self-center'>
         @foreach($laureats as $laureat)
-            <div title='{{ $laureat }}'><a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/annee/{{ $laureat->year }}'>{{ $laureat->year }}</a> : {{ $laureat->name }} - {{ $laureat->title }} {{ $laureat->title == "" ? $laureat->vo_title : ($laureat->vo_title == "" ? "" : "(" . $laureat->vo_title . ")") }}  </div>
+            @if ($laureat->position == 99)
+                <div class='bg-gray-300'><a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/annee/{{ $laureat->year }}'>{{ $laureat->year }}</a> : <i>Non attribué</i>  </div>
+            @else
+                <div><a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/annee/{{ $laureat->year }}'>{{ $laureat->year }}</a> : {{ $laureat->name }} - {{ $laureat->title }} {{ $laureat->title == "" ? $laureat->vo_title : ($laureat->vo_title == "" ? "" : "(" . $laureat->vo_title . ")") }}  </div>
+            @endif
         @endforeach
     </div>
 

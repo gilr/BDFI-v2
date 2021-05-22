@@ -18,6 +18,18 @@
 			</li>
 
 			<li class="hover:bg-yellow-100">
+				<a href="/prix" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Les prix">
+					<img src="/img/prix.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
+				<a href="/site" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Le site">
+					<img src="/img/annonces.png" style="width: 40px" />
+				</a>
+			</li>
+
+			<li class="hover:bg-yellow-100">
 				<a href="/textes" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Les textes">
 					<img src="/img/texte.png" style="width: 40px" />
 				</a>
@@ -48,12 +60,6 @@
 			</li>
 
 			<li class="hover:bg-yellow-100">
-				<a href="/prix" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Les prix">
-					<img src="/img/prix.png" style="width: 40px" />
-				</a>
-			</li>
-
-			<li class="hover:bg-yellow-100">
 				<a href="/festivals" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Les salons & festivals">
 					<img src="/img/festival.png" style="width: 40px" />
 				</a>
@@ -62,12 +68,6 @@
 			<li class="hover:bg-yellow-100">
 				<a href="/forums" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Nos forums">
 					<img src="/img/forum.png" style="width: 40px" />
-				</a>
-			</li>
-
-			<li class="hover:bg-yellow-100">
-				<a href="/site" class="h-16 px-4 flex flex justify-center items-center w-full focus:text-yellow-600" title="Le site">
-					<img src="/img/annonces.png" style="width: 40px" />
 				</a>
 			</li>
 

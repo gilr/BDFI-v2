@@ -3,7 +3,9 @@
 @section('content')
 
     <div class="text-sm p-1 m-1 place-self-start">
-        Vous êtes ici : <span class=" border-b-2 border-yellow-400"> BDFI <span class="text-xs">Maquette de test</span> &rarr; Prix</span>
+        Vous êtes ici : BDFI 
+            <span class="text-xs border-b-2 border-yellow-300">Maquette de test</span> &rarr; 
+            <span class="border-b-2 border-yellow-300">Prix</span>
     </div>
 
     <div class='flex flex-wrap text-md px-1 mx-1 md:mx-8 self-center'>
@@ -20,7 +22,7 @@
     <div class='text-xl my-2 bold self-center'>
         Accès aux prix :
     </div>
-    <div class='text-lg px-2 mx-2 md:mx-40 self-center'>
+    <div class='grid grid-cols-1 sm:grid-cols-2 text-base px-2 mx-2 md:mx-40 self-center w-full sm:w-8/12'>
         @foreach($prix as $myprix)
             <div class='hover:bg-yellow-100 border-b hover:border-purple-600'><a class='sm:p-0.5 md:px-0.5' href='/prix/{{ $myprix->name }}'>{{ $myprix->name }} ({{ $myprix->country->name }})</a></div>
         @endforeach

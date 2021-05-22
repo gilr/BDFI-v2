@@ -12,7 +12,7 @@
     <x-menu-prix-type tab='{{ $type }}' :types="$types"/>
 
     <div class='text-xl my-2 bold self-center'>
-        Liste des categories de prix concernant uniquement le type {{ $type }} :
+        Liste des categories de prix "{{ $type }}"
     </div>
     <div class='text-lg px-2 mx-2 md:mx-40 self-center'>
         @foreach($categories as $categorie)

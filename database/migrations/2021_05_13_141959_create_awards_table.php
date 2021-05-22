@@ -23,7 +23,6 @@ class CreateAwardsTable extends Migration
                 ->on('countries')
                 ->onDelete('restrict');
 
-            $table->string('short_name', 128)->nullable();
             $table->string('alt_names', 512)->nullable();
 
             $table->string('year_start', 4);

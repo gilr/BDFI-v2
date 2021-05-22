@@ -24,7 +24,7 @@ class Award extends Resource
 
     /* The columns that could be searched. */
     public static $search = [
-      'id', 'year_start', 'name', 'short_name', 'alt_names', 'given_by', 'given_for', 'description'
+      'id', 'year_start', 'name', 'alt_names', 'given_by', 'given_for', 'description'
     ];
 
     /* Logical group in the sidebar menu - Optional */
@@ -71,9 +71,6 @@ class Award extends Resource
                 ->sortable()
                 ->default(1)
                 ->searchable(),
-            Text::make('Nom court', 'short_name')
-                ->rules('nullable', 'string', 'max:128')
-                ->sortable(),
             Text::make('Autres formes', 'alt_names')
                 ->rules('nullable', 'string', 'max:128')
                 ->hideFromIndex(),

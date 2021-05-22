@@ -20,7 +20,6 @@ class AwardSeeder extends Seeder
         foreach ($data as $obj) {
             DB::table('awards')->insert([
                 'name'          => $obj->name ?: "",
-                'short_name'    => $obj->short_name ?: "",
                 'alt_names'     => $obj->alt_names ?: "",
                 'year_start'    => $obj->year_start ?: "",
                 'year_end'      => $obj->year_end ?: "",
