@@ -20,12 +20,15 @@
         @endforeach
     </div>
 
-    <div class='text-xl my-2 bold self-center'>
-        Liste des prix décernés l'année {{ $annee }} :
+    <div class='text-xl text-purple-800 my-2 bold self-center py-2'>
+        Récompenses décernés l'année {{ $annee }}
     </div>
     <div class='text-lg px-2 mx-2 md:mx-40 self-center'>
-        @foreach($laureats as $laureat)
-            <div>{{ $laureat->name }} - {{ $laureat->title }} {{ $laureat->title == "" ? $laureat->vo_title : ($laureat->vo_title == "" ? "" : "(" . $laureat->vo_title . ")") }} : <a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/{{ $laureat->award_category->award->name }}'>{{ $laureat->award_category->award->name }}</a>, catégorie <a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/categorie/{{ $laureat->award_category_id }}'>{{ $laureat->award_category->name }}</a></div>
+        @foreach($laureats as $type)
+            <div class='font-bold'>Type de prix <a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/type/{{ $type[0]->type }}'>"{{ ucfirst($type[0]->type) }}"</a></div>
+            @foreach($type as $laureat)
+                <div class='pl-2'>{{ $laureat->name }} - {{ $laureat->title }} {{ $laureat->title == "" ? $laureat->vo_title : ($laureat->vo_title == "" ? "" : "(" . $laureat->vo_title . ")") }} : <a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/{{ $laureat->award_category->award->name }}'>{{ $laureat->award_category->award->name }}</a>, catégorie <a class='hover:bg-yellow-100 border-b hover:border-purple-400 sm:px-0.5 md:px-1' href='/prix/categorie/{{ $laureat->award_category_id }}'>{{ $laureat->award_category->name }}</a></div>
+            @endforeach
         @endforeach
     </div>
 

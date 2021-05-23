@@ -20,7 +20,6 @@ use App\Http\Controllers\DownloadController;
 |
 */
 
-
 Route::get('/', function () { return view('welcome'); })->name('welcome');
 
 // Zone Auteurs
@@ -37,6 +36,7 @@ Route::get('/prix/categorie/{name}', [AwardController::class, 'categorie']);
 Route::get('/prix/annee/{an}', [AwardController::class, 'annee']);
 Route::get('/prix/genre/{name}', [AwardController::class, 'genre']);
 Route::get('/prix/type/{name}', [AwardController::class, 'type']);
+Route::get('/prix/pays/{name}', [AwardController::class, 'pays']);
 
 // Zone infos du site
 Route::get('/site', [AnnouncementController::class, 'welcome'])->name('site');
@@ -107,6 +107,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/admin/rapports/etat-biographies-{i}', [ReportController::class, 'getBioStatus']);
         Route::get('/admin/rapports/manque-nationalite', [ReportController::class, 'getMissingCountries']);
         Route::get('/admin/rapports/manque-fiche', [ReportController::class, 'getMissingRecords']);
+        Route::get('/admin/rapports/prix-{an}', [ReportController::class, 'getMissingAwards']);
 
         Route::get('/admin/outils', [ToolController::class, 'index'])->name('admin/outils');
         Route::get('/admin/outils/anniversaires-fb-jour', [ToolController::class, 'getFbToday']);

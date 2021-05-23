@@ -26,6 +26,14 @@
             <div class="flex text-4xl p-2 m-2 border border-gray-400 self-center rounded-lg shadow-2xl">
                 Ceci n'est qu'un site de test...
             </div>
+            <div class='flex text-2xl text-gray-300 p-2 mx-64 my-2 self-center'>
+                Fouiller partout pourrait devenir dangereux...
+            </div>
+
+            <div class='flex text-1xl p-4 m-20 border border-gray-400 self-center rounded-lg shadow'>
+                <span>... Attention, après vous ne viendrez pas dire que vous n'aviez pas été prévenus, hein...</span>
+                <span class="animate-ping inline-flex h-1/1 w-1/4 rounded-full bg-red-400 opacity-75"></span>
+            </div>
 
             <div class='flex text-xl my-4 self-end flex-row-reverse'>
                <div class="flex flex-grow animate-bounce content-end justify-end text-4xl text-red-800 bold">/\</div><br/>

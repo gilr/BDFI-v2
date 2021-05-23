@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use DB;
+use App\Models\Award;
+use App\Models\AwardCategory;
 
 class ReportController extends Controller
 {
@@ -182,4 +184,23 @@ class ReportController extends Controller
         return view('admin/rapports/etat-biographies', compact('auteurs', 'level'));
     }
 
+    public function getMissingAwards($date)
+    {
+        /*
+        Prix manquants... ou abandonnés
+        */
+        $active_awards = Award::where('year_end', '=' ,'')->get();
+        $results = collect();
+        foreach ($active_awards as $award) {
+            $id = $award->id;
+            $max = (array)DB::selectOne("SELECT MAX(year) FROM award_winners w, award_categories c WHERE w.award_category_id = c.id AND c.award_id = $id");
+            $lastyear = $max[key($max)];
+            if($lastyear <= $date) {
+                $categories = AwardCategory::where('award_id', '=' ,"$id")->get();
+                $results->push([$award, $lastyear, $categories]);
+            }
+        }
+
+        return view('admin/rapports/manque-prix', compact('date', 'results'));
+    }
 }

@@ -11,8 +11,8 @@
 
     <x-menu-prix-genre tab='{{ $genre }}' :genres="$genres"/>
 
-    <div class='text-xl my-2 bold self-center'>
-        Liste des categories de prix concernant uniquement le genre {{ $genre }} :
+    <div class='text-xl text-purple-800 my-2 bold self-center py-2'>
+        Liste des prix et catégories concernant le genre {{ $genre }} :
     </div>
     <div class='text-lg px-2 mx-2 md:mx-40 self-center'>
         @foreach($categories as $categorie)

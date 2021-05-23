@@ -16,12 +16,12 @@
                         <p>Peut être utilisé sans riques... Bien au contraire, faire des sauvegardes régulières peut nous être utile un jour.</p>
                     </div>
 
-                    <div class="p-6">
+                    <div class="pt-4">
                         <div class="p-2 text-2xl border-b border-yellow-800">
                             Tables autours des auteurs
                         </div>
                         <div class="p-2">
-                            <ul class="list-disc pl-4">
+                            <ul class="list-disc pl-6">
                                 <li><x-adm-link lien='/admin/telechargements/Author'>auteurs</x-adm-link></li>
                                 <li><x-adm-link lien='/admin/telechargements/Signature'>signatures</x-adm-link></li>
                                 <li><x-adm-link lien='/admin/telechargements/Website'>sites web</x-adm-link></li>
@@ -30,12 +30,24 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="p-6">
+                    <div class="pt-4">
+                        <div class="p-2 text-2xl border-b border-yellow-800">
+                            Tables des prix
+                        </div>
+                        <div class="p-2">
+                            <ul class="list-disc pl-6">
+                                <li><x-adm-link lien='/admin/telechargements/Award'>Prix</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/AwardCategory'>Catégories</x-adm-link></li>
+                                <li><x-adm-link lien='/admin/telechargements/AwardWinner'>Lauréats</x-adm-link></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pt-4">
                         <div class="p-2 text-2xl border-b border-yellow-800">
                             Evènements et annonces
                         </div>
                         <div class="p-2">
-                            <ul class="list-disc pl-4">
+                            <ul class="list-disc pl-6">
                                 <li><x-adm-link lien='/admin/telechargements/Event'>salons et évènements</x-adm-link></li>
                                 <li><x-adm-link lien='/admin/telechargements/Announcement'>news et annonces sites</x-adm-link></li>
                             </ul>

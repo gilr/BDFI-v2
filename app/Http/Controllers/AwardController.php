@@ -11,11 +11,19 @@ use Illuminate\Http\Request;
 class AwardController extends Controller
 {
 
-    protected $types = ['roman','novella','nouvelle','anthologie','recueil','texte', 'auteur','special'];
-    protected $genres = ['sf','fantastique','fantasy','horreur','imaginaire','mainstream'];
+    protected $types = ['auteur', 'roman', 'novella', 'nouvelle', 'anthologie', 'recueil', 'texte', 'special'];
+
+    protected $genres = ['sf', 'fantastique', 'fantasy', 'horreur', 'imaginaire', 'mainstream'];
+
     protected function annees ()
     {
         return array_merge (range (1927, 1933), range (1951, date("Y")));
+    }
+    protected function listepays ()
+    {
+        $listeprix = Award::join('countries', 'countries.id', '=', 'awards.country_id')->select('country_id', 'countries.name')->orderBy('country_id', 'asc')->get()->unique('country_id')->all();
+        //ddd($listeprix);
+        return $listeprix;
     }
 
     public function welcome()
@@ -23,29 +31,43 @@ class AwardController extends Controller
         $genres = $this->genres;
         $types = $this->types;
         $annees = $this->annees();
+        $pays = $this->listepays();
         $prix = Award::orderBy('country_id', 'asc')->orderBy('name', 'asc')->get();
-        return view('front.prix.welcome', compact('annees', 'types', 'genres', 'prix'));
+
+        return view('front.prix.welcome', compact('annees', 'types', 'genres', 'pays', 'prix'));
     }
 
     public function annee(Request $request, $annee)
     {
         $annees = $this->annees();
-        $laureats = AwardWinner::where('year', $annee)->where('position', 1)->orderBy('name', 'asc')->get();
+        $laureats = AwardWinner::where('year', $annee)->where('position', 1)->join('award_categories', 'award_categories.id', '=', 'award_category_id')->orderBy('award_categories.type', 'asc')->select('award_winners.*', 'award_categories.type')->get()->groupBy('type');
+
         return view('front.prix.annee', compact('annees', 'annee', 'laureats'));
     }
 
     public function genre(Request $request, $genre)
     {
         $genres = $this->genres;
-        $categories = AwardCategory::where('genre', $genre)->orderBy('name', 'asc')->get();
+        $categories = AwardCategory::where('genre', $genre)->join('awards', 'awards.id', '=', 'award_id')->orderBy('awards.name', 'ASC')->orderBy('type')->select('award_categories.*')->get();
+
         return view('front.prix.genre', compact('genres', 'genre', 'categories'));
     }
 
     public function type(Request $request, $type)
     {
         $types = $this->types;
-        $categories = AwardCategory::where('type', $type)->orderBy('name', 'asc')->get();
+        $categories = AwardCategory::where('type', $type)->join('awards', 'awards.id', '=', 'award_id')->orderBy('awards.name', 'ASC')->orderBy('internal_order')->select('award_categories.*')->get();
+
         return view('front.prix.type', compact('types', 'type', 'categories'));
+    }
+
+    public function pays(Request $request, $pays)
+    {
+        $listepays = $this->listepays();
+        //$categories = AwardCategory::join('awards', 'awards.id', '=', 'award_id')->join('countries', 'countries.id', '=', 'awards.country_id')->where('countries.name', $pays)->orderBy('awards.name', 'ASC')->orderBy('internal_order')->select('award_categories.*')->get();
+        $prix = Award::join('countries', 'countries.id', '=', 'awards.country_id')->where('countries.name', $pays)->orderBy('awards.name', 'ASC')->select('awards.*')->get();
+
+        return view('front.prix.pays', compact('listepays', 'pays', 'prix'));
     }
 
     public function categorie(Request $request, $category_id)
@@ -55,6 +77,7 @@ class AwardController extends Controller
         $categorie = $result->name;
 
         $laureats = AwardWinner::where('award_category_id', $category_id)->orderBy('year', 'asc')->get();
+
         return view('front.prix.categorie', compact('prix', 'categorie', 'laureats'));
     }
 
@@ -67,6 +90,7 @@ class AwardController extends Controller
         if ($categories->count() == 1) {
             $laureats = AwardWinner::where('award_category_id', $categories->first()->id)->orderBy('year', 'asc')->get();
         }
+
         return view('front.prix.prix', compact('prix', 'categories', 'laureats'));
     }
 
